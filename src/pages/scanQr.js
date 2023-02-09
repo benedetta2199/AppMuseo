@@ -18,7 +18,6 @@ export default function scanQR() {
             setData(result?.text);
           }
         }}
-        style={{ width: '100vw', height: '100vh' }}
         className={styles.camera}
       />
       <p>{data}</p>
