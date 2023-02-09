@@ -1,278 +1,157 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+/*LOGIN*/
+.main{
+  position: relative !important;
+  overflow-x: hidden;
+  min-height: 95vh;
+  padding-bottom: 3vh;
+}
+.input{
+  width: 80%;
+   background-color:transparent; 
+   border: 0; border-bottom: solid 0.5px ; border-radius: 0; 
+   margin-top: 0;
+  }
+
+.logo, .logoW{width: 40vw; margin-top: 2vh; position: relative; z-index: 2;}
+.logoW{position: fixed; left: 30vw;}
+.form, .picCircle{
+  width: 210vw;
+  position: absolute;
+  left: -55vw;
+  border-radius: 100%;
+  height: 80vh;
+  padding: 5vh 50% !important;
+  color: var(--white);
+}
+/*PROFILE*/
+.profilePic{
+  width: 100vw;
+  height: 60vh;
+  position: fixed;
+  background-image: url('../public/acropoli.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 75%; 
 }
 
-.description {
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-  font-size: 0.85rem;
-  max-width: var(--max-width);
+.picCircle{top:50%; background-color: var(--white); color: var(--black); 
+  padding: 5vh 40% !important;}
+
+.user{top: 50vh; margin-top: 2vh;}
+
+ /*REPERTO*/ 
+ .reperto{
+  height: 70vw;
+  margin: 5vh auto;
+ }
+
+ /*INDIZIO*/
+ .obliquo{
+  -moz-transform: skew(0deg, 10deg);
+  -webkit-transform: skew(0deg, 10deg);
+  -o-transform: skew(0deg, 10deg);
+  -ms-transform: skew(0deg, 10deg);
+  transform: skew(0deg, 10deg);
+  height: 47vh;
+  background-color: var(--white);
+  position: absolute;
+  top: 37vh;
+  width: 100vw;
+  border-radius: 8px;
+ }
+
+ .piano{
+  width: 90vw;
+  height: auto;
+  -webkit-filter: drop-shadow(0px -2px 5px rgba(0,0,0,0.5));
+  filter: drop-shadow(0px -2px 5px rgba(0,0,0,0.5));
+  margin: auto;
+  position: relative;
+  top: -8vh;
+ }
+
+ .indizio{
+  position: relative;
+  top: -6vh;
+ }
+
+ .scanText{
+  width: 82vw;
+  margin-left: 18vw;
+  text-align: start;
+  position: relative;
+  top: 6vh;
+ }
+
+ /*CRONOLOGIA DEI REPERTI*/
+ .vertical{
+  width: 30vw;
+  height: 85vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+ }
+ .vertical::-webkit-scrollbar {
+  display: none;
+}
+ .active{
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+ }
+ .down{position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: rgba(225, 225, 225, 0.3);
   width: 100%;
+}
+.verticalReperto{
+  width: 70vw;
+  height: 85vh;
+  position: absolute;
+  right: 0;
+  top: 6vh;
+ }
+.verticalReperto>img{
+  position: relative;
+  top: 3vh;
+  right: -10vw;
+}
+.verticalReperto>div{
+  position: relative;
+  top: 3vh;
+  padding-left: 4vw;
+  text-align: left;
+}
+.verticalReperto p{
+  text-align: justify;
+}
+
+/*OLD ROUTE*/
+.cardRoute{
+  display: flex;
+  margin: 4vh 5vw;
+  justify-content: space-between;
+}
+
+.cardRoute img{
+  position: relative;
+  width: 30vw; height: 30vw;
+  border-radius: 8px;
+  top: -0.5vh;
+  object-fit: cover;
+  position: relative;
+  object-position: 75% top;
+}
+.cardRoute:nth-child(2n) img{ left: 2vw;}
+.cardRoute:nth-child(2n+1) img{right: 2vw;}
+
+.cardRoute div{
+  position: relative;
+  min-width: 60vw;
   z-index: 2;
-  font-family: var(--font-mono);
 }
+.cardRoute:nth-child(2n) div{text-align: left;}
+.cardRoute:nth-child(2n+1) div{text-align: right;}
 
-.description a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.description p {
-  position: relative;
-  margin: 0;
-  padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  width: var(--max-width);
-  max-width: 100%;
-}
-
-.card {
-  padding: 1rem 1.2rem;
-  border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  transition: transform 200ms;
-}
-
-.card h2 {
-  font-weight: 600;
-  margin-bottom: 0.7rem;
-}
-
-.card p {
-  margin: 0;
-  opacity: 0.6;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  max-width: 30ch;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  padding: 4rem 0;
-}
-
-.center::before {
-  background: var(--secondary-glow);
-  border-radius: 50%;
-  width: 480px;
-  height: 360px;
-  margin-left: -400px;
-}
-
-.center::after {
-  background: var(--primary-glow);
-  width: 240px;
-  height: 180px;
-  z-index: -1;
-}
-
-.center::before,
-.center::after {
-  content: '';
-  left: 50%;
-  position: absolute;
-  filter: blur(45px);
-  transform: translateZ(0);
-}
-
-.logo,
-.thirteen {
-  position: relative;
-}
-
-.thirteen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 75px;
-  height: 75px;
-  padding: 25px 10px;
-  margin-left: 16px;
-  transform: translateZ(0);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: 0px 2px 8px -1px #0000001a;
-}
-
-.thirteen::before,
-.thirteen::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-}
-
-/* Conic Gradient Animation */
-.thirteen::before {
-  animation: 6s rotate linear infinite;
-  width: 200%;
-  height: 200%;
-  background: var(--tile-border);
-}
-
-/* Inner Square */
-.thirteen::after {
-  inset: 0;
-  padding: 1px;
-  border-radius: var(--border-radius);
-  background: linear-gradient(
-    to bottom right,
-    rgba(var(--tile-start-rgb), 1),
-    rgba(var(--tile-end-rgb), 1)
-  );
-  background-clip: content-box;
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
-
-  .card:hover span {
-    transform: translateX(4px);
-  }
-}
-
-@media (prefers-reduced-motion) {
-  .thirteen::before {
-    animation: none;
-  }
-
-  .card:hover span {
-    transform: none;
-  }
-}
-
-/* Mobile */
-@media (max-width: 700px) {
-  .content {
-    padding: 4rem;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    margin-bottom: 120px;
-    max-width: 320px;
-    text-align: center;
-  }
-
-  .card {
-    padding: 1rem 2.5rem;
-  }
-
-  .card h2 {
-    margin-bottom: 0.5rem;
-  }
-
-  .center {
-    padding: 8rem 0 6rem;
-  }
-
-  .center::before {
-    transform: none;
-    height: 300px;
-  }
-
-  .description {
-    font-size: 0.8rem;
-  }
-
-  .description a {
-    padding: 1rem;
-  }
-
-  .description p,
-  .description div {
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-  }
-
-  .description p {
-    align-items: center;
-    inset: 0 0 auto;
-    padding: 2rem 1rem 1.4rem;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
-    background-clip: padding-box;
-    backdrop-filter: blur(24px);
-  }
-
-  .description div {
-    align-items: flex-end;
-    pointer-events: none;
-    inset: auto 0 0;
-    padding: 2rem;
-    height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
-    z-index: 1;
-  }
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-
-  .logo,
-  .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-}
+.cardRoute:nth-child(2n) div p:nth-child(3){text-align: right;}
+.cardRoute:nth-child(2n+1) div p:nth-child(3){text-align: left;}

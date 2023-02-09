@@ -1,0 +1,39 @@
+.c1{
+  width: 90vw;
+  height: 90vw;
+  border-radius: 100%;
+  top: -5%;
+  right: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--yellow) 0%, var(--yellow) 68%, var(--dyellow) 100%);
+}
+
+.c2{
+  width: 65vw;
+  height: 65vw;
+  border-radius: 100%;
+  top: 15%;
+  left: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--red)  0%, var(--red) 65%, var(--dred) 100%);
+}
+
+.c3{
+  width: 90vw;
+  height: 90vw;
+  border-radius: 100%;
+  top: 14%;
+  right: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--blue) 0%, var(--blue) 65%, var(--dblue) 100%);
+}
+
+.c4{
+  width: 100vw;
+  height: 100vw;
+  border-radius: 100%;
+  top: -8%;
+  left: -13%;
+  position: absolute;
+  background: radial-gradient(circle, var(--green) 0%, var(--green) 68%, var(--dgreen) 100%);
+}
