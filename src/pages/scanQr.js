@@ -8,7 +8,7 @@ export default function scanQR() {
   const [data, setData] = useState('No result');
 
   return (
-    <>
+    <main className={`${styles.main} lock-height`}>
       <QrReader
         constraints={{
           facingMode: 'environment'
@@ -21,7 +21,6 @@ export default function scanQR() {
         className={styles.camera}
         style={{ width: '100%', height: '100%' }}
       />
-      <p>{data}</p>
-    </>
+    </main>
   );
 };
