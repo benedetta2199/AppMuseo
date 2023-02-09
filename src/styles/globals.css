@@ -55,6 +55,7 @@ body {
   background-color: var(--wite);
   color: var(--black);
   text-align: center;
+  margin: 0;
 }
 
 h1,h2,h3,h4,h5,h6{font-family: 'Aboreto',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}

@@ -156,13 +156,13 @@
 .cardRoute:nth-child(2n+1) div p:nth-child(3){text-align: left;}
 
 
-.camera {width: '100vw' !important; height: '100vh' !important}
+.camera {width: '100vw' !important; height: inherit}
 .camera:after {
   content: "";
   background-image: url('../../public/scanQr.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: auto;
+  background-position: 50%;
   position: absolute;
   top: 0;
   left: 0;
