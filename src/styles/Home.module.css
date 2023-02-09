@@ -30,7 +30,8 @@
   position: fixed;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-x: 75%; 
+  background-position-x: 75%;
+  background-image: url('../../public/acropoli.jpg'); 
 }
 
 .picCircle{top:50%; background-color: var(--white); color: var(--black); 

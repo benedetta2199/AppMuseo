@@ -17,7 +17,7 @@ export default function Home() {
   const [listRoute, setListRoute] = useState([]);
 
   const loadRoute = async () => {
-    const list = [];
+    let list = [];
     for (const route of routes) {
       const docRef1 = doc(db, "percorsoFatto", route);
       const docSnap1 = await getDoc(docRef1);
