@@ -7,7 +7,7 @@ import {IoClose} from "react-icons/io5";
 
 export default function scanQR() { 
 
-  id=0
+  const id=0
   
   const [data, setData] = useState('No result');
 
