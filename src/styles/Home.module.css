@@ -28,7 +28,7 @@
   width: 100vw;
   height: 60vh;
   position: fixed;
-  background-image: url('../public/acropoli.jpg');
+  background-image: url('@img/acropoli.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 75%; 
