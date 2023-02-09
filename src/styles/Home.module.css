@@ -156,7 +156,8 @@
 .cardRoute:nth-child(2n+1) div p:nth-child(3){text-align: left;}
 
 
-.camera {transform: scale(2);}
+.camera {height: inherit;}
+.camera>* {height: inherit; transform: scale(1.5);}
 .camera:before {
   content: "";
   background: rgb(0,0,0);
