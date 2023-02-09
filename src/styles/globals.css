@@ -104,3 +104,5 @@ button {width: 80%; color: inherit !important;}
   border: 0.5px solid var(--white);
  }
 .bScan svg{height: 45px; width: 45px;}
+
+.toast{position: absolute; top:20px; z-index: 3;}
