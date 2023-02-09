@@ -19,6 +19,10 @@
     "react-icons": "^4.7.1",
     "react-qr-reader": "^3.0.0-beta-1"
   },
+  "browser": {
+    "path": false,
+    "stream": false
+  },
   "overrides": {
     "react-qr-reader": {
       "react": "$react",

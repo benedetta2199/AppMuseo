@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/styles/*"],
-      "@img/*":["./public/"]
+      "@img/*":["./public/*"],
+      "@database":["./src/pages/api/firestore"]
     }
   }
 }
