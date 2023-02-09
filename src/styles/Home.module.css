@@ -157,7 +157,7 @@
 
 
 .camera {height: inherit;}
-.camera>* {height: inherit; transform: scale(1.5);}
+.camera>* {height: inherit; transform: scale(1.8);}
 .camera:before {
   content: "";
   background: rgb(0,0,0);
