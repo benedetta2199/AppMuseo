@@ -12,7 +12,7 @@ import styles from '@/Home.module.css'
 export default function Home() {
   const r = useRouter();
   const {droute} = r.query;
-  const routes = JSON.parse(droute);
+  const routes = droute.json();
 
   const [listRoute, setListRoute] = useState([]);
 

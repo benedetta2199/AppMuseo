@@ -5,7 +5,7 @@ import styles from '@/Home.module.css'
 export default function User() {
   const r = useRouter();
   const {id, data} = r.query;
-  const user = JSON.parse(data);
+  const user = data.json();
 
   return (
     <main className={styles.main}>
