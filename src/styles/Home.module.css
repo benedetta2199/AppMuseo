@@ -12,7 +12,7 @@
    margin-top: 0;
   }
 
-.logo, .logoW{width: 40vw; margin-top: 2vh; position: relative; z-index: 2;}
+.logo, .logoW{width: 40vw; margin: 2vh 30vw; position: relative; z-index: 2;}
 .logoW{position: fixed; left: 30vw;}
 .form, .picCircle{
   width: 210vw;
