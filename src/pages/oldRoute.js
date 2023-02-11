@@ -14,7 +14,7 @@ export default function Home() {
   const {droute} = r.query;
   let routes;
   try {
-    routes = JSON.parse(data);
+    routes = JSON.parse(droute);
   } catch(e) {
     routes = [];
   }
