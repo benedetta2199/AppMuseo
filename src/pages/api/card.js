@@ -28,7 +28,7 @@ export default function Card(prop) {
               ? <></>
               : <h2 className={`${styles.title}`}>{titolo}</h2>
             }
-            <div className={`${styles.point}}`}>Punteggio: {punteggio}</div>
+            <div className={`${styles.point} t-elite`}>Punteggio: {punteggio}</div>
             {contin
             ? <>
                 <button className={`btn btn-sm my-1 ${hue}`}>Continua</button> 

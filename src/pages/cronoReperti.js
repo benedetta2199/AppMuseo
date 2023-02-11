@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import styles from '../styles/Home.module.css'
 import { IoChevronDownOutline, IoHome } from "react-icons/io5";
 import {getDoc, doc } from "firebase/firestore";
 
-import db from './db/firestore'
+import db from '@database'
+import styles from '@/Home.module.css'
 
 
 export default function Home() {
