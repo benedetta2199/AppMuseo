@@ -4,8 +4,13 @@ import styles from '@/Home.module.css'
 
 export default function User() {
   const r = useRouter();
-  const {id, data} = r.query;
-  const user = !!data ? data.json() : null;
+  const {id=0, data} = r.query;
+  let user;
+  try {
+    user = JSON.parse(data);
+  } catch(e) {
+    user = null;
+  }
 
   return (
     <main className={styles.main}>
