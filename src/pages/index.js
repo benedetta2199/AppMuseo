@@ -48,7 +48,7 @@ export default function Home() {
       <Form.Control type="password" className={`${styles.input}  m-auto mt-3 text-light`} id="inputPassword1" placeholder="Password"
         value={textpassword} onChange={(e) => onChangePassword(e.target.value)}/>
     </div>
-    <button className="btn mt-4 dblue t-abo" onClick={()=>checkUser()}>Accedi</button>
+    <button className="btn mt-4 dred t-abo" onClick={()=>checkUser()}>Accedi</button>
   </>
 
   const registrati =  <>
