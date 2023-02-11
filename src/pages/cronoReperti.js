@@ -23,10 +23,10 @@ export default function Home() {
   const [desc, setDesc] = useState('');
   const [colore, setColore] = useState('gray');
   const [listRep, setListRep] = useState([]);
-  const [index, setIndex] = useState(routes.length);
+  const [index, setIndex] = useState(null);
 
   const loadReperti = async () => {
-    const list = [];
+    let list = [];
     for (const rep of reperti) {
       const docRef = doc(db, "reperto", rep);
       const docSnap = await getDoc(docRef);
