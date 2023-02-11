@@ -54,7 +54,7 @@ export default function Home() {
   const registrati =  <>
     <div>
       <p>Inserisci i tuoi dati e registrati</p>
-      <Form.Control type="email" className={`${styles.input} m-auto mt-3 text-light`} id="inputMail2" placeholder='Email'
+      <Form.Control type="email" className={`${styles.input} m-auto mt-3 text-light rounded`} id="inputMail2" placeholder='Email'
         value={textnewmail} onChange={(e) => checkRegistrati(e.target.value)}/>
     </div>
     <div>

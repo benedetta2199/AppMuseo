@@ -35,7 +35,7 @@ export default function User() {
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
             onClick={()=> r.push({ pathname: './oldRoute', query: {droute: JSON.stringify(user.percorsiFatti)} })}>
-            <img src="./menu/traguardi.png" width={70}/>
+            <img src="./menu/percorsi.png" width={70}/>
             <p className='mx-2 my-0'>Guarda i percorsi terminati</p>
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
