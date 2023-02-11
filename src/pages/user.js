@@ -4,7 +4,7 @@ import styles from '@/Home.module.css'
 
 export default function User() {
   const r = useRouter();
-  const {id=0, data} = r.query;
+  const {id='', data} = r.query;
   let user;
   try {
     user = JSON.parse(data);
