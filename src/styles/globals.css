@@ -18,18 +18,18 @@
 
 }
 
-.red {background-color: var(--red);}
-.dred {background-color: var(--dred);}
-.yellow {background-color: var(--yellow);}
-.dyellow {background-color: var(--dyellow);}
-.gray {background-color: var(--gray);}
-.blue {background-color: var(--blue);}
-.dblue {background-color: var(--dblue);}
-.brown {background-color: var(--brown);}
-.dbrown {background-color: var(--dbrown);}
-.green {background-color: var(--green);}
-.dgreen {background-color: var(--dgreen);}
-.white {background-color: var(--white);}
+.red {background-color: var(--red) !important;}
+.dred {background-color: var(--dred) !important;}
+.yellow {background-color: var(--yellow) !important;}
+.dyellow {background-color: var(--dyellow) !important;}
+.gray {background-color: var(--gray) !important;}
+.blue {background-color: var(--blue) !important;}
+.dblue {background-color: var(--dblue) !important;}
+.brown {background-color: var(--brown) !important;}
+.dbrown {background-color: var(--dbrown) !important;}
+.green {background-color: var(--green) !important;}
+.dgreen {background-color: var(--dgreen) !important;}
+.white {background-color: var(--white) !important;}
 
 
 .redT {color: var(--red);}
