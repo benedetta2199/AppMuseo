@@ -74,9 +74,9 @@ export default function Home() {
       <div className={`${styles.form} container gray shadow mt-3`}>
         <div className="d-flex justify-content-around">
           <a onClick={()=>setIsAccedi(true)}
-            className={isAccedi ? "btn border-bottom-0 m-0 text-decoration-underline t-abo" : "btn border-bottom-0 m-0 opacity-50 t-abo"}>Accedi</a>
+            className={`btn border-bottom-0 m-0 t-abo ${isAccedi ? 'text-decoration-underline':'opacity-50'}`}>Accedi</a>
           <a onClick={()=>setIsAccedi(false)}
-            className={isAccedi ? "btn border-bottom-0 m-0 opacity-50 t-abo" : "btn border-bottom-0 m-0 text-decoration-underline t-abo"}>Registrati</a>
+            className={`btn border-bottom-0 m-0 t-abo ${!isAccedi ? 'text-decoration-underline':'opacity-50'}`}>Registrati</a>
         </div>
         <hr className="mt-0"/>
         {isAccedi || accedi==null ? accedi : registrati}

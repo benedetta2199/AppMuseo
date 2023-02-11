@@ -22,6 +22,7 @@
   height: 80vh;
   padding: 5vh 50% !important;
   color: var(--white);
+  text-align: center;
 }
 /*PROFILE*/
 .profilePic{
