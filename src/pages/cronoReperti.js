@@ -10,7 +10,12 @@ import styles from '@/Home.module.css'
 export default function Home() {
   const r = useRouter();
   const {dreperti} = r.query;
-  const reperti = JSON.parse(dreperti);
+  let reperti;
+  try {
+    routes = JSON.parse(dreperti);
+  } catch(e) {
+    routes = [];
+  }
  
   const [text, setText] = useState('');
   const [anno, setAnno] = useState('');
@@ -18,7 +23,7 @@ export default function Home() {
   const [desc, setDesc] = useState('');
   const [colore, setColore] = useState('gray');
   const [listRep, setListRep] = useState([]);
-  const [index, setIndex] = useState(null);
+  const [index, setIndex] = useState('');
 
   const loadReperti = async () => {
     const list = [];
