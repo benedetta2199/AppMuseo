@@ -9,7 +9,7 @@ export default function User() {
   try {
     user = JSON.parse(data);
   } catch(e) {
-    user = null;
+    user = {punteggio:'', percorsiFatti:[], reperti:[]};
   }
 
   return (
