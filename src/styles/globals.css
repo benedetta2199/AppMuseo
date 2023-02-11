@@ -46,7 +46,7 @@
 .whiteT {color: var(--white);}
 
 .t-elite{font-family: 'Special Elite', 'Courier New', Courier, monospace;}
-.t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+.t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;}
 
 * {box-sizing: border-box;}
 
@@ -55,7 +55,7 @@ body {
   font-weight: 300 !important;
   background-color: var(--wite);
   color: var(--black);
-  text-align: center;
+  text-align: center !important;
 }
 
 h1,h2,h3,h4,h5,h6{font-family: 'Aboreto',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}
