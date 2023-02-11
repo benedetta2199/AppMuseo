@@ -23,7 +23,7 @@ export default function Home() {
   const [desc, setDesc] = useState('');
   const [colore, setColore] = useState('gray');
   const [listRep, setListRep] = useState([]);
-  const [index, setIndex] = useState('');
+  const [index, setIndex] = useState(routes.length);
 
   const loadReperti = async () => {
     const list = [];
