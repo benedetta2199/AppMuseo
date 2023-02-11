@@ -12,9 +12,9 @@ export default function Home() {
   const {dreperti} = r.query;
   let reperti;
   try {
-    routes = JSON.parse(dreperti);
+    reperti = JSON.parse(dreperti);
   } catch(e) {
-    routes = [];
+    reperti = [];
   }
  
   const [text, setText] = useState('');
