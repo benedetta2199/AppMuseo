@@ -52,7 +52,7 @@ export default function Home() {
         {listRoute.map((item, i) =>{
             return (
               <div className='mt-3' key={i}>
-                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue}/>
+                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}/>
               </div>
             )
           })
