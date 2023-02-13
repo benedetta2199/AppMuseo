@@ -20,7 +20,7 @@ export default function Home() {
     querySnapshot.forEach((element) => {
       list=list.concat({id: element.id, route: element.data()});
     });
-    setListRoute(list);
+    setListRoute(listRoute => list);
   }
 
   const startRoute = async (it) => {
@@ -35,7 +35,7 @@ export default function Home() {
     await updateDoc(refUser, {percorsiFatti: arrayUnion(docRef.id)});
     console.log(docRef);
     const next = it.route.reperti[0];
-    r.push({ pathname: './indizio', query: {id: id, idUserRoute: docRef.id, index: 0, lenght: it.route.reperti.lenght, idRep: next}});
+    r.push({ pathname: './indizio', query: {id: id, idUserRoute: docRef.id, index: 0, lenght: it.route.reperti.length, idRep: next}});
   }
 
   useEffect(()=>{

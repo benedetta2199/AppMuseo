@@ -5,28 +5,54 @@ import { doc, getDoc } from "firebase/firestore";
 
 import db from '@database'
 import styles from '@/Home.module.css'
+import { set } from "date-fns/esm";
 
 export default function Home() {
 
   const r = useRouter();
   const {id, idUserRoute, index, lenght, idRep} = r.query;
   
-  const [rep, setRep] = useState({});
+  const [rep, setRep] = useState('');
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
   const [colore, setColore] = useState('');
-  const [desc, setDesc] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt lacus quis justo scelerisque bibendum. Proin ornare enim eu arcu rhoncus, vitae lobortis sapien vestibulum. Cras vel urna nibh. Aliquam vitae eros et leo porttitor vehicula. Fusce vulputate, nibh molestie tempus iaculis, arcu mauris ullamcorper ligula, sed ornare velit quam quis orci. '
-  )
+  const [desc, setDesc] = useState('');
 
   const loadReperto = async () => {
     const docRef = doc(db, "reperto", idRep);
     const docSnap = await getDoc(docRef);
-    const temp = docSnap.data();
-    setText(temp.piano);
-    setColore(temp.colore);
-    setDesc(temp.indizio);
-    setImg(temp.piano+'_'+temp.sala.replaceAll(' ','-')+'.png');
+    const t =docSnap.data();
+
+    setText(t.nome);
+    setColore(t.colore);
+    setDesc(t.indizio);
+    setImg( './piano/'+t.piano+'_'+t.sala.replaceAll(' ','-')+'.png');
+    //setImgR(t.img);
+    //setPiano(t.piano);
+    //setSala(t.sala);
+    //setDescR(t.descrizione);
+    //setAnno(t.anno);
+    //setRep(JSON.stringify(t));
+    setRep(JSON.stringify(t));
+    console.log(rep);
+    //setRep(rep => ({...rep,...t}));
+    //params => ({...params, name: "New name here"}));
+    //console.log('R.');
+    //setRep(rep=>({anno:t.anno, colore:colore, descrizione:desc, img:t.img, indizio:t.indizio, nome: t.nome, piano:t.piano, sala:t.sala}));
+
+    //setRep(rep => t);
+    /*
+    rep=>({...t})
+    rep=>({rep,...t})
+    rep => ({...rep,...t})
+    rep=>({...rep,t})
+    rep=>{return t})
+    rep=> t
+    rep=>(t)
+    rep=>([t])
+    [t]
+
+    */
   }
 
   useEffect(()=>{
@@ -39,7 +65,7 @@ export default function Home() {
       <div className="mt-4 text-dark position-relative">
          <h1 className="mb-5 pb-3"> Trova il reperto </h1>
          <h2 className={`${styles.title} h6 text-end px-5`}>Piano {text}</h2>
-        <img src={`./piano/${img}`} className={styles.piano}/>
+        <img src={`${img}`} className={styles.piano}/>
         <p className={`${styles.indizio} px-3 t-elite pt-2`}>{desc}</p>
       </div>
 
