@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IoHome } from "react-icons/io5";
-import {getDocs, collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import {getDocs, collection, addDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
 import {IoCheckmarkOutline, IoClose} from "react-icons/io5"; 
 import { Col, Row } from "react-bootstrap";
 
