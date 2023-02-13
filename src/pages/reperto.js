@@ -11,6 +11,7 @@ export default function Reperto() {
   const r = useRouter();
   //const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
   const {id, idRep, idUserRoute, index, lenght} = r.query;
+  const {dRep} = r.query;
   
   const [text, setText] = useState('');
   const [color, setColore] = useState('');
