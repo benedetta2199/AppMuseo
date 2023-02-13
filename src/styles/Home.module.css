@@ -77,12 +77,15 @@
   top: -6vh;
  }
 
+ .scan{
+  left: 2vw !important;
+ }
  .scanText{
-  width: 82vw;
+  width: 82vw !important;
   margin-left: 18vw;
   text-align: start;
-  position: relative;
-  top: 6vh;
+  position: fixed;
+  top: 91vh;
  }
 
  /*CRONOLOGIA DEI REPERTI*/

@@ -10,12 +10,10 @@ export default function scanQR() {
 
   const r = useRouter();
   const {id, idRep, index, lenght, idUserRoute, dRep} = r.query;
-  const [data, setData] = useState('No result');
   const [show, setShow] = useState(false);
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <h1>{data}</h1>
       <QrReader
         constraints={{
           facingMode: 'environment'

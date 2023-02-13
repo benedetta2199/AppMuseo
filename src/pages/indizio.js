@@ -38,12 +38,12 @@ export default function Home() {
       <div className={styles.obliquo}></div>
       <div className="mt-4 text-dark position-relative">
          <h1 className="mb-5 pb-3"> Trova il reperto </h1>
-         <h2 className={`${styles.title} h6 text-end px-5`}>{text}</h2>
+         <h2 className={`${styles.title} h6 text-end px-5`}>Piano {text}</h2>
         <img src={`./piano/${img}`} className={styles.piano}/>
-        <p className={`${styles.indizio} px-3 t-elite small`}>{desc}</p>
+        <p className={`${styles.indizio} px-3 t-elite pt-2`}>{desc}</p>
       </div>
 
-      <button className={`${styles.scan} btn`}
+      <button className={`${styles.scan} bScan btn`}
         onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idUserRoute:idUserRoute, index: index, lenght: lenght, dRep: rep}})}>
           <IoQrCode/>
       </button>

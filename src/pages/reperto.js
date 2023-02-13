@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { doc, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
-import { doc, updateDoc } from "firebase/firestore";
+import db from '@database'
 
 export default function Home() {
   
