@@ -22,7 +22,7 @@ export default function scanQR() {
           if (!!result) {
             console.log(result?.text + ' - ' + idRep);
             if(result?.text===idRep){
-              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght}});
+              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght, dRep: dRep}});
             } else{
               setShow(true);
             }
