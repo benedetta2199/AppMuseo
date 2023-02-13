@@ -47,7 +47,7 @@ export default function Reperto() {
    - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
    - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
   const nextRep = async () => {
-    const i = index+1;
+    const i = parseInt(index)+1;
     console.log(i+' - '+lenght)
     if(i==lenght){
       const refRoute = doc(db, "percorsoFatto", idUserRoute);
