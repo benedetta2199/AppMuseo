@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
@@ -46,7 +46,7 @@ export default function Reperto() {
     const i = index+1;
     if(i==lenght){
       const refRoute = doc(db, "percorsoFatto", idUserRoute);
-      await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
+      await updateDoc(refRoute, {terminato: true});
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }else{
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
