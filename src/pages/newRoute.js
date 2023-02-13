@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { IoHome } from "react-icons/io5";
 import {getDocs, collection } from "firebase/firestore";
 import {IoCheckmarkOutline, IoClose} from "react-icons/io5"; 
+import { Col, Row } from "react-bootstrap";
 
 import db from '@database'
 import styles from '@/Home.module.css'
-import { Col, Row } from "react-bootstrap";
 
 export default function Home() {
   const r = useRouter();

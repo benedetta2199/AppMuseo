@@ -4,6 +4,7 @@ import { QrReader } from 'react-qr-reader';
 import styles from '@/Home.module.css'
 import { Toast } from 'react-bootstrap';
 import {IoClose} from "react-icons/io5";
+import { useRouter } from 'next/router';
 
 export default function scanQR() { 
 

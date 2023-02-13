@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
-import { useRouter } from "next/router";
 
 export default function Home() {
   
@@ -42,8 +42,10 @@ export default function Home() {
     //await updateDoc(refRoute, {population: increment(1)});
     const i = index+1;
     if(i==lenght){
-
+      //set terminato
+      //set data
     }else{
+      //aggiorna il punteggio utente e percorso
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }
   }
