@@ -11,7 +11,6 @@ export default function Reperto() {
   const r = useRouter();
   //const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
   const {id, idRep, idUserRoute, index, lenght} = r.query;
-  const {dRep} = r.query;
   
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
@@ -21,14 +20,19 @@ export default function Reperto() {
 
   const incrementPoint = 10;
 
-  try {
-    const temp = JSON.parse(dRep);
-    setText(temp.nome);
-    setColore(temp.colore);
-    setData(temp.anno);
-    setDesc(temp.descrizione);
-  } catch(e) {
+  const loadReperto = async () => {
+    const docRef = doc(db, "reperto", idRep);
+    const docSnap = await getDoc(docRef);
+    const t =docSnap.data();
+
+    setText(t.nome);
+    setColore(t.colore);
+    setDesc(t.descrizione);
+    setImg( t.img);
+    setData(t.anno);
+
   }
+
   
   /**AGGIRNA PUNTEGGIO E LA LISTA DEI REPERTI CON QUELLO APPENA SCOPERTO*/
   const updateUser = async () => {
@@ -56,6 +60,7 @@ export default function Reperto() {
   }
 
   useEffect(()=>{
+    loadReperto();
     updateUser();
     updatePercorsoFatto();
 
@@ -67,7 +72,7 @@ export default function Reperto() {
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{text}</h1>
          <p className="t-elite">{data}</p>
-        <img src="./reperti/pithos.png" className={`${styles.reperto} shadowR`}/>
+        <img src={img} className={`${styles.reperto} shadowR`}/>
         <p className="px-3">{desc}</p>
       </div>
 

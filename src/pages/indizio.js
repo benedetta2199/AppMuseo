@@ -63,7 +63,7 @@ export default function Home() {
       </div>
 
       <button className={`${styles.scan} bScan btn`}
-        onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idUserRoute:idUserRoute, index: index, lenght: lenght, dRep: rep}})}>
+        onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idUserRoute:idUserRoute, index: index, lenght: lenght, idRep: idRep}})}>
           <IoQrCode/>
       </button>
       <p className={styles.scanText}>Una volta trovato il reperto scansiona il Qrcode corrispondente</p>
