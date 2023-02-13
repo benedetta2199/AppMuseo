@@ -10,7 +10,7 @@ export default function Reperto() {
   
  
   return (
-   {/* <main className={styles.main}>
+    {/*<main className={styles.main}>
       <div className={circle.c1}></div>
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{text}</h1>
