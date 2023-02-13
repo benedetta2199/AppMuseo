@@ -32,7 +32,7 @@ export default function Home() {
       <div className='align-self-center'>
         <h1>Complimenti!</h1>
         <p className='mx-3'>Sei un vero esploratore<br/> Hai trovato il tesoro più prezioso: la conoscenza</p>
-        <button className='btn mx-auto gray whiteT t-abo' onClick={()=>r.push({ pathname: './indizio', query: {id: id, data: user}})}>
+        <button className='btn mx-auto gray whiteT t-abo' onClick={()=>r.push({ pathname: './user', query: {id: id, data: user}})}>
             Torna alla home
           </button>  
       </div>
