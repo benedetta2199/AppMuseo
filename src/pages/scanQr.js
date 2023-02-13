@@ -12,7 +12,6 @@ export default function scanQR() {
   const {id, idRep, index, lenght, idUserRoute, dRep} = r.query;
   const [show, setShow] = useState(false);
 
-  console.log(dRep)
 
   return (
     <main className={`${styles.main} lock-height`}>
@@ -22,7 +21,7 @@ export default function scanQR() {
         }}
         onResult={(result) => {
           if (!!result) {
-            console.log(result?.text + ' - ' + idRep);
+            console.log(dRep);
             if(result?.text===idRep){
               r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght, dRep: dRep}});
             } else{
