@@ -27,36 +27,6 @@ export default function Reperto() {
   } catch(e) {
   }
   
-  /**AGGIRNA PUNTEGGIO E LA LISTA DEI REPERTI CON QUELLO APPENA SCOPERTO*/
-  const updateUser = async () => {
-    const refUser = doc(db, "user", id);
-    await updateDoc(refUser, {punteggio: increment(incrementPoint), reperti: arrayUnion(idRep)});
-  }
-  /**AGGIORNA IL PUNTEGGIO E L'INDICE RELATIVO AL PROSSIMO REPERTO DA VISUALIZZARE*/
-  const updatePercorsoFatto = async () => {
-    const refRoute = doc(db, "percorsoFatto", idUserRoute);
-    await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
-  }
-
-  /**CONTROLLA SE IL REPERTO è L'ULTIMO,
-   - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
-   - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
-  const nextRep = async () => {
-    const i = index+1;
-    if(i==lenght){
-      const refRoute = doc(db, "percorsoFatto", idUserRoute);
-      await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
-      r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
-    }else{
-      r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
-    }
-  }
-
-  useEffect(()=>{
-    updateUser();
-    updatePercorsoFatto();
-
-  },[]);
 
   return (
     <main className={styles.main}>

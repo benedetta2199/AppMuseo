@@ -12,6 +12,8 @@ export default function scanQR() {
   const {id, idRep, index, lenght, idUserRoute, dRep} = r.query;
   const [show, setShow] = useState(false);
 
+  console.log(dRep)
+
   return (
     <main className={`${styles.main} lock-height`}>
       <QrReader
