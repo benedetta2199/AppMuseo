@@ -81,11 +81,11 @@
   left: 2vw !important;
  }
  .scanText{
-  width: 82vw !important;
-  margin-left: 18vw;
+  width: 80vw !important;
+  margin-left: 20vw;
   text-align: start;
   position: fixed;
-  bottom: 2vh;
+  bottom: 1.5vh;
  }
 
  /*CRONOLOGIA DEI REPERTI*/
