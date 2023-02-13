@@ -43,7 +43,7 @@
 .dbrownT {color: var(--dbrown);}
 .greenT {color: var(--green);}
 .dgreenT {color: var(--dgreen);}
-.whiteT {color: var(--white);}
+.whiteT {color: var(--white) !important;}
 
 .t-elite{font-family: 'Special Elite', 'Courier New', Courier, monospace;}
 .t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;}
