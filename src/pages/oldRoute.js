@@ -34,7 +34,6 @@ export default function Home() {
         /*item.data.toDate()*/
         const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, data: format(data1.data.toDate(),'d MMMM yyyy', {locale: it}), hue: data2.colore}
         list=list.concat(element);
-        console.log(list);
       }
     }
     setListRoute(listRoute => list);

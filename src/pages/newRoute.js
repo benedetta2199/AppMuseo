@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { IoHome } from "react-icons/io5";
-import {getDocs, collection } from "firebase/firestore";
+import {getDocs, collection, addDoc } from "firebase/firestore";
 import {IoCheckmarkOutline, IoClose} from "react-icons/io5"; 
 import { Col, Row } from "react-bootstrap";
 
@@ -13,7 +13,7 @@ export default function Home() {
   const {id} = r.query;
 
   const [listRoute, setListRoute] = useState([]);
-  
+
   const loadRoute = async () => {
     let list = [];
     const querySnapshot = await getDocs(collection(db, "percorso"));
