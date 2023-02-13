@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, getDoc, increment, serverTimestamp, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
@@ -17,6 +17,7 @@ export default function Reperto() {
   const [color, setColore] = useState('');
   const [data, setData] = useState('');
   const [desc, setDesc] = useState('');
+  const [st, setSt] = useState(null);
 
   const incrementPoint = 10;
 
@@ -30,6 +31,14 @@ export default function Reperto() {
     setDesc(t.descrizione);
     setImg( t.img);
     setData(t.anno);
+
+    switch(color){
+      case 'yellow': setSt(circle.c1); break;
+      case 'red': setSt(circle.c2); break;
+      case 'blue': setSt(circle.c3); break;
+      case 'green': setSt(circle.c4); break;
+      case 'gray': setSt(circle.c1); break;
+    }
 
   }
 
@@ -68,7 +77,7 @@ export default function Reperto() {
 
   return (
     <main className={styles.main}>
-      <div className={circle.c1}></div>
+      <div className={st}></div>
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{text}</h1>
          <p className="t-elite">{data}</p>
