@@ -108,3 +108,54 @@ button {width: 80%; color: inherit !important;}
 .bScan svg{height: 45px; width: 45px;}
 
 .toast{position: absolute; top:20px; z-index: 3;}
+
+/*CIRCLE*/
+.cyellow{
+  width: 90vw;
+  height: 90vw;
+  border-radius: 100%;
+  top: -5%;
+  right: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--yellow) 0%, var(--yellow) 68%, var(--dyellow) 100%);
+}
+
+.cred{
+  width: 65vw;
+  height: 65vw;
+  border-radius: 100%;
+  top: 15%;
+  left: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--red)  0%, var(--red) 65%, var(--dred) 100%);
+}
+
+.cblue{
+  width: 90vw;
+  height: 90vw;
+  border-radius: 100%;
+  top: 14%;
+  right: -12%;
+  position: absolute;
+  background: radial-gradient(circle, var(--blue) 0%, var(--blue) 65%, var(--dblue) 100%);
+}
+
+.cgreen{
+  width: 100vw;
+  height: 100vw;
+  border-radius: 100%;
+  top: -8%;
+  left: -13%;
+  position: absolute;
+  background: radial-gradient(circle, var(--green) 0%, var(--green) 68%, var(--dgreen) 100%);
+}
+
+.cgray{
+  width: 90vw;
+  height: 90vw;
+  border-radius: 100%;
+  top: -3%;
+  left: 5%;
+  position: absolute;
+  background: radial-gradient(circle, var(--gray) 0%, var(--gray) 68%, #5a6e70 100%);
+}
