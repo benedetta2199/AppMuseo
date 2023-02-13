@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import db from '@database'
 import styles from '@/Home.module.css'
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Home() {
 

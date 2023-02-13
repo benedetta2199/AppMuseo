@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function Home() {
   
