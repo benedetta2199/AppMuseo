@@ -26,7 +26,7 @@ export default function Home() {
     setText(temp.piano);
     setColore(temp.colore);
     setDesc(temp.indizio);
-    setImg(rep.piano+'_'+rep.stanza.replaceAll(' ','-')+'.png');
+    setImg(temp.piano+'_'+temp.sala.replaceAll(' ','-')+'.png');
   }
 
   useEffect(()=>{
