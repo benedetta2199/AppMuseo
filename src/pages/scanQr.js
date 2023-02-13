@@ -21,7 +21,6 @@ export default function scanQR() {
         }}
         onResult={(result) => {
           if (!!result) {
-            console.log(dRep);
             if(result?.text===idRep){
               r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght, dRep: dRep}});
             } else{

@@ -18,14 +18,14 @@ export default function Reperto() {
 
   const incrementPoint = 10;
 
-  try {
+  /*try {
     const temp = JSON.parse(dRep);
     setText(temp.nome);
     setColore(temp.colore);
     setData(temp.anno);
     setDesc(temp.descrizione);
   } catch(e) {
-  }
+  }*/
   
 
   return (
