@@ -8,17 +8,17 @@ import db from '@database'
 
 export default function Reperto() {
   
-  const r = useRouter();
-  const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
+  
   
   const [text, setText] = useState('');
   const [color, setColore] = useState('');
   const [data, setData] = useState('');
   const [desc, setDesc] = useState('');
 
-  const incrementPoint = 10;
-
-  /*try {
+   /*const incrementPoint = 10;
+const r = useRouter();
+  const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
+ try {
     const temp = JSON.parse(dRep);
     setText(temp.nome);
     setColore(temp.colore);
