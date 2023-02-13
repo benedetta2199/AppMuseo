@@ -3,9 +3,8 @@ import { IoQrCode } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { doc, getDoc } from "firebase/firestore";
 
-import db from '@database'
-import styles from '@/Home.module.css'
-import { set } from "date-fns/esm";
+import db from '@database';
+import styles from '@/Home.module.css';
 
 export default function Home() {
 
