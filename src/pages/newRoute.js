@@ -12,12 +12,15 @@ export default function Home() {
   const r = useRouter();
   const {id} = r.query;
 
+  const [listRoute, setListRoute] = useState([]);
+  
   const loadRoute = async () => {
     let list = [];
     const querySnapshot = await getDocs(collection(db, "percorso"));
     querySnapshot.forEach((element) => {
       list=list.concat({id: element.id, route: element.data()});
     });
+    setListRoute(list);
   }
 
   const startRoute = async (it) => {
