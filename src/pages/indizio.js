@@ -26,18 +26,12 @@ export default function Home() {
     setColore(t.colore);
     setDesc(t.indizio);
     setImg( './piano/'+t.piano+'_'+t.sala.replaceAll(' ','-')+'.png');
-    //setImgR(t.img);
-    //setPiano(t.piano);
-    //setSala(t.sala);
-    //setDescR(t.descrizione);
-    //setAnno(t.anno);
-    //setRep(JSON.stringify(t));
-    setRep(JSON.stringify(t));
+    setRep(JSON.stringify({anno:t.anno, colore:colore, descrizione:desc, img:t.img, nome: t.nome}));
     console.log(rep);
     //setRep(rep => ({...rep,...t}));
     //params => ({...params, name: "New name here"}));
     //console.log('R.');
-    //setRep(rep=>({anno:t.anno, colore:colore, descrizione:desc, img:t.img, indizio:t.indizio, nome: t.nome, piano:t.piano, sala:t.sala}));
+    //setRep(rep=>());
 
     //setRep(rep => t);
     /*

@@ -14,6 +14,7 @@ export default function Reperto() {
   const {dRep} = r.query;
   
   const [text, setText] = useState('');
+  const [img, setImg] = useState('');
   const [color, setColore] = useState('');
   const [data, setData] = useState('');
   const [desc, setDesc] = useState('');
