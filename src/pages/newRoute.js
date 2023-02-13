@@ -35,7 +35,7 @@ export default function Home() {
     await updateDoc(refUser, {percorsiFatti: arrayUnion(docRef.id)});
     console.log(docRef);
     const next = it.route.reperti[0];
-    r.push({ pathname: './indizio', query: {id: id, idUserRoute: docRef.id, index: docRef.data().ultimoReperto, lenght: it.route.reperti.lenght, idRep: next}});
+    r.push({ pathname: './indizio', query: {id: id, idUserRoute: docRef.id, index: 0, lenght: it.route.reperti.lenght, idRep: next}});
   }
 
   useEffect(()=>{
