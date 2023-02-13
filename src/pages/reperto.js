@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
@@ -16,6 +16,8 @@ export default function Home() {
   const [data, setData] = useState('');
   const [desc, setDesc] = useState('');
 
+  const incrementPoint = 10;
+
   try {
     const temp = JSON.parse(dRep);
     setText(temp.nome);
@@ -26,35 +28,35 @@ export default function Home() {
     /*const rep = {anno: '', colore:'', descrizione:'', img:'', indizio:'', nome:'',piano:'',sala:''};*/
   }
   
-  //AGGIUNGI ALLA LISTA DEI REPERTI DELL'UTENTE QUELLO APPENA SCOPERTO
-  const addRepToUser = async () => {
+  /**AGGIRNA PUNTEGGIO E LA LISTA DEI REPERTI CON QUELLO APPENA SCOPERTO*/
+  const updateUser = async () => {
     const refUser = doc(db, "user", id);
-    await updateDoc(refUser, {reperti: arrayUnion(idRep)});
+    await updateDoc(refUser, {punteggio: increment(incrementPoint), reperti: arrayUnion(idRep)});
   }
-  //AGGIORNA L'INDICE RELATIVO AL PROSSIMO REPERTO DA VISUALIZZARE
-  const updateLastRep = async () => {
+  /**AGGIORNA IL PUNTEGGIO E L'INDICE RELATIVO AL PROSSIMO REPERTO DA VISUALIZZARE*/
+  const updatePercorsoFatto = async () => {
     const refRoute = doc(db, "percorsoFatto", idUserRoute);
-    await updateDoc(refRoute, {population: increment(1)});
+    await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
   }
-  //CONTROLLA SE IL REPERTO è L'ULTIMO,
-  // - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
-  // - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO
+
+  /**CONTROLLA SE IL REPERTO è L'ULTIMO,
+   - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
+   - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
   const nextRep = async () => {
-    //const refRoute = doc(db, "percorsoFatto", idUserRoute);
-    //await updateDoc(refRoute, {population: increment(1)});
     const i = index+1;
     if(i==lenght){
-      //set terminato
-      //set data
+      const refRoute = doc(db, "percorsoFatto", idUserRoute);
+      await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
+      r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }else{
-      //aggiorna il punteggio utente e percorso
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }
   }
 
   useEffect(()=>{
-    addRepToUser();
-    updateLastRep();
+    updateUser();
+    updatePercorsoFatto();
+
   },[]);
 
   return (
