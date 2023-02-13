@@ -8,8 +8,7 @@ import {IoClose} from "react-icons/io5";
 export default function scanQR() { 
 
   const r = useRouter();
-  const {id, idRep, rep} = r.query;
-  
+  const {id, idRep, index, lenght, idUserRoute, dRep} = r.query;
   const [data, setData] = useState('No result');
   const [show, setShow] = useState(false);
 
@@ -24,7 +23,7 @@ export default function scanQR() {
           if (!!result) {
             console.log('Read');
             if(result?.text==idRep){
-              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, rep: rep}});
+              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght, dRep: dRep}});
             } else{
               setShow(true);
             }

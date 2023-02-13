@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { IoQrCode } from "react-icons/io5";
 
+import db from '@database'
 import styles from '@/Home.module.css'
 
 export default function Home() {
+
+  const r = useRouter();
+  const {id, idUserRoute, index, lenght, idRep} = r.query;
   
-  const id='admin@admin.com';
-  const rep = {anno: '', colore:'', descrizione:'', img:'', indizio:'', nome:'',piano:'',sala:''};
-  const idRep = 'M8llre6QsY72iM0L9Q2V';
+  const [rep, setRep] = useState({});
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
   const [colore, setColore] = useState('');
@@ -15,17 +17,19 @@ export default function Home() {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt lacus quis justo scelerisque bibendum. Proin ornare enim eu arcu rhoncus, vitae lobortis sapien vestibulum. Cras vel urna nibh. Aliquam vitae eros et leo porttitor vehicula. Fusce vulputate, nibh molestie tempus iaculis, arcu mauris ullamcorper ligula, sed ornare velit quam quis orci. '
   )
 
-  try {
-    const temp = JSON.parse(rep);
+  const loadReperto = async () => {
+    const docRef = doc(db, "reperto", rep);
+    const docSnap = await getDoc(docRef);
+    const temp = docSnap.data();
     setText(temp.piano);
     setColore(temp.colore);
     setDesc(temp.indizio);
     setImg(rep.piano+'_'+rep.stanza.replaceAll(' ','-')+'.png');
-
-  } catch(e) {
-    /*const rep = {anno: '', colore:'', descrizione:'', img:'', indizio:'', nome:'',piano:'',sala:''};*/
   }
-  
+
+  useEffect(()=>{
+    loadReperto();
+  },[]);
 
   return (
     <main className={`${styles.main} ${colore} lock-height`}>
@@ -37,7 +41,10 @@ export default function Home() {
         <p className={`${styles.indizio} px-3 t-elite small`}>{desc}</p>
       </div>
 
-      <button className={`${styles.scan} btn`} onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, rep: rep} })}><IoQrCode/></button>
+      <button className={`${styles.scan} btn`}
+        onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idUserRoute:idUserRoute, index: index, lenght: lenght, dRep: rep}})}>
+          <IoQrCode/>
+      </button>
       <p className={styles.scanText}>Una volta trovato il reperto scansiona il Qrcode corrispondente</p>
       
     </main>

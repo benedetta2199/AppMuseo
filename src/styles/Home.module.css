@@ -196,3 +196,14 @@
   50%  {transform: scale(1)}
   100% {transform: scale(0.9)}
 }
+
+/**NEW PERCORSO*/
+.imgRoute{
+  position: relative;
+  left: -2vw;
+  top: -1vh;
+  width: 30vw;
+  height: 35vw;
+  object-fit: cover;  
+  object-position: 20% top;
+}

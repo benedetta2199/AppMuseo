@@ -6,11 +6,6 @@ import styles from '@/Component.module.css'
 export default function Card(prop) {
   
   const {titolo, punteggio, altro, img, hue, contin} = prop;
-  
-  const [text, setText] = useState('Piano 1');
-  const [desc, setDesc] = useState(
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt lacus quis justo scelerisque bibendum. Proin ornare enim eu arcu rhoncus, vitae lobortis sapien vestibulum. Cras vel urna nibh. Aliquam vitae eros et leo porttitor vehicula. Fusce vulputate, nibh molestie tempus iaculis, arcu mauris ullamcorper ligula, sed ornare velit quam quis orci. '
-  )
 
   const [isFlipped, setIsFlipped] = useState(false);
 

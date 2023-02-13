@@ -24,7 +24,7 @@ export default function User() {
         <h2>{user.punteggio}</h2>
         <div>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn"
-            onClick={()=> r.push({ pathname: './', query: {} })}>
+            onClick={()=> r.push({ pathname: './newRoute', query: {id:id} })}>
             <img src="./menu/newRoute.png" width={70}/>
             <p className='mx-2 my-0'>Inizia un nuovo percorso</p>
           </button>
