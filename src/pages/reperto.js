@@ -6,7 +6,7 @@ import styles from '@/Home.module.css'
 import circle from '@/Circle.module.css'
 import db from '@database'
 
-export default function Home() {
+export default function Reperto() {
   
   const r = useRouter();
   const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
