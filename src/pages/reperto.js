@@ -39,7 +39,7 @@ export default function Reperto() {
       </div>
 
       <button className={`${color} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
-      <button className="btn text-light gray t-abo" onClick={nextRep()}>  Scopri il prossimo indizio </button>
+      <button className="btn text-light gray t-abo" >  Scopri il prossimo indizio </button>
     </main>
   )
 }
