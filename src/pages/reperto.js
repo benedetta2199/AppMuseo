@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { arrayUnion, doc, getDoc, increment, serverTimestamp, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
-import circle from '@/Circle.module.css'
 import db from '@database'
 
 export default function Reperto() {
