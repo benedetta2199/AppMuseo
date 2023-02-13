@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoQrCode } from "react-icons/io5";
 import { useRouter } from "next/router";
 
