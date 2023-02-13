@@ -30,7 +30,7 @@ export default function Home() {
         const docSnap2 = await getDoc(docRef2);
         const data2 = docSnap2.data();
         
-        const perc = (data1.ultimoReperto+1)*100/data2.reperti.length;
+        const perc = (data1.ultimoReperto)*100/data2.reperti.length;
         const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore}
         list=list.concat(element);
       }
