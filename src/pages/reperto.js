@@ -48,6 +48,7 @@ export default function Reperto() {
    - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
   const nextRep = async () => {
     const i = index+1;
+    console.log(i+' - '+lenght)
     if(i==lenght){
       const refRoute = doc(db, "percorsoFatto", idUserRoute);
       await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
