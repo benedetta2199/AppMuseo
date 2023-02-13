@@ -16,7 +16,6 @@ export default function Reperto() {
   const [color, setColore] = useState('');
   const [data, setData] = useState('');
   const [desc, setDesc] = useState('');
-  const [st, setSt] = useState(null);
 
   const incrementPoint = 10;
 
@@ -52,7 +51,7 @@ export default function Reperto() {
     if(i==lenght){
       const refRoute = doc(db, "percorsoFatto", idUserRoute);
       await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
-      r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
+      r.push({ pathname: './congratulation', query: {id: id}});
     }else{
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }
