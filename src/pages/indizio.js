@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoQrCode } from "react-icons/io5";
 import { useRouter } from "next/router";
+import { doc, getDoc } from "firebase/firestore";
 
 import db from '@database'
 import styles from '@/Home.module.css'
-import { doc, getDoc } from "firebase/firestore";
 
 export default function Home() {
 
@@ -20,7 +20,7 @@ export default function Home() {
   )
 
   const loadReperto = async () => {
-    const docRef = doc(db, "reperto", rep);
+    const docRef = doc(db, "reperto", idRep);
     const docSnap = await getDoc(docRef);
     const temp = docSnap.data();
     setText(temp.piano);
