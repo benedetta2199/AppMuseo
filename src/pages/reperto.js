@@ -9,7 +9,7 @@ export default function Reperto() {
   
   const r = useRouter();
   //const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
-  const {id, idRep, idUserRoute, index, lenght} = r.query;
+  const {id, idRep, idRoute, idUserRoute, index, lenght} = r.query;
   
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
@@ -54,6 +54,9 @@ export default function Reperto() {
       await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
       r.push({ pathname: './congratulation', query: {id: id}});
     }else{
+      const docRef = doc(db, "percorso", idRoute);
+      const docSnap = await getDoc(docRef);
+      const next = docSnap.data().reperti[i];
       r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
     }
   }

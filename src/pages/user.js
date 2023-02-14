@@ -29,7 +29,7 @@ export default function User() {
             <p className='mx-2 my-0'>Inizia un nuovo percorso</p>
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
-            onClick={()=> r.push({ pathname: './continueRoute', query: {droute: JSON.stringify(user.percorsiFatti)} })}>
+            onClick={()=> r.push({ pathname: './continueRoute', query: {id:id,droute: JSON.stringify(user.percorsiFatti)} })}>
             <img src="./menu/oldRoute.png" width={70}/>
             <p className='mx-2 my-0'>Continua un percorso in sospeso</p>
           </button>

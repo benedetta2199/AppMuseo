@@ -9,9 +9,8 @@ import styles from '@/Home.module.css';
 export default function Home() {
 
   const r = useRouter();
-  const {id, idUserRoute, index, lenght, idRep} = r.query;
+  const {id, idRoute, idUserRoute, index, lenght, idRep} = r.query;
   
-  const [rep, setRep] = useState('');
   const [text, setText] = useState('');
   const [img, setImg] = useState('');
   const [colore, setColore] = useState('');
@@ -22,30 +21,10 @@ export default function Home() {
     const docSnap = await getDoc(docRef);
     const t =docSnap.data();
 
-    setText(t.nome);
+    setText(t.piano);
     setColore(t.colore);
     setDesc(t.indizio);
     setImg( './piano/'+t.piano+'_'+t.sala.replaceAll(' ','-')+'.png');
-    setRep(JSON.stringify({anno:t.anno, colore:colore, descrizione:desc, img:t.img, nome: t.nome}));
-    console.log(rep);
-    //setRep(rep => ({...rep,...t}));
-    //params => ({...params, name: "New name here"}));
-    //console.log('R.');
-    //setRep(rep=>());
-
-    //setRep(rep => t);
-    /*
-    rep=>({...t})
-    rep=>({rep,...t})
-    rep => ({...rep,...t})
-    rep=>({...rep,t})
-    rep=>{return t})
-    rep=> t
-    rep=>(t)
-    rep=>([t])
-    [t]
-
-    */
   }
 
   useEffect(()=>{
@@ -63,7 +42,7 @@ export default function Home() {
       </div>
 
       <button className={`${styles.scan} bScan btn`}
-        onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idUserRoute:idUserRoute, index: index, lenght: lenght, idRep: idRep}})}>
+        onClick={()=> r.push({ pathname: './scanQr', query: {id: id,idRep: idRep, idRoute: idRoute, idUserRoute:idUserRoute, index: index, lenght: lenght}})}>
           <IoQrCode/>
       </button>
       <p className={styles.scanText}>Una volta trovato il reperto scansiona il Qrcode corrispondente</p>

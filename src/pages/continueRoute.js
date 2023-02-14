@@ -9,7 +9,7 @@ import styles from '@/Home.module.css'
 
 export default function Home() {
   const r = useRouter();
-  const {droute} = r.query;
+  const {id,droute} = r.query;
   let routes;
   try {
     routes = JSON.parse(droute);
@@ -31,7 +31,8 @@ export default function Home() {
         const data2 = docSnap2.data();
         
         const perc = (data1.ultimoReperto)*100/data2.reperti.length;
-        const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore}
+        const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore, index: data1.ultimoReperto, 
+          leng: data2.reperti.length, idRoute: docSnap2.id, idUserRoute: docSnap1.id, next:data2.reperti[i+1]}
         list=list.concat(element);
       }
     }
@@ -51,7 +52,8 @@ export default function Home() {
         {listRoute.map((item, i) =>{
             return (
               <div className='mt-3' key={i}>
-                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}/>
+                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}
+                  data={{id:id, idRoute:it.idRoute, idUserRoute:it.idUserRoute, index: it.index, lenght: it.leng, idRep: it.next}}/>
               </div>
             )
           })

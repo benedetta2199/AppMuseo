@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 export default function scanQR() { 
 
   const r = useRouter();
-  const {id, idRep, index, lenght, idUserRoute} = r.query;
+  const {id, idRep, idRoute, index, lenght, idUserRoute} = r.query;
   const [show, setShow] = useState(false);
 
 
@@ -22,7 +22,7 @@ export default function scanQR() {
         onResult={(result) => {
           if (!!result) {
             if(result?.text===idRep){
-              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idUserRoute: idUserRoute, index: index, lenght: lenght}});
+              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idRoute: idRoute, idUserRoute: idUserRoute, index: index, lenght: lenght}});
             } else{
               setShow(true);
             }
