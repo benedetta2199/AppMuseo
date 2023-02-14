@@ -29,9 +29,11 @@ export default function Home() {
         const docRef2 = doc(db, "percorso", data1.nome);
         const docSnap2 = await getDoc(docRef2);
         const data2 = docSnap2.data();
+
+        const i =  data1.ultimoReperto;
         
         const perc = (data1.ultimoReperto)*100/data2.reperti.length;
-        const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore, index: data1.ultimoReperto, 
+        const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore, index: i, 
           leng: data2.reperti.length, idRoute: docSnap2.id, idUserRoute: docSnap1.id, next:data2.reperti[i+1]}
         list=list.concat(element);
       }
