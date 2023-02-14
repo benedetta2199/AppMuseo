@@ -27,6 +27,8 @@ export default function Home() {
         const data2 = docSnap2.data();
 
         const i =  data1.ultimoReperto;
+        console.log(data2.reperti);
+        console.log(data2.reperti[parseInt(i)+1]);
         
         const perc = (data1.ultimoReperto)*100/data2.reperti.length;
         const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore, index: i, 
