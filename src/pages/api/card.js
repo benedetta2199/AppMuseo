@@ -2,9 +2,11 @@ import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
 import styles from '@/Component.module.css'
+import { useRouter } from "next/router";
 
 export default function Card(prop) {
   
+  const r = useRouter();  
   const {titolo, punteggio, altro, img, hue, contin, data={}} = prop;
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -27,11 +29,10 @@ export default function Card(prop) {
             {contin
             ? <>
                 <button className={`btn btn-sm my-1 ${hue}`} onClick={()=>r.push({ pathname: './indizio', query: {id: data.id, idRoute: data.idRoute, 
-                idUserRoute: data.idUserRoute, index: data.index, lenght: data.lenght, idRep: data.idRep}})}
-                >Continua</button> 
+                idUserRoute: data.idUserRoute, index: data.index, lenght: data.lenght, idRep: data.idRep}})}>
+                  Continua
+                </button> 
 
- {/*onClick={()=>}r.push({ pathname: './indizio', query: {id: id, idRouter: it.id, idUserRoute: docRef.id, index: 0, lenght: it.route.reperti.length, idRep: next}});
-  */}
                 <button className={`btn border-light btn-sm`} onClick={()=>setIsFlipped(!isFlipped)}>Ruota la carta</button></>
             : <></>}
         </div>

@@ -11,11 +11,7 @@ export default function Home() {
   const r = useRouter();
   const {id,droute} = r.query;
   let routes;
-  try {
-    routes = JSON.parse(droute);
-  } catch(e) {
-    routes = [];
-  }
+  try { routes = JSON.parse(droute); } catch(e) { routes = [];}
 
   const [listRoute, setListRoute] = useState([]);
 
