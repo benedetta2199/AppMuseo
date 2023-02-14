@@ -30,7 +30,7 @@ export default function Home() {
         
         const perc = (data1.ultimoReperto)*100/data2.reperti.length;
         const element = {nome: data2.nome, img: data2.img, punteggio: data1.punteggio, perc: perc,hue: data2.colore, index: i, 
-          leng: data2.reperti.length, idRoute: docSnap2.id, idUserRoute: docSnap1.id, next:data2.reperti[i+1]}
+          leng: data2.reperti.length, idRoute: docSnap2.id, idUserRoute: docSnap1.id, next:data2.reperti[parseInt(i)+1]}
         list=list.concat(element);
       }
     }
