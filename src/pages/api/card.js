@@ -28,7 +28,7 @@ export default function Card(prop) {
             <div className={`${styles.point} t-elite`}>Punteggio: {punteggio}</div>
             {contin
             ? <>
-                <button className={`btn btn-sm my-1 ${hue}`} onClick={()=>r.push({ pathname: './indizio', query: {id: id, idRoute: data.idRoute, 
+                <button className={`btn btn-sm my-1 ${hue}`} onClick={()=>r.push({ pathname: './indizio', query: {id: data.id, idRoute: data.idRoute, 
                 idUserRoute: data.idUserRoute, index: data.index, lenght: data.lenght, idRep: data.idRep}})}>
                   Continua
                 </button> 
