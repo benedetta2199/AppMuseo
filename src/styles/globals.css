@@ -154,8 +154,8 @@ button {width: 80%; color: inherit !important;}
   width: 90vw;
   height: 90vw;
   border-radius: 100%;
-  top: -3%;
-  left: 5%;
+  top: 15%;
+  left: 15%;
   position: absolute;
   background: radial-gradient(circle, var(--gray) 0%, var(--gray) 68%, #5a6e70 100%);
 }
