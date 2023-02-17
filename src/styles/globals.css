@@ -159,3 +159,13 @@ button {width: 80%; color: inherit !important;}
   position: absolute;
   background: radial-gradient(circle, var(--gray) 0%, var(--gray) 68%, #5a6e70 100%);
 }
+
+/*MAP*/
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+.leaflet-container *{
+  font-family: 'Special Elite', Arial, Helvetica, sans-serif !important;
+}

@@ -50,5 +50,4 @@
   overflow: hidden;
   max-height: -webkit-fill-available;
   object-fit: cover;
-  /* height: calc(100vh - 100%); */
 }
