@@ -1,17 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import L from 'leaflet'
+import { IoLocate } from "react-icons/io5";
 
 import db from '@database'
-import styles from '@/Component.module.css'
+import stylesH from '@/Home.module.css'
+import stylesC from '@/Component.module.css'
 
 const Map2 = () => {
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
   const ZOOM_LEVEL = 16;
   const mapRef = useRef();
 
-  const placeLat = 44.14319687931616;
-  const palceLng = 12.2445016982286;
+  const myIcon = L.icon({
+    iconUrl: '../loc.png',
+    iconSize:     [40, 40], // size of the icon
+    iconAnchor:   [20, 30], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
+});
 
   const center = [44.14319687931616, 12.2445016982286];
 
@@ -33,8 +40,9 @@ const Map2 = () => {
 
 
   return (
-  <main className={`${styles.main} lock-height`}>
-     <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} className={styles.map}>
+  <>
+    <div className={stylesC.map}>
+     <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -54,19 +62,17 @@ const Map2 = () => {
             </Popup>
           </CircleMarker>
         </LayerGroup>
-        <Circle center={position} pathOptions={{ fillColor: '#718e92', fillOpacity: '0.5' }} radius={8} stroke={false}>
-          <CircleMarker center={position} pathOptions={{ fillColor: '#031116', fillOpacity: '1' }} radius={3} stroke={false}/>
-            <Popup>
-              Questa è la <br /> tua posizione
-            </Popup>
-          </Circle>
-        {/*<Marker position={position}>
+        <Marker position={position} icon={myIcon}>
           <Popup>
             Questa è la <br/> tua posizione
           </Popup>
-  </Marker>*/}
+        </Marker>
       </MapContainer>
-  </main>
+      </div>
+    <button className={`${stylesH.scan} bScan btn`} onClick={()=>{mapRef.current.setView(position);}}>
+      <IoLocate/>
+    </button>
+  </>
                   
   )
 }

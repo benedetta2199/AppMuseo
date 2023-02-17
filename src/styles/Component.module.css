@@ -51,3 +51,8 @@
   max-height: -webkit-fill-available;
   object-fit: cover;
 }
+
+.map {
+  position: relative;
+  z-index: 1;
+}
