@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react'
-import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarker } from 'react-leaflet'
+import React, { useState, useRef, useEffect } from 'react'
+import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import db from '@database'
@@ -13,7 +13,22 @@ const Map2 = () => {
   const placeLat = 44.14319687931616;
   const palceLng = 12.2445016982286;
 
-  const center = [44.14319687931616, 12.2445016982286]
+  const center = [44.14319687931616, 12.2445016982286];
+
+  const [position, setPosition] = useState([44.1418149, 12.2441983]);
+
+    useEffect(() => {
+      let i =0;
+      const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
+        i++;
+        navigator.geolocation.getCurrentPosition(function(position) {
+          console.log(i+'. '+position.coords.latitude+' '+position.coords.longitude);
+          setPosition([position.coords.latitude, position.coords.longitude])
+        });
+      }, 2000);
+    
+      return () => clearInterval(intervalId); //This is important
+    }, []);
   
 
 
@@ -39,14 +54,17 @@ const Map2 = () => {
             </Popup>
           </CircleMarker>
         </LayerGroup>
-        {location.loaded && !location.error && (
-          <Marker
-            position={[
-              location.coordinates.lat,
-              location.coordinates.lng,
-            ]}
-          ></Marker>
-        )}
+        <Circle center={position} pathOptions={{ fillColor: '#718e92', fillOpacity: '0.5' }} radius={8} stroke={false}>
+          <CircleMarker center={position} pathOptions={{ fillColor: '#031116', fillOpacity: '1' }} radius={3} stroke={false}/>
+            <Popup>
+              Questa è la <br /> tua posizione
+            </Popup>
+          </Circle>
+        {/*<Marker position={position}>
+          <Popup>
+            Questa è la <br/> tua posizione
+          </Popup>
+  </Marker>*/}
       </MapContainer>
   </main>
                   
