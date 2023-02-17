@@ -11,6 +11,7 @@ import stylesC from '@/Component.module.css'
 const Map2 = () => {
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
   const ZOOM_LEVEL = 16;
+  const MINDISTANCE = 20;
   const mapRef = useRef();
 
   const myIcon = L.icon({
@@ -20,7 +21,7 @@ const Map2 = () => {
     popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
 });
 
-  const center = [44.14319687931616, 12.2445016982286];
+  const center = [44.141820657208996, 12.24390893164452];
 
   const [position, setPosition] = useState([44.1418149, 12.2441983]);
 
@@ -28,9 +29,16 @@ const Map2 = () => {
       let i =0;
       const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
         i++;
-        navigator.geolocation.getCurrentPosition(function(position) {
-          console.log(i+'. '+position.coords.latitude+' '+position.coords.longitude);
-          setPosition([position.coords.latitude, position.coords.longitude])
+
+        navigator.geolocation.getCurrentPosition(function(p) {
+          setPosition([p.coords.latitude, p.coords.longitude]);
+          const dist = L.latLng(position).distanceTo(center);
+          if(dist<MINDISTANCE){
+            console.log(dist);
+          }
+          else{
+            console.log(i+'. '+ dist);
+          }
         });
       }, 2000);
     
