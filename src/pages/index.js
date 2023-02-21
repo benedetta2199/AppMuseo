@@ -41,13 +41,13 @@ export default function Home() {
   const accedi = <>
     <div>
       <p>Inserisci i tuoi dati ed accedi</p>
-      <label for='inputMail1' hide>Email</label>
-      <Form.Control type="email" className={`${styles.input} m-auto mt-3 text-light`} id="inputMail1" placeholder='Email'
+      <label htmlFor='inputMail1' hidden>Email</label>
+      <Form.Control type="email" className={`${styles.input} m-auto mt-3`} id="inputMail1" placeholder='Email'
         value={textmail} onChange={(e) => onChangeMail(e.target.value)}/>
     </div>
     <div>
-      <label for='inputPassword1' hide>Password</label>
-      <Form.Control type="password" className={`${styles.input}  m-auto mt-3 text-light`} id="inputPassword1" placeholder="Password"
+      <label htmlFor='inputPassword1' hidden>Password</label>
+      <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword1" placeholder="Password"
         value={textpassword} onChange={(e) => onChangePassword(e.target.value)}/>
     </div>
     <button className="btn mt-4 dred t-abo" onClick={()=>checkUser()}>Accedi</button>
@@ -56,16 +56,16 @@ export default function Home() {
   const registrati =  <>
     <div>
       <p>Inserisci i tuoi dati e registrati</p>
-      <label for='inputMail2' hide>Email</label>
-      <Form.Control type="email" className={`${styles.input} m-auto mt-3 text-light rounded`} id="inputMail2" placeholder='Email'
+      <label htmlFor='inputMail2' hidden>Email</label>
+      <Form.Control type="email" className={`${styles.input} m-auto mt-3`} id="inputMail2" placeholder='Email'
         value={textnewmail} onChange={(e) => checkRegistrati(e.target.value)}/>
     </div>
     <div>
-      <label for='inputPassword2' hide>Password</label>
-      <Form.Control type="password" className={`${styles.input}  m-auto mt-3 text-light`} id="inputPassword2" placeholder="Password"
+      <label htmlFor='inputPassword2' hidden>Password</label>
+      <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword2" placeholder="Password"
         value={textnewpassword1} onChange={(e) => onChangeNewPassword1(e.target.value)}/>
-      <label for='inputPassword3' hide>Conferma password</label>
-      <Form.Control type="password" className={`${styles.input}  m-auto mt-3 text-light`} id="inputPassword3" placeholder="Conferma Password"
+      <label htmlFor='inputPassword3' hidden>Conferma password</label>
+      <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword3" placeholder="Conferma Password"
         value={textnewpassword2} onChange={(e) => onChangeNewPassword2(e.target.value)}/>
     </div>
     <button className="btn mt-4 dred t-abo" onClick={()=>registrati()}>Registrati</button>
