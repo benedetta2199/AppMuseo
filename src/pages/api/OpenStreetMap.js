@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarker, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { IoLocate } from "react-icons/io5";
@@ -11,7 +11,7 @@ import stylesC from '@/Component.module.css'
 const Map2 = () => {
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
   const ZOOM_LEVEL = 16;
-  const MINDISTANCE = 20;
+  const MINDISTANCE = 10;
   const mapRef = useRef();
 
   const myIcon = L.icon({

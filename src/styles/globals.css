@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Quicksand:wght@300;400&family=Special+Elite&display=swap');
 /*Misty Blue #81ABBC - Olive Green #4D5E38 - White #F1F3F3 - Puce #403A2C*/
 
+
+/**gray: #718e92;*/
 :root {
-  --white: #fefefe;
+  --white: #ffffff;
   --black: #031116;
-  --gray: #718e92;
+  --gray: #5E7B7F; 
   --yellow: #e9a901;
   --dyellow: #c77000;
   --red:#D62F2F;
@@ -67,7 +69,7 @@ a {color: inherit !important; text-decoration: none;}
 
 hr{color: var(--lgray);}
 
-button {width: 80%; color: inherit !important;}
+button {width: 80%; color: inherit !important; font-size: 18px;}
 
 ::placeholder {color: var(--white) !important; opacity: 1 !important;}
 :-ms-input-placeholder { color: var(--white) !important; }
