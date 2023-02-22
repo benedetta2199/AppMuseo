@@ -12,6 +12,7 @@ const Map2 = () => {
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
   const ZOOM_LEVEL = 16;
   const MINDISTANCE = 10;
+  const [map, setMap] = useState(null);
   const mapRef = useRef();
 
   const myIcon = L.icon({
@@ -21,36 +22,30 @@ const Map2 = () => {
     popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
 });
 
-  const center = [44.141820657208996, 12.24390893164452];
+  const center = [43.96346569633796, 12.744251411105504]; 
 
-  const [position, setPosition] = useState([44.1418149, 12.2441983]);
+  const [position, setPosition] = useState([43.96364140583398, 12.741056881742653]);
 
-    useEffect(() => {
-      let i =0;
-      const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
-        i++;
+  useEffect(() => {
+    let i =0;
+    const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
+      navigator.geolocation.getCurrentPosition(function(p) {
+        setPosition([p.coords.latitude, p.coords.longitude]);
+        const dist = L.latLng(position).distanceTo(center);
+        if(dist<MINDISTANCE){
+          console.log(dist);
+        }
+      });
+    }, 2000);
 
-        navigator.geolocation.getCurrentPosition(function(p) {
-          setPosition([p.coords.latitude, p.coords.longitude]);
-          const dist = L.latLng(position).distanceTo(center);
-          if(dist<MINDISTANCE){
-            console.log(dist);
-          }
-          else{
-            console.log(i+'. '+ dist);
-          }
-        });
-      }, 2000);
-    
-      return () => clearInterval(intervalId); //This is important
-    }, []);
-  
+    return () => clearInterval(intervalId); //This is important
+  }, []);
 
 
   return (
   <>
     <div className={stylesC.map}>
-     <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef} >
+     <MapContainer ref={setMap} center={center} zoom={ZOOM_LEVEL}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -77,7 +72,8 @@ const Map2 = () => {
         </Marker>
       </MapContainer>
       </div>
-    <button className={`${stylesH.scan} bScan btn`} onClick={()=>{mapRef.current.setView(position);}}>
+    <button className={`${stylesH.scan} bScan btn`} 
+      onClick={()=>{map.fitBounds([position, center]); }}>
       <IoLocate/>
     </button>
   </>
