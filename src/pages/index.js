@@ -17,24 +17,63 @@ export default function Home() {
   const [textnewmail, onChangeNewMail] = useState("");
   const [textnewpassword1, onChangeNewPassword1] = useState("");
   const [textnewpassword2, onChangeNewPassword2] = useState("");
-  const [showNU,setShowNU] = useState(false);
-  const [showNP, setShowNP] = useState(false);
+  const [textToast,setTextToast] = useState('');
+  const [show,setShow]=useState(false);
   
+   /**CONTROLLA SE ESISTE L'UTENTE NEL DATABASE
+    * APRE LA PAGINA DELL'UTENETE
+    */
   async function checkUser() {
-    const docRef = doc(db, "user", textmail);
-    const utente = await getDoc(docRef);
-    if (utente.exists()) {
-      if(utente.data().password==textpassword){
-        r.push({ pathname: './user', query: {id: textmail, data: JSON.stringify(utente.data())} });
-      } else{
-        setShowNP
+    findUser(textmail).then((utente)=>{
+      if (utente.exists()) {
+        if(utente.data().password==textpassword){
+          r.push({ pathname: './user', query: {id: textmail, data: JSON.stringify(utente.data())} });
+        } else{
+          setTextToast('Nessun utente è registrato con questa mail');
+          setShow(true);
+        }
+      } else {
+        setShowNU(true);
       }
-    } else {
-      setShowNU(true);
+    });
+  }
+
+  /**CONTROLLA SE LE PASSWORD SONO UGUALI, 
+   * CONTROLLA CHE NON ESISTA UN UTENTE GIà REGISTRATO CON LA STESSA PASSWORD
+   * SE I CONTROLLI VANNO A BUON FINE AGGIUNGE L'UTENTE
+   * APRE LA PAGINA DELL'UTENTE */
+  const checkRegistrati = () =>{
+    if(textnewpassword1==textnewpassword2){
+      findUser(textnewmail).then((utente)=>{
+        console.log(utente);
+        if (utente.exists()) {
+          setTextToast('Un utente è già registrato con questa mail');
+          setShow(true);
+        } else {
+          addUser(textnewmail,textnewpassword1);
+          findUser(textnewmail)
+            .then((utente)=>{ 
+              r.push({ pathname: './user', query: {id: textnewmail, data: JSON.stringify(utente.data())}});
+            });
+        }
+      });
+    }else{
+      setTextToast('Le due password non corrispondono');
+      setShow(true);
     }
   }
 
-  /*MANCANO FUNZIONALITà REGISTRAZIONE (controllo utente inserito, add db, log)*/
+   /**TROVA E RESTIRUISCE L'UTENTE DEL DATABASE */
+   async function findUser(mail) {
+    const docRef = doc(db, "user", mail);
+    const utente = await getDoc(docRef);
+    return utente;
+  }
+  /**AGGIUNGE L'UTENTE AL DATABASE */
+  async function addUser(user, password) {
+    const docRef = doc(db, "user", user);
+    await setDoc(docRef, {password: password, percorsiFatti:[], punteggio:0, reperti:[]});
+  }
 
   const [isAccedi, setIsAccedi] = useState(true);
 
@@ -58,7 +97,7 @@ export default function Home() {
       <p>Inserisci i tuoi dati e registrati</p>
       <label htmlFor='inputMail2' hidden>Email</label>
       <Form.Control type="email" className={`${styles.input} m-auto mt-3`} id="inputMail2" placeholder='Email'
-        value={textnewmail} onChange={(e) => checkRegistrati(e.target.value)}/>
+        value={textnewmail} onChange={(e) => onChangeNewMail(e.target.value)}/>
     </div>
     <div>
       <label htmlFor='inputPassword2' hidden>Password</label>
@@ -68,7 +107,7 @@ export default function Home() {
       <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword3" placeholder="Conferma Password"
         value={textnewpassword2} onChange={(e) => onChangeNewPassword2(e.target.value)}/>
     </div>
-    <button className="btn mt-4 dred t-abo" onClick={()=>registrati()}>Registrati</button>
+    <button className="btn mt-4 dred t-abo" onClick={()=>checkRegistrati()}>Registrati</button>
   </>
 
   return (
@@ -87,20 +126,12 @@ export default function Home() {
         {isAccedi || accedi==null ? accedi : registrati}
       </div>
 
-      <Toast show={showNU} onClose={()=>setShow(false)} className='z-3'>
+      <Toast show={show} onClose={()=>{setShow(false); setTextToast('')}} className='z-3 align-self-center'>
       <Toast.Header>
         <IoClose className='redT'/>
         <strong className="me-auto redT t-abo">Attenzione!</strong>
       </Toast.Header>
-      <Toast.Body>Nessun utente è registrato con questa mail...</Toast.Body>
-    </Toast>
-
-    <Toast show={showNP} onClose={()=>setShow(false)} className='z-3'>
-      <Toast.Header>
-        <IoClose className='redT'/>
-        <strong className="me-auto redT t-abo">Attenzione!</strong>
-      </Toast.Header>
-      <Toast.Body>Utente e passwort non corrisponono...</Toast.Body>
+      <Toast.Body>{textToast}</Toast.Body>
     </Toast>
     </main>
   )
