@@ -115,7 +115,7 @@ export default function Home() {
       <img src="./logo.png" className={styles.logo} alt="R"/>
       <h1 className="mt-2 d-flex align-items-end p-0 mx-4 my-3 pt-3"> Museo della Regina </h1>
       <p className="t-elite mx-auto w-75"> Scopri la verità nascosta tra i reperti </p>
-      <div className={`${styles.form} container gray shadow mt-3`}>
+      <div className={`${styles.form} container dgray shadow mt-3`}>
         <div className="d-flex justify-content-around">
           <a onClick={()=>setIsAccedi(true)}
             className={`btn border-bottom-0 m-0 t-abo ${isAccedi ? 'text-decoration-underline':'opacity-50'}`}>Accedi</a>

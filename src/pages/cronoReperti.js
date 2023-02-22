@@ -63,7 +63,7 @@ export default function Home() {
         <div className={`${styles.vertical} white rounded ps-1`}>
           {listRep.map((item, i) =>{
               return (<a onClick={()=>setElement(i)} key={i}>
-                      <img src={item.img} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`}/>
+                      <img src={item.img} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`}/>
                     </a>)
             })
           }
@@ -81,6 +81,7 @@ export default function Home() {
 
         <button className='btn bHome' onClick={()=>r.back()}>
           <IoHome className={`${colore}T`}/>
+          <span hidden>Torna alla home</span>
         </button>  
     </main>
   )

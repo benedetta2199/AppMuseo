@@ -79,8 +79,9 @@ export default function Home() {
           </div>
           <img src="./percorsi/romanRoute.jpg" className="rounded-circle"/>
   </div>*/}
-      <button className='btn bHome' onClick={()=>r.back()}>
+      <button className='btn bHome gray' onClick={()=>r.back()}>
           <IoHome className="whiteT"/>
+          <span hidden>Torna alla home</span>
         </button>  
     </main>
   )

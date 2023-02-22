@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <h1>Visualizza i percorsi terminati</h1>
+      <h1>Visualizza i percorsi in sospeso</h1>
       <p>Clicca su un percorso per vedere i dettagli</p>
       <div className="d-flex flex-wrap justify-content-around">
         {listRoute.map((item, i) =>{
@@ -59,9 +59,10 @@ export default function Home() {
         
         
       </div>
-      <button className='btn bHome' onClick={()=>r.back()}>
+      <button className='btn bHome gray' onClick={()=>r.back()}>
           <IoHome className="whiteT"/>
-        </button>  
+          <span hidden>Torna alla home</span>
+      </button>  
     </main>
   )
 }

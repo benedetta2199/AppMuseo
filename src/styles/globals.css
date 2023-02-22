@@ -2,16 +2,17 @@
 /*Misty Blue #81ABBC - Olive Green #4D5E38 - White #F1F3F3 - Puce #403A2C*/
 
 
-/**gray: #718e92;*/
+/**blue: #00aab7*/
 :root {
   --white: #ffffff;
   --black: #031116;
-  --gray: #5E7B7F; 
+  --gray: #718e92; 
+  --dgray: #5E7B7F; 
   --yellow: #e9a901;
   --dyellow: #c77000;
   --red:#D62F2F;
   --dred:#6e0e00;
-  --blue: #00aab7;
+  --blue: #0081A2;
   --dblue: #006080;
   --brown: #69402e;
   --dbrown: #3c3429;

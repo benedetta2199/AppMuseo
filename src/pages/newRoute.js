@@ -44,8 +44,7 @@ export default function Home() {
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <h1>Visualizza i percorsi terminati</h1>
-      <p>Clicca su un percorso per vedere i dettagli</p>
+      <h1>Inizia un nuovo percorso</h1>
       <div className="d-flex flex-wrap justify-content-around ps-4">
         {listRoute.map((it, i) =>{
             const item = it.route;
@@ -53,7 +52,7 @@ export default function Home() {
               <div className={`my-3 d-flex rounded-start shadow white`} key={i}>
                 <img src={item.img} className={`${styles.imgRoute} rounded `} alt=''/>
                 <div className="w-75 me-1">
-                  <p className={`${item.colore}T m-0 t-abo small`}>{item.nome}</p>
+                  <p className={`${item.colore}T m-0 t-abo h5 font-weight-bold`}>{item.nome}</p>
                   <Row className="text-center ">
                     <Col>
                       <small>Durata</small>
@@ -68,7 +67,7 @@ export default function Home() {
                       <p className="m-0 t-elite">{item.esterno? <IoCheckmarkOutline/>:<IoClose/>} </p>
                     </Col>
                   </Row>
-                <button className={`${item.colore} btn btn-sm t-abo text-white m-1`}
+                <button className={`${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`}
                   onClick={()=>startRoute(it)}>Inizia</button>
                 </div>
               </div>
@@ -78,8 +77,9 @@ export default function Home() {
         
         
       </div>
-      <button className='btn bHome' onClick={()=>r.back()}>
+      <button className='btn bHome gray' onClick={()=>r.back()}>
           <IoHome className="whiteT"/>
+          <span hidden className="dredT">Torna alla home</span>
         </button>  
     </main>
   )
