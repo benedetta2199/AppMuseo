@@ -15,7 +15,7 @@ export default function User() {
   return (
     <main className={styles.main}>
       <div className={styles.profilePic}></div>
-      <img src="./logoW.png" className={styles.logoW} alt=""/>
+      <img src="./logoW.webp" className={styles.logoW} alt=""/>
       <div className={styles.picCircle}></div>
       
       
@@ -25,22 +25,22 @@ export default function User() {
         <div>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn"
             onClick={()=> r.push({ pathname: './newRoute', query: {id:id} })}>
-            <img src="./menu/newRoute.png" width={70} alt=''/>
+            <img src="./menu/newRoute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Inizia un nuovo percorso</span>
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
             onClick={()=> r.push({ pathname: './continueRoute', query: {id:id,droute: JSON.stringify(user.percorsiFatti)} })}>
-            <img src="./menu/oldRoute.png" width={70} alt=''/>
+            <img src="./menu/oldRoute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Continua un percorso in sospeso</span>
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
             onClick={()=> r.push({ pathname: './oldRoute', query: {droute: JSON.stringify(user.percorsiFatti)} })}>
-            <img src="./menu/percorsi.png" width={70} alt=''/>
+            <img src="./menu/percorsi.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Guarda i percorsi terminati</span>
           </button>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
             onClick={()=> r.push({ pathname: './cronoReperti', query: {dreperti: JSON.stringify(user.reperti)} })}>
-            <img src="./menu/collezionabili.png" width={70} alt=''/>
+            <img src="./menu/collezionabili.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Guarda i reperti raccolti</span>
           </button>
         </div>

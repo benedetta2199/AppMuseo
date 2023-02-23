@@ -24,7 +24,7 @@ export default function Home() {
     setText(t.piano);
     setColore(t.colore);
     setDesc(t.indizio);
-    setImg( './piano/'+t.piano+'_'+t.sala.replaceAll(' ','-')+'.png');
+    setImg( './piano/'+t.piano+'-'+t.sala.replaceAll(' ','-')+'.webp');
   }
 
   useEffect(()=>{

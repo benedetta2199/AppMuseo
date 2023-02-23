@@ -112,7 +112,7 @@ export default function Home() {
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <img src="./logo.png" className={styles.logo} alt="R"/>
+      <img src="./logo.webp" className={styles.logo} alt="R"/>
       <h1 className="mt-2 d-flex align-items-end p-0 mx-4 my-3 pt-3"> Museo della Regina </h1>
       <p className="t-elite mx-auto w-75"> Scopri la verità nascosta tra i reperti </p>
       <div className={`${styles.form} container dgray shadow mt-3`}>

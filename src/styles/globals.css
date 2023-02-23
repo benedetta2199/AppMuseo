@@ -6,18 +6,16 @@
 :root {
   --white: #ffffff;
   --black: #031116;
-  --gray: #718e92; 
-  --dgray: #5E7B7F; 
+  --gray: #759195; 
+  --dgray: #5C7C83; 
   --yellow: #e9a901;
-  --dyellow: #c77000;
-  --red:#D62F2F;
-  --dred:#6e0e00;
-  --blue: #0081A2;
-  --dblue: #006080;
-  --brown: #69402e;
-  --dbrown: #3c3429;
+  --dyellow: #A16C0D;
+  --red:#E63D3D;
+  --dred:#D62F2F;
+  --blue: #00aab7;
+  --dblue: #32818E;
   --green: #37c885;
-  --dgreen: #387b5c;
+  --dgreen: #2A865D;
 
 }
 

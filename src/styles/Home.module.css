@@ -33,7 +33,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: 75%;
-  background-image: url('../../public/acropoli.jpg'); 
+  background-image: url('../../public/acropoli.webp'); 
 }
 
 .picCircle{top:50%; background-color: var(--white); color: var(--black); 
@@ -178,7 +178,7 @@
 
 .camera:after {
   content: "";
-  background-image: url('../../public/scanQr.png');
+  background-image: url('../../public/scanQr.webp');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50%;

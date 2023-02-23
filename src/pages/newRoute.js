@@ -52,7 +52,7 @@ export default function Home() {
               <div className={`my-3 d-flex rounded-start shadow white`} key={i}>
                 <img src={item.img} className={`${styles.imgRoute} rounded `} alt=''/>
                 <div className="w-75 me-1">
-                  <p className={`${item.colore}T m-0 t-abo h5 font-weight-bold`}>{item.nome}</p>
+                  <p className={`d${item.colore}T m-0 t-abo h5 font-weight-bold`}>{item.nome}</p>
                   <Row className="text-center ">
                     <Col>
                       <small>Durata</small>
@@ -67,7 +67,7 @@ export default function Home() {
                       <p className="m-0 t-elite">{item.esterno? <IoCheckmarkOutline/>:<IoClose/>} </p>
                     </Col>
                   </Row>
-                <button className={`${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`}
+                <button className={`d${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`}
                   onClick={()=>startRoute(it)}>Inizia</button>
                 </div>
               </div>

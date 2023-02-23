@@ -44,7 +44,7 @@ export default function Home() {
       setIndex(i);
       setText(listRep[i].nome);
       setAnno(listRep[i].anno);
-      setImg(listRep[i].img);
+      setImg(listRep[i].img+'.webp');
       setDesc(listRep[i].descrizione);
       setColore(listRep[i].colore);
     }
@@ -63,16 +63,16 @@ export default function Home() {
         <div className={`${styles.vertical} white rounded ps-1`}>
           {listRep.map((item, i) =>{
               return (<a onClick={()=>setElement(i)} key={i}>
-                      <img src={item.img} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`}/>
+                      <img src={item.img+'.webp'} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`}/>
                     </a>)
             })
           }
           {listRep.length>5 ?<IoChevronDownOutline className={styles.down}/> : <></>}
         </div>
         <div className={`${styles.verticalReperto}`}>
-          <img src={img} className={`w-100 p-2 shadowR`}/>
+          <img src={img} className={`w-100 p-2 shadowR`} alt={text}/>
           <div>
-            <h2>{text}</h2>
+            <span className="h2 t-abo">{text}</span>
             <p className="t-elite ps-2 m-0">{anno}</p>
             <p className="small px-2 text-justify">{desc}</p>
           </div>

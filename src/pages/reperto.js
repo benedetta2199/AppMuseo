@@ -27,7 +27,7 @@ export default function Reperto() {
     setText(t.nome);
     setColore(t.colore);
     setDesc(t.descrizione);
-    setImg( t.img);
+    setImg( t.img+'.webp');
     setData(t.anno);
   }
 
