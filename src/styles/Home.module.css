@@ -48,6 +48,14 @@
   margin: 5vh auto;
  }
 
+ /*LUOGO*/
+ .luogo{
+  height: 70vw;
+  width: 70vw;
+  margin: 3vh auto;
+  border-radius: 100%;
+ }
+
  /*INDIZIO*/
  .obliquo{
   -moz-transform: skew(0deg, 10deg);
