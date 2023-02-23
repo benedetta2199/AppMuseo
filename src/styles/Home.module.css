@@ -34,6 +34,7 @@
   background-repeat: no-repeat;
   background-position-x: 75%;
   background-image: url('../../public/acropoli.webp'); 
+  background-color: #6bacb2;
 }
 
 .picCircle{top:50%; background-color: var(--white); color: var(--black); 
