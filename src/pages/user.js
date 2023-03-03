@@ -1,26 +1,39 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 import styles from '@/Home.module.css'
+import useStore from "@store";
+
+import imgBG from "@img/acropoli.webp"
+import logo from "@img/logoW.webp"
 
 export default function User() {
   const r = useRouter();
-  const {id='', data} = r.query;
-  let user;
-  try {
-    user = JSON.parse(data);
-  } catch(e) {
-    user = {punteggio:'', percorsiFatti:[], reperti:[]};
+  const user = useStore((state) => state.user);
+
+  if (Object.keys(user).length == 0){
+    r.push('./');
   }
+
+  const inizializeCronoReperti = useStore((state) => state.inizializeCronoReperti);
+  const inizializePercorsiFatti = useStore((state) => state.inizializePercorsiFatti);
+  /* INIZIALIZZA I REPERTI OTTENUTI E I PERCORSI FATTI DALL'UTENTE */
+  useEffect(()=>{
+    inizializeCronoReperti();
+    inizializePercorsiFatti();
+  },[]);
 
   return (
     <main className={styles.main}>
-      <div className={styles.profilePic}></div>
-      <img src="./logoW.webp" className={styles.logoW} alt=""/>
+      <Image width={500} height={500} src={imgBG} className={styles.profilePic} alt="" priority placeholder="blur"/>
+      <Image width={100} height={100} src={logo} className={styles.logoW} alt="" priority placeholder="blur"/>
       <div className={styles.picCircle}></div>
       
       
       <div className={`${styles.user} position-relative`}>
-        <h1>{id.split("@")[0]}</h1>
+        <h1>{user.id.split("@")[0]}</h1>
         <h2>{user.punteggio}</h2>
         <div>
           <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn"
@@ -33,20 +46,18 @@ export default function User() {
             <img src="./menu/oldRoute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Continua un percorso in sospeso</span>
           </button>
-          <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
-            onClick={()=> r.push({ pathname: './oldRoute', query: {droute: JSON.stringify(user.percorsiFatti)} })}>
+
+          <Link href='./oldRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn" onClick={()=>inizializePercorsiFatti}>
             <img src="./menu/percorsi.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Guarda i percorsi terminati</span>
-          </button>
-          <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
-            onClick={()=> r.push({ pathname: './cronoReperti', query: {dreperti: JSON.stringify(user.reperti)} })}>
+          </Link>
+          
+          <Link href='./cronoReperti' className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn" onClick={()=>inizializeCronoReperti()}>
             <img src="./menu/collezionabili.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Guarda i reperti raccolti</span>
-          </button>
+          </Link>
         </div>
       </div>
-      
-
     </main>
   )
 }

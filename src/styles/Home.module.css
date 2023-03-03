@@ -13,7 +13,7 @@
    color: var(--white) !important;
   }
 
-.logo, .logoW{width: 40vw; margin: 2vh 30vw; position: relative; z-index: 2;}
+.logo, .logoW{width: 40vw; height: auto; margin: 2vh 30vw; position: relative; z-index: 2;}
 .logoW{position: fixed; left: 0vw;}
 .form, .picCircle{
   width: 210vw;
@@ -30,10 +30,9 @@
   width: 100vw;
   height: 60vh;
   position: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position-x: 75%;
-  background-image: url('../../public/acropoli.webp'); 
+  left: 0;
+  object-fit: cover;
+  object-position: 75% 0;
   background-color: #6bacb2;
 }
 

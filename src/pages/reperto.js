@@ -65,7 +65,6 @@ export default function Reperto() {
     loadReperto();
     updateUser();
     updatePercorsoFatto();
-
   },[]);
 
   return (

@@ -4,7 +4,8 @@
     "paths": {
       "@/*": ["./src/styles/*"],
       "@img/*":["./public/*"],
-      "@database":["./src/pages/api/firestore"]
+      "@database":["./src/pages/api/firestore"],
+      "@store":["./src/pages/api/store"]
     }
   }
 }

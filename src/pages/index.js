@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from '@/Home.module.css'
-import { collection, getDocs, getDoc, setDoc, doc } from "firebase/firestore";
+import {getDoc, setDoc, doc } from "firebase/firestore";
 import Form from 'react-bootstrap/Form';
 import { useRouter } from "next/router";
 import { Toast } from "react-bootstrap";
 import {IoClose} from "react-icons/io5";
+import Image from "next/image";
 
 import db from '@database'
+import useStore from "@store";
+import logo from "@img/logo.webp"
 
 export default function Home() {
 
   const r = useRouter();
+  const inizializeUser = useStore((state) => state.inizializeUser);
+
+  const loadFind = useStore((state) => state.loadFind);
+  const loadRoute = useStore((state) => state.loadRoute);
+
+  /*CARICA TUTTI I PERCORSI E I REPERTI DISPONIBILI*/
+  useEffect(()=>{
+    loadFind();
+    loadRoute()
+  },[]);
 
   const [textmail, onChangeMail] = useState("");
   const [textpassword, onChangePassword] = useState("");
@@ -27,7 +40,8 @@ export default function Home() {
     findUser(textmail).then((utente)=>{
       if (utente.exists()) {
         if(utente.data().password==textpassword){
-          r.push({ pathname: './user', query: {id: textmail, data: JSON.stringify(utente.data())} });
+          inizializeUser(Object.assign({id: textmail}, utente.data()));
+          r.push('./user');
         } else{
           setTextToast('Nessun utente è registrato con questa mail');
           setShow(true);
@@ -53,7 +67,8 @@ export default function Home() {
           addUser(textnewmail,textnewpassword1);
           findUser(textnewmail)
             .then((utente)=>{ 
-              r.push({ pathname: './user', query: {id: textnewmail, data: JSON.stringify(utente.data())}});
+              useStore
+              r.push('./user');
             });
         }
       });
@@ -112,7 +127,7 @@ export default function Home() {
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <img src="./logo.webp" className={styles.logo} alt="R"/>
+      <Image width={100} height={100} src={logo} className={styles.logo} alt=""/>
       <h1 className="mt-2 d-flex align-items-end p-0 mx-4 my-3 pt-3"> Museo della Regina </h1>
       <p className="t-elite mx-auto w-75"> Scopri la verità nascosta tra i reperti </p>
       <div className={`${styles.form} container dgray shadow mt-3`}>
