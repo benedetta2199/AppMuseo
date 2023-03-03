@@ -89,7 +89,7 @@ export default function Home() {
       <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword1" placeholder="Password"
         value={textpassword} onChange={(e) => onChangePassword(e.target.value)}/>
     </div>
-    <button className="btn mt-4 dred t-abo" onClick={()=>checkUser()}>Accedi</button>
+    <button className="btn mt-4 gray t-abo" onClick={()=>checkUser()}>Accedi</button>
   </>
 
   const registrati =  <>
@@ -107,7 +107,7 @@ export default function Home() {
       <Form.Control type="password" className={`${styles.input}  m-auto mt-3`} id="inputPassword3" placeholder="Conferma Password"
         value={textnewpassword2} onChange={(e) => onChangeNewPassword2(e.target.value)}/>
     </div>
-    <button className="btn mt-4 dred t-abo" onClick={()=>checkRegistrati()}>Registrati</button>
+    <button className="btn mt-4 gray t-abo" onClick={()=>checkRegistrati()}>Registrati</button>
   </>
 
   return (
