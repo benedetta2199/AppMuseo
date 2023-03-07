@@ -12,6 +12,7 @@ import logo from "@img/logoW.webp"
 export default function User() {
   const r = useRouter();
   const user = useStore((state) => state.user);
+  const name = user.id || '';
  
   const inizializeCronoReperti = useStore((state) => state.inizializeCronoReperti);
   const inizializePercorsiFatti = useStore((state) => state.inizializePercorsiFatti);
@@ -29,7 +30,7 @@ export default function User() {
       
       
       <div className={`${styles.user} position-relative`}>
-        <h1>{user.id.split("@")[0]}</h1>
+        <h1>{name.split("@")[0]}</h1>
         <h2>{user.punteggio}</h2>
         <div>
           <Link href='./newRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn">

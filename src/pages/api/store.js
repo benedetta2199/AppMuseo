@@ -139,8 +139,9 @@ const useStore = create((set,get) => ({
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
   },
   isLast: () =>{
-    const r = get().currentRoute || {ultimoReperto: 0, length: 0};
-    return r.ultimoReperto==r.reperti.length;
+    const r = get().currentRoute;
+    const rep = r.reperti || [];
+    return r.ultimoReperto==rep.length;
   },
   endRoute: async() => {
     const time = serverTimestamp();
