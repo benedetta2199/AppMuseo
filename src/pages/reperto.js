@@ -42,10 +42,9 @@ export default function Reperto() {
   /**CONTROLLA SE IL REPERTO è L'ULTIMO,
    - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
    - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
-  const nextRep = async () => {
+  /*const nextRep = async () => {
     const length = percorso.reperti.length;
 
-    /**funzione da implementare +1 index */
     const i = incrementIndex();
     if(i==lenght){      
       endRoute();
@@ -53,7 +52,7 @@ export default function Reperto() {
     }else{
       r.push('./indizio');
     }
-  }
+  }*/
   
   if(firstTime){
     updatePointUser(increment);
