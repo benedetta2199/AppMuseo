@@ -24,7 +24,6 @@ export default function Reperto() {
 
   const [firstTime, setFirstTime] = useState(true);
   const [src, setSrc] = useState('');
-  const color = reperto.colore || '';
 
   const incrementPoint = 10;
   

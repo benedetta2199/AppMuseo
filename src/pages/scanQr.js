@@ -17,6 +17,9 @@ export default function scanQR() {
   return (
     <main className={`${styles.main} lock-height`}>
       <QrReader
+        constraints={{
+          facingMode: 'environment'
+        }}
         onResult={(result) => {
           if (!!result) {
             if(result?.text===idRep){
