@@ -16,9 +16,11 @@ export default function Home() {
   const getReperto = useStore((state) => state.getReperto);
   const reperto = getReperto();
 
-  console.log(reperto);
+  if(typeof reperto === 'undefined'){
+    const img = './piano/'+reperto.piano+'-'+reperto.sala.replaceAll(' ','-')+'.webp';
+  }
   
-  const img = './piano/'+reperto.piano+'-'+reperto.sala.replaceAll(' ','-')+'.webp';
+  
 
   return (
     <main className={`${styles.main} ${reperto.colore} lock-height`}>
