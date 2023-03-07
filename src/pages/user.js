@@ -12,11 +12,7 @@ import logo from "@img/logoW.webp"
 export default function User() {
   const r = useRouter();
   const user = useStore((state) => state.user);
-
-  if (Object.keys(user).length == 0){
-    r.push('./');
-  }
-
+ 
   const inizializeCronoReperti = useStore((state) => state.inizializeCronoReperti);
   const inizializePercorsiFatti = useStore((state) => state.inizializePercorsiFatti);
   /* INIZIALIZZA I REPERTI OTTENUTI E I PERCORSI FATTI DALL'UTENTE */
@@ -36,16 +32,14 @@ export default function User() {
         <h1>{user.id.split("@")[0]}</h1>
         <h2>{user.punteggio}</h2>
         <div>
-          <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn"
-            onClick={()=> r.push({ pathname: './newRoute', query: {id:id} })}>
+          <Link href='./newRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn">
             <img src="./menu/newRoute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Inizia un nuovo percorso</span>
-          </button>
-          <button className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn"
-            onClick={()=> r.push({ pathname: './continueRoute', query: {id:id,droute: JSON.stringify(user.percorsiFatti)} })}>
+          </Link>
+          <Link href='./continueRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn">
             <img src="./menu/oldRoute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Continua un percorso in sospeso</span>
-          </button>
+          </Link>
 
           <Link href='./oldRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn" onClick={()=>inizializePercorsiFatti}>
             <img src="./menu/percorsi.webp" width={70} alt=''/>

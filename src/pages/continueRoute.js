@@ -5,6 +5,7 @@ import { IoHome } from "react-icons/io5";
 import {getDoc, doc } from "firebase/firestore";
 
 import db from '@database'
+import useStore from "@store";
 import styles from '@/Home.module.css'
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
             return (
               <div className='mt-3' key={i}>
                 <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}
-                  data={{id:id, idRoute:item.idRoute, idUserRoute:item.idUserRoute, index: item.index, lenght: item.leng, idRep: item.next}}/>
+                  idR={item.idRoute} idUR={item.idUserRoute}/>
               </div>
             )
           })

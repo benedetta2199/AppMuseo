@@ -1,28 +1,26 @@
-
 import React, { useState } from 'react'
 import { QrReader } from 'react-qr-reader';
-import styles from '@/Home.module.css'
 import { Toast } from 'react-bootstrap';
 import {IoClose} from "react-icons/io5";
 import { useRouter } from 'next/router';
 
+import useStore from "@store";
+import styles from '@/Home.module.css'
+
 export default function scanQR() { 
 
   const r = useRouter();
-  const {id, idRep, idRoute, index, lenght, idUserRoute} = r.query;
+  const idRep = useStore((state) => state.currentIdReperto);
   const [show, setShow] = useState(false);
 
 
   return (
     <main className={`${styles.main} lock-height`}>
       <QrReader
-        constraints={{
-          facingMode: 'environment'
-        }}
         onResult={(result) => {
           if (!!result) {
             if(result?.text===idRep){
-              r.push({ pathname: './reperto', query: {id: id, idRep: idRep, idRoute: idRoute, idUserRoute: idUserRoute, index: index, lenght: lenght}});
+              r.push('./reperto');
             } else{
               setShow(true);
             }

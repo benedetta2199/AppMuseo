@@ -1,14 +1,16 @@
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
+import Link from "next/link";
 
+import useStore from "@store";
 import styles from '@/Component.module.css'
 import { useRouter } from "next/router";
 
 export default function Card(prop) {
   
-  const r = useRouter();  
-  const {titolo, punteggio, altro, img, hue, contin, data={}} = prop;
+  const {titolo, punteggio, altro, img, hue, contin, idR, idUR} = prop;
 
+  const inizializeCurrentRoute = useStore((state) => state.inizializeCurrentRoute);
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -28,10 +30,12 @@ export default function Card(prop) {
             <div className={`${styles.point} t-elite`}>Punteggio: {punteggio}</div>
             {contin
             ? <>
-                <button className={`btn btn-sm my-1 ${hue}`} onClick={()=>r.push({ pathname: './indizio', query: {id: data.id, idRoute: data.idRoute, 
-                idUserRoute: data.idUserRoute, index: data.index, lenght: data.lenght, idRep: data.idRep}})}>
+                <Link className={`btn btn-sm my-1 ${hue}`} href='./indizio' onClick={()=> inizializeCurrentRoute(idUR, idR)}>
                   Continua
-                </button> 
+                </Link> 
+                {/*<button className={`btn btn-sm my-1 ${hue}`} href='./indizio' onClick={()=> inizializeCurrentRoute(idUR, idR)}>
+                  Continua
+                </button>*/}
 
                 <button className={`btn border-light btn-sm`} onClick={()=>setIsFlipped(!isFlipped)}>Ruota la carta</button></>
             : <></>}

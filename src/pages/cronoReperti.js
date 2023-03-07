@@ -8,8 +8,6 @@ import styles from '@/Home.module.css'
 export default function CronoReperti() {
   const r = useRouter();
   const reperti = useStore((state) => state.cronologiaReperti);
-
-  console.log(reperti);
  
   const [text, setText] = useState('');
   const [anno, setAnno] = useState('');

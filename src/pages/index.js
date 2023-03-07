@@ -40,7 +40,7 @@ export default function Home() {
     findUser(textmail).then((utente)=>{
       if (utente.exists()) {
         if(utente.data().password==textpassword){
-          inizializeUser(Object.assign({id: textmail}, utente.data()));
+          inizializeUser(textmail, utente.data());
           r.push('./user');
         } else{
           setTextToast('Nessun utente è registrato con questa mail');
@@ -127,7 +127,7 @@ export default function Home() {
 
   return (
     <main className={`${styles.main} lock-height`}>
-      <Image width={100} height={100} src={logo} className={styles.logo} alt=""/>
+      <Image width={100} height={100} src={logo} className={styles.logo} alt="" priority/>
       <h1 className="mt-2 d-flex align-items-end p-0 mx-4 my-3 pt-3"> Museo della Regina </h1>
       <p className="t-elite mx-auto w-75"> Scopri la verità nascosta tra i reperti </p>
       <div className={`${styles.form} container dgray shadow mt-3`}>
