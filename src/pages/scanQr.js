@@ -26,8 +26,7 @@ export default function scanQR() {
             }
           }
         }}
-        className={styles.camera}
-        style={{ width: '100%', height: '100%' }}
+        className='camera' style={{ width: '100%', height: '100%' }}
       />
 
     <Toast show={show} onClose={()=>setShow(false)} className='z-3'>

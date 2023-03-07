@@ -184,30 +184,6 @@
   z-index: 1;
 }
 
-.camera:after {
-  content: "";
-  background-image: url('../../public/scanQr.webp');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 80%;
-  height: 90%;
-  margin: 5% 10%;
-  animation-name: pulsazione;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes pulsazione {
-  0%   {transform: scale(0.9)}
-  50%  {transform: scale(1)}
-  100% {transform: scale(0.9)}
-}
-
 /**NEW PERCORSO*/
 .imgRoute{
   position: relative;
