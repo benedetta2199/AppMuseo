@@ -24,20 +24,21 @@ export default function Reperto() {
 
   const [firstTime, setFirstTime] = useState(true);
   const [src, setSrc] = useState('');
+  const color = reperto.colore || '';
 
   const incrementPoint = 10;
   
   if(firstTime){
-    updatePointUser(increment);
+    updatePointUser(incrementPoint);
     addReperto();
-    updateCurrentRoute(increment);
+    updateCurrentRoute(incrementPoint);
     isLast() ? setSrc('./congratulation') : setSrc('./indizio');
     setFirstTime(false);
   }
 
   return (
     <main className={styles.main}>
-      <div className={`c${reperto.colore}`}></div>
+      <div className={`c${colore}`}></div>
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{reperto.nome}</h1>
          <p className="t-elite">{reperto.anno}</p>
@@ -45,7 +46,7 @@ export default function Reperto() {
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 
-      <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
+      <button className={`${colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
       <Link className="btn text-light gray t-abo" href={src}>  Scopri il prossimo indizio </Link>
     </main>
   )
