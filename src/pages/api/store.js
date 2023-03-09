@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import db from '@database'
-import {getDoc, doc, addDoc, updateDoc, collection, arrayUnion, getDocs, serverTimestamp } from "firebase/firestore";
+import {getDoc, doc, addDoc, updateDoc, collection, arrayUnion, getDocs, increment, serverTimestamp } from "firebase/firestore";
 import { format } from 'date-fns'
 import { it } from 'date-fns/locale';
 import { async } from '@firebase/util';
@@ -56,6 +56,7 @@ const useStore = create((set,get) => ({
         terminati=terminati.concat(element);
       } else {
         const i =  pf.ultimoReperto;
+        console.log('ultimo reperto'+i)
         const nRep = p.reperti.length
         const perc = (i)*100/nRep;
         const element = {nome: p.nome, img: p.img, punteggio: pf.punteggio, perc: perc, hue: p.colore, ultimoReperto: i, idRoute: pf.nome, idUserRoute: docSnapPF.id};
@@ -75,17 +76,20 @@ const useStore = create((set,get) => ({
     set((state) => ({ user: {...state.user, punteggio: state.user.punteggio+increse} }));
     /*AGGIORNAMENTO DATI DATABASE */
     const ref = doc(db, "user", get().user.id);
-    await updateDoc(ref, {punteggio: increment(increse)})
+    await updateDoc(ref, {punteggio: increment(increse)});
+    console.log(get().user);
   },
   logOut: () => set({ user: {} }),
   addReperto: async() => {
+    console.log('ADD REPERTO ID'+get().currentIdReperto)
     const idRep = get().currentIdReperto;
     if(!get().user.reperti.includes(idRep)){
       /**da vedere se fuziona push */
+      console.log('non include reperto');
       get().user.reperti.push(idRep);
       set((state) => ({ cronologiaReperti: [...state.cronologiaReperti, get().allFind.get(idRep)]}));
     }
-    
+    console.log('idRep: '+idRep);
     const refUser = doc(db, "user", get().user.id);
     await updateDoc(refUser, {reperti: arrayUnion(idRep)});
   },
@@ -98,6 +102,8 @@ const useStore = create((set,get) => ({
     const docRef = await addDoc(collection(db, "percorsoFatto"), {data: null, nome: id, punteggio: 0, terminato: false, ultimoReperto: 0});
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
     const idPFatto = docRef.id;
+    console.log(docRef);
+    console.log('ID'+idPFatto);
     const refUser = doc(db, "user", get().user.id);
     await updateDoc(refUser, {percorsiFatti: arrayUnion(idPFatto)});
 
@@ -108,40 +114,48 @@ const useStore = create((set,get) => ({
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, elem]}));
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
 
-    await get().inizializeRoute(idPFatto, id);
+    await get().inizializeCurrentRoute(idPFatto, id);
   },
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
   inizializeCurrentRoute: (idPercorsoFatto, idPercorso) => {
-    console.log('PROVA');
     const p = get().allRoute.get(idPercorso);
     const pf = get().percorsiIncompleti.filter(e => e.idUserRoute === idPercorsoFatto)[0];
     /*AGGIORNAMENTO DATI STORE */
-    console.log(p);
-    console.log(pf);
     if(Object.keys(get().currentRoute).length == 0){
-      const initR = {id: pf.idPercorsoFatto, img: pf.img, nome: idPercorso, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
+      const initR = {id: pf.idUserRoute, img: pf.img, nome: idPercorso, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
+      console.log('INIZIALIZE ROUTE ID'+get().currentIdReperto)
     }
   },
   /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE  */
   updateCurrentRoute: async (incrementPoint) => {
-    get().updatePointUser(incrementPoint);
+    /** */
+    console.log(get().currentRoute);
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
-    set({ currentRoute: {...currentRoute, ultimoReperto: route.ultimoReperto+1, punteggio: route.punteggio+incrementPoint} });
-    const i = get().percorsiIncompleti.findIndex(e => e.idUserRoutecurrentRoute.id);
-    set({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)});
-    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
+    const updateRoute = {...route, ultimoReperto: route.ultimoReperto+1, punteggio: route.punteggio+incrementPoint}
+    set({ currentRoute: updateRoute });
+    /*set((state) => ({currentIdReperto: state.currentRoute.reperti[state.currentRoute.ultimoReperto]}));
+    set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
+    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));*/
 
     /*AGGIORNAMENTO DATI DATABASE */
-    const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
+    /*const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
+    */
+    console.log(get().currentRoute);
   },
   isLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
-    return r.ultimoReperto==rep.length;
+    const result = (r.ultimoReperto) >=rep.length;
+    console.log(r.ultimoReperto +' - '+rep.length);
+    console.log(result);
+    if(result){
+      get().endRoute();
+    }
+    return result;
   },
   endRoute: async() => {
     const time = serverTimestamp();
@@ -149,7 +163,7 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI STORE */
     const endP = {nome: cRoute.nome, img: cRoute.img, punteggio: cRoute.punteggio, data: time, hue: cRoute.hue }
     set((state) => ({ percorsiTerminati: [...state.percorsiTerminati, endP]}));
-    set({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== cRoute.id)});
+    set((state) =>({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== cRoute.id)}));
     set({ currentRoute: {}});
 
     /*AGGIORNAMENTO DATI DATABASE */
@@ -159,10 +173,6 @@ const useStore = create((set,get) => ({
   },
 
   /**RESTITUISCE I DATI DEL REPERTO RELATIVO ALL'ID */
-  getReperto: () => { 
-    console.log(get().currentIdReperto);
-    console.log('s '+get().allFind.get(get().currentIdReperto));
-    return get().allFind.get(get().currentIdReperto); },
-}));
+  getReperto: () => { return get().allFind.get(get().currentIdReperto); }}));
 
 export default useStore;

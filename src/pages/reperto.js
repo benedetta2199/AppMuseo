@@ -5,34 +5,40 @@ import { arrayUnion, doc, getDoc, increment, serverTimestamp, updateDoc } from "
 import styles from '@/Home.module.css'
 import db from '@database'
 import useStore from "@store";
-import Link from "next/link";
 
 export default function Reperto() {
   
   const r = useRouter();
 
-  const i = useStore((state) => state.currentIdReperto);
   const getReperto = useStore((state) => state.getReperto);
-  const reperto = getReperto(i) || {};
-  const percorso = useStore((state) => state.currentRoute);
-  const endRoute = useStore((state) => state.endRoute);
+  const reperto = getReperto() || {};
 
   const updatePointUser = useStore((state) => state.updatePointUser);
   const addReperto = useStore((state) => state.addReperto);
   const updateCurrentRoute = useStore((state) => state.updateCurrentRoute);
   const isLast = useStore((state) => state.isLast);
 
-  const [firstTime, setFirstTime] = useState(true);
-  const [src, setSrc] = useState('');
+  let firstTime = true;
 
   const incrementPoint = 10;
   
-  if(firstTime){
-    updatePointUser(incrementPoint);
-    addReperto();
-    updateCurrentRoute(incrementPoint);
-    isLast() ? setSrc('./congratulation') : setSrc('./indizio');
-    setFirstTime(false);
+  
+  useEffect(()=>{
+    if(firstTime){
+        console.log('ENTER');
+        updateCurrentRoute(incrementPoint);
+        /*isLast() ? setSrc('./congratulation') : setSrc('./indizio');*/
+        addReperto();
+        updatePointUser(incrementPoint);
+      firstTime = false;
+    }
+      console.log('AAA');
+  }, []);
+  
+  const linkNextPage = () =>{
+    const src = isLast() ? '/congratulation' : '/indizio';
+    console.log('src: '+ src);
+    r.push(src);
   }
 
   return (
@@ -46,7 +52,7 @@ export default function Reperto() {
       </div>
 
       <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
-      <Link className="btn text-light gray t-abo" href={src}>  Scopri il prossimo indizio </Link>
+      <button className="btn text-light gray t-abo" onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
     </main>
   )
 }

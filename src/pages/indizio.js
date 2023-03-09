@@ -12,7 +12,6 @@ export default function Home() {
 
   /*da rivedere*/
   const i = useStore((state) => state.currentIdReperto);
-  console.log(i);
   const getReperto = useStore((state) => state.getReperto);
   const reperto = getReperto() || {};
   const piano = reperto.piano || '';
