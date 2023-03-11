@@ -22,7 +22,7 @@ export default function CronoReperti() {
       setIndex(i);
       setText(reperti[i].nome);
       setAnno(reperti[i].anno);
-      setImg('/reperti/'+reperti[i].img+'.webp');
+      setImg('./reperti/'+reperti[i].img+'.webp');
       setDesc(reperti[i].descrizione);
       setColore(reperti[i].colore);
     }
@@ -41,7 +41,7 @@ export default function CronoReperti() {
           {reperti.length>5 ?<IoChevronDownOutline className={styles.down}/> : <></>}
         </div>
         <div className={`${styles.verticalReperto}`}>
-          <Image width={500} height={500} src={img} className={`w-100 h-auto p-2 shadowR`} alt={text} priority/>
+          <img src={img} className={`w-100 p-2 shadowR`} alt=''/>
           <div>
             <span className="h2 t-abo">{text}</span>
             <p className="t-elite ps-2 m-0">{anno}</p>
