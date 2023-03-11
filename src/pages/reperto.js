@@ -48,7 +48,7 @@ export default function Reperto() {
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{reperto.nome}</h1>
          <p className="t-elite">{reperto.anno}</p>
-        <Image width={500} height={500} src={reperto.img+'.webp'} className={`${styles.reperto} shadowR`} priority/>
+        <Image width={500} height={500} src={'/'+reperto.img+'.webp'} className={`${styles.reperto} shadowR`} priority/>
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 

@@ -22,7 +22,7 @@ export default function CronoReperti() {
       setIndex(i);
       setText(reperti[i].nome);
       setAnno(reperti[i].anno);
-      setImg(reperti[i].img+'.webp');
+      setImg('/'+reperti[i].img+'.webp');
       setDesc(reperti[i].descrizione);
       setColore(reperti[i].colore);
     }
@@ -34,14 +34,14 @@ export default function CronoReperti() {
         <div className={`${styles.vertical} white rounded ps-1`}>
           {reperti.map((item, i) =>{
               return (<a onClick={()=>setElement(i)} key={i}>
-                      <img src={item.img+'.webp'} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`}/>
+                      <Image width={250} height={250}src={'/'+item.img+'.webp'} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`} priority/>
                     </a>)
             })
           }
           {reperti.length>5 ?<IoChevronDownOutline className={styles.down}/> : <></>}
         </div>
         <div className={`${styles.verticalReperto}`}>
-          <Image width={250} height={250}  src={img} className={`w-100 p-2 shadowR`} alt={text} priority/>
+          <Image width={500} height={500} src={img} className={`w-100 p-2 shadowR`} alt={text} priority/>
           <div>
             <span className="h2 t-abo">{text}</span>
             <p className="t-elite ps-2 m-0">{anno}</p>

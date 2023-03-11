@@ -18,7 +18,7 @@ export default function Home() {
   const piano = reperto.piano || '';
   const sala = reperto.sala || '';
 
-  const img = './piano/'+piano+'-'+sala.replaceAll(' ','-')+'.webp';
+  const img = '/piano/'+piano+'-'+sala.replaceAll(' ','-')+'.webp';
 
   return (
     <main className={`${styles.main} ${reperto.colore} lock-height`}>

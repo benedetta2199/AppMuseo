@@ -43,11 +43,11 @@
 .dgreenT {color: var(--dgreen);}
 .whiteT {color: var(--white) !important;}
 
-.redBorder {color: var(--dred) !important; border: var(--dred) 1px solid;}
-.yellowBorder {color: var(--dyellow)!important; border: var(--dyellow) 1px solid;}
-.grayBorder {color: var(--dgray)!important; border: var(--dgray) 1px solid;}
-.blueBorder {color: var(--dblue)!important; border: var(--dblue) 1px solid;}
-.greenBorder {color: var(--dgreen)!important; border: var(--dgreen) 1px solid;}
+.redBorder {color: var(--dred) !important; border: var(--dred) 1px solid !important;}
+.yellowBorder {color: var(--dyellow)!important; border: var(--dyellow) 1px solid !important;}
+.grayBorder {color: var(--dgray)!important; border: var(--dgray) 1px solid !important;}
+.blueBorder {color: var(--dblue)!important; border: var(--dblue) 1px solid !important;}
+.greenBorder {color: var(--dgreen)!important; border: var(--dgreen) 1px solid !important;}
 
 .t-elite{font-family: 'Special Elite', 'Courier New', Courier, monospace;}
 .t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;}
