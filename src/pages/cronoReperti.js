@@ -4,6 +4,7 @@ import { IoChevronDownOutline, IoHome } from "react-icons/io5";
 
 import useStore from "@store";
 import styles from '@/Home.module.css'
+import Image from "next/image";
 
 export default function CronoReperti() {
   const r = useRouter();
@@ -40,7 +41,7 @@ export default function CronoReperti() {
           {reperti.length>5 ?<IoChevronDownOutline className={styles.down}/> : <></>}
         </div>
         <div className={`${styles.verticalReperto}`}>
-          <img src={img} className={`w-100 p-2 shadowR`} alt={text}/>
+          <Image width={250} height={250}  src={img} className={`w-100 p-2 shadowR`} alt={text} priority/>
           <div>
             <span className="h2 t-abo">{text}</span>
             <p className="t-elite ps-2 m-0">{anno}</p>

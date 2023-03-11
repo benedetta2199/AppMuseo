@@ -7,6 +7,7 @@ import Link from "next/link";
 import db from '@database';
 import styles from '@/Home.module.css';
 import useStore from "@store";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -25,7 +26,7 @@ export default function Home() {
       <div className="mt-4 text-dark position-relative">
          <h1 className="mb-5 pb-3"> Trova il reperto </h1>
          <h2 className={`${styles.title} h6 text-end px-5`}>Piano {reperto.piano}</h2>
-        <img src={`${img}`} className={styles.piano}/>
+        <Image src={`${img}`} width={250} height={250} className={styles.piano} priority/>
         <p className={`${styles.indizio} px-3 t-elite pt-2`}>{reperto.indizio}</p>
       </div>
 

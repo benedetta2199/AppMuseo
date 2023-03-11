@@ -24,8 +24,8 @@ export default function User() {
 
   return (
     <main className={styles.main}>
-      <Image width={500} height={500} src={imgBG} className={styles.profilePic} alt="" priority placeholder="blur"/>
-      <Image width={100} height={100} src={logo} className={styles.logoW} alt="" priority placeholder="blur"/>
+      <Image src={imgBG} className={styles.profilePic} alt="" priority placeholder="blur"/>
+      <Image src={logo} className={styles.logoW} alt="" priority placeholder="blur"/>
       <div className={styles.picCircle}></div>
       
       

@@ -5,6 +5,7 @@ import { arrayUnion, doc, getDoc, increment, serverTimestamp, updateDoc } from "
 import styles from '@/Home.module.css'
 import db from '@database'
 import useStore from "@store";
+import Image from "next/image";
 
 export default function Reperto() {
   
@@ -47,12 +48,12 @@ export default function Reperto() {
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{reperto.nome}</h1>
          <p className="t-elite">{reperto.anno}</p>
-        <img src={reperto.img+'.webp'} className={`${styles.reperto} shadowR`}/>
+        <Image width={500} height={500} src={reperto.img+'.webp'} className={`${styles.reperto} shadowR`} priority/>
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 
       <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
-      <button className="btn text-light gray t-abo" onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
+      <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
     </main>
   )
 }

@@ -16,7 +16,7 @@ export default function Card(prop) {
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" >
         <div className={`${styles.cardF} text-light`} onClick={()=>setIsFlipped(!isFlipped)}
-          style={{background: 'url('+img+')', backgroundSize:'cover', backgroundRepeat:'no-repeat'}}>
+          style={{background: 'url('+img+')', backgroundSize:'cover', backgroundRepeat:'no-repeat', backgroundColor: 'var(--d'+hue+')'}}>
           <h2 className={`${styles.title}`}>{titolo}</h2>
         </div>
 

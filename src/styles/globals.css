@@ -27,8 +27,6 @@
 .dgray {background-color: var(--dgray) !important;}
 .blue {background-color: var(--blue) !important;}
 .dblue {background-color: var(--dblue) !important;}
-.brown {background-color: var(--brown) !important;}
-.dbrown {background-color: var(--dbrown) !important;}
 .green {background-color: var(--green) !important;}
 .dgreen {background-color: var(--dgreen) !important;}
 .white {background-color: var(--white) !important;}
@@ -41,11 +39,15 @@
 .grayT {color: var(--gray);}
 .blueT {color: var(--blue);}
 .dblueT {color: var(--dblue);}
-.brownT {color: var(--brown);}
-.dbrownT {color: var(--dbrown);}
 .greenT {color: var(--green);}
 .dgreenT {color: var(--dgreen);}
 .whiteT {color: var(--white) !important;}
+
+.redBorder {color: var(--dred) !important; border: var(--dred) 1px solid;}
+.yellowBorder {color: var(--dyellow)!important; border: var(--dyellow) 1px solid;}
+.grayBorder {color: var(--dgray)!important; border: var(--dgray) 1px solid;}
+.blueBorder {color: var(--dblue)!important; border: var(--dblue) 1px solid;}
+.greenBorder {color: var(--dgreen)!important; border: var(--dgreen) 1px solid;}
 
 .t-elite{font-family: 'Special Elite', 'Courier New', Courier, monospace;}
 .t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;}
