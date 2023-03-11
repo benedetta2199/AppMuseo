@@ -18,8 +18,6 @@ export default function Home() {
   const piano = reperto.piano || '';
   const sala = reperto.sala || '';
 
-  const img = ;
-
   return (
     <main className={`${styles.main} ${reperto.colore} lock-height`}>
       <div className={styles.obliquo}></div>
