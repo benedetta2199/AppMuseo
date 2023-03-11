@@ -39,7 +39,7 @@
 .picCircle{top:50%; background-color: var(--white); color: var(--black); 
   padding: 5vh 40% !important;}
 
-.user{top: 50vh; margin-top: 2vh;}
+.user{top: 50vh; margin-top: 2vh; z-index: 3;}
 
  /*REPERTO*/ 
  .reperto{
