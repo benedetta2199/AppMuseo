@@ -7,7 +7,7 @@ export default function Document() {
       <Head>
         <title>App web: Museo della Regina di Cattolica</title>
       </Head>
-      <body>
+      <body oncontextmenu="return false">
         <Main />
         <NextScript />
       </body>
