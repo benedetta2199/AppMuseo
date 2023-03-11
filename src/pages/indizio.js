@@ -24,7 +24,7 @@ export default function Home() {
       <div className="mt-4 text-dark position-relative">
          <h1 className="mb-5 pb-3"> Trova il reperto </h1>
          <h2 className={`${styles.title} h6 text-end px-5`}>Piano {reperto.piano}</h2>
-        <Image src={`/piano/'+${piano}-${sala.replaceAll(' ','-')}.webp`} width={250} height={250} className={styles.piano} priority/>
+        <Image src={`/piano/${piano}-${sala.replaceAll(' ','-')}.webp`} width={250} height={250} className={styles.piano} priority/>
         <p className={`${styles.indizio} px-3 t-elite pt-2`}>{reperto.indizio}</p>
       </div>
 
