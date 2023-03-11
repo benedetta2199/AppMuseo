@@ -110,8 +110,8 @@
  .active{
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
-  margin-right: -2px;
  }
+ .active img{margin-right: -2px;}
  .down{position: -webkit-sticky;
   position: sticky;
   bottom: 0;
