@@ -41,7 +41,7 @@ export default function Home() {
             const item = it.data;
             return (
               <div className={`my-3 d-flex rounded-start shadow white`} key={i}>
-                <Image src={'/'+item.img} width={250} height={250} className={`${styles.imgRoute} rounded `} alt='' priority/>
+                <Image src={'/percorsi/'+item.img} width={250} height={250} className={`${styles.imgRoute} rounded `} alt='' priority/>
                 <div className="w-75 me-1">
                   <p className={`d${item.colore}T m-0 t-abo h5 font-weight-bold`}>{item.nome}</p>
                   <Row className="text-center ">
