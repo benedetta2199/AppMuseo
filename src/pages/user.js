@@ -34,11 +34,11 @@ export default function User() {
         <h2>{user.punteggio}</h2>
         <div>
           <Link href='./newRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded mt-3 mb-5 btn">
-            <img src="./menu/newRoute.webp" width={70} alt=''/>
+            <img src="./menu/newroute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Inizia un nuovo percorso</span>
           </Link>
           <Link href='./continueRoute' className="d-flex align-items-center m-auto w-75 border-top border-end rounded my-5 btn">
-            <img src="./menu/oldRoute.webp" width={70} alt=''/>
+            <img src="./menu/oldroute.webp" width={70} alt=''/>
             <span className='mx-2 my-0'>Continua un percorso in sospeso</span>
           </Link>
 

@@ -136,9 +136,9 @@ const useStore = create((set,get) => ({
     const route = get().currentRoute;
     const updateRoute = {...route, ultimoReperto: route.ultimoReperto+1, punteggio: route.punteggio+incrementPoint}
     set({ currentRoute: updateRoute });
-    /*set((state) => ({currentIdReperto: state.currentRoute.reperti[state.currentRoute.ultimoReperto]}));
+    set((state) => ({currentIdReperto: state.currentRoute.reperti[state.currentRoute.ultimoReperto]}));
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
-    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));*/
+    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
 
     /*AGGIORNAMENTO DATI DATABASE */
     /*const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
