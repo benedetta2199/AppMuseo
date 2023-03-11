@@ -56,7 +56,6 @@ const useStore = create((set,get) => ({
         terminati=terminati.concat(element);
       } else {
         const i =  pf.ultimoReperto;
-        console.log('ultimo reperto'+i)
         const nRep = p.reperti.length
         const perc = (i)*100/nRep;
         const element = {nome: p.nome, img: p.img, punteggio: pf.punteggio, perc: perc, hue: p.colore, ultimoReperto: i, idRoute: pf.nome, idUserRoute: docSnapPF.id};
@@ -77,19 +76,15 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI DATABASE */
     const ref = doc(db, "user", get().user.id);
     await updateDoc(ref, {punteggio: increment(increse)});
-    console.log(get().user);
   },
   logOut: () => set({ user: {} }),
   addReperto: async() => {
-    console.log('ADD REPERTO ID'+get().currentIdReperto)
     const idRep = get().currentIdReperto;
     if(!get().user.reperti.includes(idRep)){
       /**da vedere se fuziona push */
-      console.log('non include reperto');
       get().user.reperti.push(idRep);
       set((state) => ({ cronologiaReperti: [...state.cronologiaReperti, get().allFind.get(idRep)]}));
     }
-    console.log('idRep: '+idRep);
     const refUser = doc(db, "user", get().user.id);
     await updateDoc(refUser, {reperti: arrayUnion(idRep)});
   },
@@ -102,8 +97,6 @@ const useStore = create((set,get) => ({
     const docRef = await addDoc(collection(db, "percorsoFatto"), {data: null, nome: id, punteggio: 0, terminato: false, ultimoReperto: 0});
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
     const idPFatto = docRef.id;
-    console.log(docRef);
-    console.log('ID'+idPFatto);
     const refUser = doc(db, "user", get().user.id);
     await updateDoc(refUser, {percorsiFatti: arrayUnion(idPFatto)});
 
@@ -125,13 +118,11 @@ const useStore = create((set,get) => ({
       const initR = {id: pf.idUserRoute, img: pf.img, nome: idPercorso, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
-      console.log('INIZIALIZE ROUTE ID'+get().currentIdReperto)
     }
   },
   /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE  */
   updateCurrentRoute: async (incrementPoint) => {
     /** */
-    console.log(get().currentRoute);
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
     const updateRoute = {...route, ultimoReperto: route.ultimoReperto+1, punteggio: route.punteggio+incrementPoint}
@@ -141,17 +132,13 @@ const useStore = create((set,get) => ({
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
 
     /*AGGIORNAMENTO DATI DATABASE */
-    /*const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
+    const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
-    */
-    console.log(get().currentRoute);
   },
   isLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
     const result = (r.ultimoReperto) >=rep.length;
-    console.log(r.ultimoReperto +' - '+rep.length);
-    console.log(result);
     if(result){
       get().endRoute();
     }
