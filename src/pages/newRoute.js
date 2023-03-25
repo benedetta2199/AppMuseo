@@ -16,6 +16,18 @@ export default function Home() {
 
   const listRoute = useStore((state) => state.allRoute);
   const addNewRoute = useStore((state) => state.addNewRoute);
+  const getReperto = useStore((state) => state.getReperto);
+
+  const openPage = (id) =>{
+    addNewRoute(id);
+    /*then?? promise??*/
+    const r = getReperto();
+    if(r.esterno){
+      r.push('/map');
+    } else{
+      r.push('/indizio');
+    }
+  }
 
   /*const startRoute = async (it) => {
 
@@ -58,9 +70,9 @@ export default function Home() {
                       <p className="m-0 t-elite">{item.esterno? <IoCheckmarkOutline/>:<IoClose/>} </p>
                     </Col>
                   </Row>
-                <Link className={`d${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`} href='./indizio' onClick={()=>addNewRoute(it.id)}>
+                <button className={`d${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`} onClick={()=>openPage(it.id)}>
                   Inizia
-                </Link>
+                </button>
                 </div>
               </div>
             )

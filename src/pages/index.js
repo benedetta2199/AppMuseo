@@ -128,7 +128,7 @@ export default function Home() {
   return (
     <main className={`${styles.main} lock-height`}>
       <Image src={logo} className={styles.logo} alt="" priority/>
-      <h1 className="mt-2 d-flex align-items-end p-0 mx-4 my-3 pt-3"> Museo della Regina </h1>
+      <h1 className="mt-2 p-0 my-3 pt-3"> Museo della Regina </h1>
       <p className="t-elite mx-auto w-75"> Scopri la verità nascosta tra i reperti </p>
       <div className={`${styles.form} container dgray shadow mt-3`}>
         <div className="d-flex justify-content-around">

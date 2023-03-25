@@ -3,7 +3,6 @@ import db from '@database'
 import {getDoc, doc, addDoc, updateDoc, collection, arrayUnion, getDocs, increment, serverTimestamp } from "firebase/firestore";
 import { format } from 'date-fns'
 import { it } from 'date-fns/locale';
-import { async } from '@firebase/util';
 
 const useStore = create((set,get) => ({
   /*CAMPI DI PERCORSO FATTO (compreso id)*/
@@ -159,7 +158,7 @@ const useStore = create((set,get) => ({
     /*prendi il percorso dal database e aggiungilo allo store*/
   },
 
-  /**RESTITUISCE I DATI DEL REPERTO RELATIVO ALL'ID */
+  /**RESTITUISCE I DATI DEL REPERTO corrente */
   getReperto: () => { return get().allFind.get(get().currentIdReperto); }}));
 
 export default useStore;

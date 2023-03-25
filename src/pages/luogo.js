@@ -4,81 +4,56 @@ import { arrayUnion, doc, getDoc, increment, serverTimestamp, updateDoc } from "
 
 import styles from '@/Home.module.css'
 import db from '@database'
+import useStore from "@store";
+import Image from "next/image";
 
 export default function Reperto() {
   
   const r = useRouter();
-  //const {id, idRep, idUserRoute, index, lenght, dRep} = r.query;
-  const {id, idRep, idRoute, idUserRoute, index, lenght} = r.query;
+
+  const reperto = {nome: 'Porto', colore: 'blue', anno:'??', img: 'porto', 
+  descrizione: 'Con il termine lorem ipsum si indica un testo segnaposto utilizzato da grafici, progettisti, programmatori e tipografi a modo riempitivo per bozzetti e prove grafiche'};
+
+  /*const getReperto = useStore((state) => state.getReperto);
+  const reperto = getReperto() || {};
+
+  const updatePointUser = useStore((state) => state.updatePointUser);
+  const addReperto = useStore((state) => state.addReperto);
+  const updateCurrentRoute = useStore((state) => state.updateCurrentRoute);
+  const isLast = useStore((state) => state.isLast);
+
+  let firstTime = true;
+
+  const incrementPoint = 10;*/
   
-  const [text, setText] = useState('');
-  const [img, setImg] = useState('');
-  const [color, setColore] = useState('');
-  const [data, setData] = useState('');
-  const [desc, setDesc] = useState('');
-  const incrementPoint = 10;
-
-  const loadReperto = async () => {
-    const docRef = doc(db, "reperto", idRep);
-    const docSnap = await getDoc(docRef);
-    const t =docSnap.data();
-
-    setText(t.nome);
-    setColore(t.colore);
-    setDesc(t.descrizione);
-    setImg( t.img+'.webp');
-    setData(t.anno);
-  }
-
   
-  /**AGGIRNA PUNTEGGIO E LA LISTA DEI REPERTI CON QUELLO APPENA SCOPERTO*/
-  const updateUser = async () => {
-    const refUser = doc(db, "user", id);
-    await updateDoc(refUser, {punteggio: increment(incrementPoint), reperti: arrayUnion(idRep)});
-  }
-  /**AGGIORNA IL PUNTEGGIO E L'INDICE RELATIVO AL PROSSIMO REPERTO DA VISUALIZZARE*/
-  const updatePercorsoFatto = async () => {
-    const refRoute = doc(db, "percorsoFatto", idUserRoute);
-    await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
-  }
-
-  /**CONTROLLA SE IL REPERTO è L'ULTIMO,
-   - IN CASO AFFERMATIVO MANDA ALL'ULTIMA PAGINA
-   - IN CASO NEGATIVO INDIRIZZA ALLA PAGINA DELL'INDIZIO SUCCESSIVO*/
-  const nextRep = async () => {
-    const i = parseInt(index)+1;
-    console.log(i+' - '+lenght)
-    if(i==lenght){
-      const refRoute = doc(db, "percorsoFatto", idUserRoute);
-      await updateDoc(refRoute, {terminato: true, data: serverTimestamp()});
-      r.push({ pathname: './congratulation', query: {id: id}});
-    }else{
-      const docRef = doc(db, "percorso", idRoute);
-      const docSnap = await getDoc(docRef);
-      const next = docSnap.data().reperti[i];
-      r.push({ pathname: './indizio', query: {id: id, idUserRoute: idUserRoute, index: i, lenght: lenght, idRep: next}});
-    }
-  }
-
   useEffect(()=>{
-    /*loadReperto();
-    updateUser();
-    updatePercorsoFatto();*/
-
-  },[]);
+    /*if(firstTime){
+        updateCurrentRoute(incrementPoint);
+        addReperto();
+        updatePointUser(incrementPoint);
+      firstTime = false;
+    }*/
+  }, []);
+  
+  const linkNextPage = () =>{
+    /*const src = isLast() ? '/congratulation' : '/indizio';
+    console.log('src: '+ src);
+    r.push(src);*/
+  }
 
   return (
     <main className={styles.main}>
-      <div className={`c${color}`}></div>
+      <div className={`c${reperto.colore}`}></div>
       <div className="position-relative mt-4">
-         <h1 className={styles.title}>{text}</h1>
-         <p className="t-elite">{data}</p>
-        <img src={img} className={`${styles.luogo} shadowR`}/>
-        <p className="px-3">{desc}</p>
+         <h1 className={styles.title}>{reperto.nome}</h1>
+         <p className="t-elite">{reperto.anno}</p>
+        <Image width={500} height={500} src={'/reperti/'+reperto.img+'.jpg'} className={`${styles.luogo} shadowR`} priority/>
+        <p className="px-3">{reperto.descrizione}</p>
       </div>
 
-      <button className={`${color} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
-      <button className="btn text-light gray t-abo" onClick={()=>nextRep()}>  Scopri il prossimo indizio </button>
+      <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
+      <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
     </main>
   )
 }

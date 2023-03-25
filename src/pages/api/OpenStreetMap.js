@@ -7,13 +7,18 @@ import { IoLocate } from "react-icons/io5";
 import db from '@database'
 import stylesH from '@/Home.module.css'
 import stylesC from '@/Component.module.css'
+import { useRouter } from 'next/router';
 
-const Map2 = () => {
+const Map2 = (props) => {
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
+  const {latitudine, longitudine} = props
   const ZOOM_LEVEL = 16;
   const MINDISTANCE = 10;
   const [map, setMap] = useState(null);
-  const mapRef = useRef();
+  /**posizione destinazione tesoro */
+  const center = [latitudine, longitudine]; 
+
+  const r = useRouter();
 
   const myIcon = L.icon({
     iconUrl: '../loc.png',
@@ -22,9 +27,8 @@ const Map2 = () => {
     popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
 });
 
-  const center = [43.96346569633796, 12.744251411105504]; 
-
-  const [position, setPosition] = useState([43.96364140583398, 12.741056881742653]);
+  /*COORD MUSEO 43.96362390345784, 12.741044864931098*/
+  const [position, setPosition] = useState([43.96362390345784, 12.741044864931098]);
 
   useEffect(() => {
     let i =0;
@@ -34,6 +38,7 @@ const Map2 = () => {
         const dist = L.latLng(position).distanceTo(center);
         if(dist<MINDISTANCE){
           console.log(dist);
+          r.push('/luogo');
         }
       });
     }, 2000);

@@ -28,12 +28,10 @@ export default function Reperto() {
     if(firstTime){
         console.log('ENTER');
         updateCurrentRoute(incrementPoint);
-        /*isLast() ? setSrc('./congratulation') : setSrc('./indizio');*/
         addReperto();
         updatePointUser(incrementPoint);
       firstTime = false;
     }
-      console.log('AAA');
   }, []);
   
   const linkNextPage = () =>{
