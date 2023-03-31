@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import stylesH from '@/Home.module.css'
 import stylesC from '@/Component.module.css'
 import useStore from "@store";
+import Link from 'next/link';
 
 const Map2 = (props) => {
 
@@ -22,6 +23,7 @@ const Map2 = (props) => {
   const ZOOM_LEVEL = 16;
   const MINDISTANCE = 10;
   const [map, setMap] = useState(null);
+  const [show, setShow] = useState(false);
   /**posizione destinazione tesoro */
   const center = [latitudine, longitudine]; 
 
@@ -47,6 +49,7 @@ const Map2 = (props) => {
         if(dist<MINDISTANCE){
           console.log(dist);
           r.push('/luogo');
+          setShow(true);
         }
       });
     }, 2000);
@@ -89,6 +92,13 @@ const Map2 = (props) => {
       onClick={()=>{map.fitBounds([position, center]); }}>
       <IoLocate/>
     </button>
+    { show ?
+      <Link className={`bHome btn`} href='./luogo'>
+        Scopri
+      </Link>
+    : <></>
+    }
+    
   </>
                   
   )
