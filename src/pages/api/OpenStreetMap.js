@@ -20,7 +20,7 @@ const Map2 = (props) => {
   const latitudine = reperto.coordinate.latitude;
   const longitudine = reperto.coordinate.longitude;
   const ZOOM_LEVEL = 16;
-  const MINDISTANCE = 10;
+  const MINDISTANCE = 24;
   const [map, setMap] = useState(null);
   /**posizione destinazione tesoro */
   const center = [latitudine, longitudine]; 
@@ -42,12 +42,8 @@ const Map2 = (props) => {
     const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
       navigator.geolocation.getCurrentPosition(function(p) {
         setPosition([p.coords.latitude, p.coords.longitude]);
-        /*console.log(p.coords.latitude + '-' + p.coords.longitude);
-        const dist = L.latLng(position).distanceTo(center);*/
-        const dist = distance(position, center);
-        console.log(position + '-' + dist);
+        const dist = L.latLng([p.coords.latitude, p.coords.longitude]).distanceTo(center);
         if(dist<MINDISTANCE){
-          console.log(dist);
           r.push('/luogo');
         }
       });
@@ -55,24 +51,6 @@ const Map2 = (props) => {
 
     return () => clearInterval(intervalId); //This is important
   }, []);
-
-  const distance = (p1, p2) =>{
-    const lat1Radians = p1[0] * Math.PI / 180;
-    const lng1Radians = p1[1] * Math.PI / 180;
-    const lat2Radians = p2[0] * Math.PI / 180;
-    const lng2Radians = p2[1] * Math.PI / 180;
-
-    const r = 6376.5 * 1000; //raggio della terra in metri
-    const x1 = r * Math.cos(lat1Radians) * Math.cos(lng1Radians);
-    const y1 = r * Math.cos(lat1Radians) * Math.sin(lng1Radians);
-    const z1 = r * Math.sin(lat1Radians);
-    const x2 = r * Math.cos(lat2Radians) * Math.cos(lng2Radians);
-    const y2 = r * Math.cos(lat2Radians) * Math.sin(lng2Radians);
-    const z2 = r * Math.sin(lat2Radians);
-
-    return Math.sqrt(Math.pow((x2 - x1),2) + Math.pow((y2 - y1),2) + Math.pow((z2 - z1),2));
-  }
-
 
   return (
   <>
