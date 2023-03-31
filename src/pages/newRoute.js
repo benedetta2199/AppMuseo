@@ -20,9 +20,8 @@ export default function Home() {
 
   const openPage = (id) =>{
     addNewRoute(id);
-    /*then?? promise??*/
-    const r = getReperto();
-    if(r.esterno){
+    const rep = getReperto();
+    if(rep.esterno){
       r.push('/map');
     } else{
       r.push('/indizio');
@@ -52,7 +51,7 @@ export default function Home() {
         {Array.from(listRoute, x => { return {id:x[0], data: x[1]}}).map((it, i) =>{
             const item = it.data;
             return (
-              <div className={`my-3 d-flex rounded-start shadow white`} key={i}>
+              <div className={`my-3 d-flex rounded-start w-100 shadow white`} key={i}>
                 <Image src={'/percorsi/'+item.img} width={250} height={250} className={`${styles.imgRoute} rounded `} alt='' priority/>
                 <div className="w-75 me-1">
                   <p className={`d${item.colore}T m-0 t-abo h5 font-weight-bold`}>{item.nome}</p>
@@ -70,9 +69,9 @@ export default function Home() {
                       <p className="m-0 t-elite">{item.esterno? <IoCheckmarkOutline/>:<IoClose/>} </p>
                     </Col>
                   </Row>
-                <button className={`d${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`} onClick={()=>openPage(it.id)}>
-                  Inizia
-                </button>
+                  <button className={`d${item.colore} btn btn-sm t-abo text-white m-1 font-weight-bold`} onClick={()=>openPage(it.id)}>
+                    Inizia
+                  </button>
                 </div>
               </div>
             )

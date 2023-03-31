@@ -3,15 +3,22 @@ import { MapContainer, TileLayer, Marker, LayerGroup, Circle, Popup, CircleMarke
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import { IoLocate } from "react-icons/io5";
-
-import db from '@database'
-import stylesH from '@/Home.module.css'
-import stylesC from '@/Component.module.css'
 import { useRouter } from 'next/router';
 
+import stylesH from '@/Home.module.css'
+import stylesC from '@/Component.module.css'
+import useStore from "@store";
+
 const Map2 = (props) => {
+
+  const getReperto = useStore((state) => state.getReperto);
+  const reperto = getReperto() || {};
+
+
   //const [center, setCenter] = useState({ lat: -4.043477, lng: 39.668205 })
-  const {latitudine, longitudine} = props
+ // const {latitudine, longitudine} = props
+  const latitudine = reperto.coordinate.latitude;
+  const longitudine = reperto.coordinate.longitude;
   const ZOOM_LEVEL = 16;
   const MINDISTANCE = 10;
   const [map, setMap] = useState(null);
@@ -35,6 +42,7 @@ const Map2 = (props) => {
     const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
       navigator.geolocation.getCurrentPosition(function(p) {
         setPosition([p.coords.latitude, p.coords.longitude]);
+        console.log(p.coords.latitude + '-' + p.coords.longitude);
         const dist = L.latLng(position).distanceTo(center);
         if(dist<MINDISTANCE){
           console.log(dist);

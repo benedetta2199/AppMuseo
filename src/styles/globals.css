@@ -16,7 +16,6 @@
   --dblue: #32818E;
   --green: #37c885;
   --dgreen: #2A865D;
-
 }
 
 .red {background-color: var(--red) !important;}

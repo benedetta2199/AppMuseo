@@ -1,23 +1,37 @@
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import Link from "next/link";
 
 import useStore from "@store";
 import styles from '@/Component.module.css'
 import { useRouter } from "next/router";
+import { async } from "@firebase/util";
 
 export default function Card(prop) {
   
   const {titolo, punteggio, altro, img, hue, contin, idR, idUR} = prop;
 
+  const r = useRouter();
+
   const inizializeCurrentRoute = useStore((state) => state.inizializeCurrentRoute);
+  const getReperto = useStore((state) => state.getReperto);
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const click = async () => {
+    await inizializeCurrentRoute(idUR, idR);
+    const rep=getReperto();
+    if(rep.esterno){
+      r.push('/map');
+    } else{
+      r.push('/indizio');
+    }
+    
+  }
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" >
         <div className={`${styles.cardF} text-light`} onClick={()=>setIsFlipped(!isFlipped)}
           style={{backgroundColor: 'var(--d'+hue+')', backgroundImage: 'url(./percorsi/'+img+')', backgroundSize:'cover', backgroundRepeat:'no-repeat'}}>
-          <h2 className={`${styles.title}`}>{titolo}</h2>
+          <h2 className={`${styles.title} w-100`}>{titolo}</h2>
         </div>
 
         <div className={`${styles.cardB}`} onClick={contin? ()=>{} :()=>{setIsFlipped(!isFlipped)}}
@@ -30,9 +44,10 @@ export default function Card(prop) {
             <div className={`${styles.point} t-elite`}>Punteggio: {punteggio}</div>
             {contin
             ? <>
-                <Link className={`btn btn-sm my-1 ${hue}`} href='./indizio' onClick={()=> inizializeCurrentRoute(idUR, idR)}>
+
+                <button className={`btn btn-sm my-1 ${hue}`} onClick={()=> click()}>
                   Continua
-                </Link> 
+                </button> 
                 {/*<button className={`btn btn-sm my-1 ${hue}`} href='./indizio' onClick={()=> inizializeCurrentRoute(idUR, idR)}>
                   Continua
                 </button>*/}
