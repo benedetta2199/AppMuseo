@@ -11,10 +11,10 @@ import styles from '@/Home.module.css'
 export default function Home() {
   const r = useRouter();
   const routes = useStore((state) => state.percorsiIncompleti);
-  const deinizializeCurrentRoute = useStore((state) => state.deinizializeCurrentRoute);
+  const resetCurrentRoute = useStore((state) => state.resetCurrentRoute);
 
   useEffect(()=>{
-    deinizializeCurrentRoute();
+    resetCurrentRoute();
   },[]);
   
 

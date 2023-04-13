@@ -96,7 +96,15 @@ const useStore = create((set,get) => ({
   
                                                                           /*FUNZIONI RELATIVE AL PERCORSO*/
   /** AGGIUNGI UN NUOVO PERCORSO FATTO */
-  addNewRoute: async (id) => {
+  addNewRoute: async (id) => {    
+    /*AGGIORNAMENTO DATI DATABASE */
+    /*aggiungi percorso fatto*/
+    const docRef = await addDoc(collection(db, "percorsoFatto"), {data: null, nome: id, punteggio: 0, terminato: false, ultimoReperto: 0});
+    /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
+    const idPFatto = docRef.id;
+    const refUser = doc(db, "user", get().user.id);
+    await updateDoc(refUser, {percorsiFatti: arrayUnion(idPFatto)});
+
     /*AGGIORNAMENTO DATI STORE*/
     /*aggiungi percorso fatto (incompleto)*/
     const p = get().allRoute.get(id);
@@ -105,14 +113,6 @@ const useStore = create((set,get) => ({
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
 
     await get().inizializeCurrentRoute(idPFatto, id);
-    
-    /*AGGIORNAMENTO DATI DATABASE */
-    /*aggiungi percorso fatto*/
-    const docRef = await addDoc(collection(db, "percorsoFatto"), {data: null, nome: id, punteggio: 0, terminato: false, ultimoReperto: 0});
-    /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
-    const idPFatto = docRef.id;
-    const refUser = doc(db, "user", get().user.id);
-    await updateDoc(refUser, {percorsiFatti: arrayUnion(idPFatto)});
   },
 
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
@@ -127,7 +127,7 @@ const useStore = create((set,get) => ({
     }
   },
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
-  deinizializeCurrentRoute: () => {
+  resetCurrentRoute: () => {
     set({ currentRoute: {}});
   },
   /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE  */
