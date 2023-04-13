@@ -11,6 +11,12 @@ import styles from '@/Home.module.css'
 export default function Home() {
   const r = useRouter();
   const routes = useStore((state) => state.percorsiIncompleti);
+  const deinizializeCurrentRoute = useStore((state) => state.deinizializeCurrentRoute);
+
+  useEffect(()=>{
+    deinizializeCurrentRoute();
+  },[]);
+  
 
   return (
     <main className={`${styles.main} lock-height`}>

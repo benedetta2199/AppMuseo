@@ -18,9 +18,16 @@ export default function Home() {
   const addNewRoute = useStore((state) => state.addNewRoute);
   const getReperto = useStore((state) => state.getReperto);
 
+  const deinizializeCurrentRoute = useStore((state) => state.deinizializeCurrentRoute);
+
+  useEffect(()=>{
+    deinizializeCurrentRoute();
+  },[]);
+
   const openPage = (id) =>{
     addNewRoute(id);
     const rep = getReperto();
+    console.log(rep);
     if(rep.esterno){
       r.push('/map');
     } else{

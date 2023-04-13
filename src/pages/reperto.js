@@ -35,8 +35,13 @@ export default function Reperto() {
   }, []);
   
   const linkNextPage = () =>{
-    const src = isLast() ? '/congratulation' : '/indizio';
-    console.log('src: '+ src);
+    let src;
+    if(isLast()){
+      src =  '/congratulation'
+    } else{
+      const nextreperto = getReperto();
+      nextreperto.esterno ?  src =  '/map' : '/indizio';
+    }
     r.push(src);
   }
 
@@ -46,7 +51,7 @@ export default function Reperto() {
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{reperto.nome}</h1>
          <p className="t-elite">{reperto.anno}</p>
-        <Image width={500} height={500} src={'/reperti/'+reperto.img+'.webp'} className={`${styles.reperto} shadowR`} priority/>
+        <Image width={500} height={500} src={'/reperti/'+reperto.img+'.webp'} className={`${styles.reperto} shadowR`} alt='' priority />
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 

@@ -14,8 +14,8 @@ export default function Reperto() {
   const reperto = {nome: 'Porto', colore: 'blue', anno:'??', img: 'porto', 
   descrizione: 'Con il termine lorem ipsum si indica un testo segnaposto utilizzato da grafici, progettisti, programmatori e tipografi a modo riempitivo per bozzetti e prove grafiche'};
 
-  /*const getReperto = useStore((state) => state.getReperto);
-  const reperto = getReperto() || {};
+  //const getReperto = useStore((state) => state.getReperto);
+  //const reperto = getReperto() || {};
 
   const updatePointUser = useStore((state) => state.updatePointUser);
   const addReperto = useStore((state) => state.addReperto);
@@ -24,22 +24,27 @@ export default function Reperto() {
 
   let firstTime = true;
 
-  const incrementPoint = 10;*/
+  const incrementPoint = 10;
   
   
   useEffect(()=>{
-    /*if(firstTime){
+    if(firstTime){
         updateCurrentRoute(incrementPoint);
         addReperto();
         updatePointUser(incrementPoint);
       firstTime = false;
-    }*/
+    }
   }, []);
   
   const linkNextPage = () =>{
-    /*const src = isLast() ? '/congratulation' : '/indizio';
-    console.log('src: '+ src);
-    r.push(src);*/
+    let src;
+    if(isLast()){
+      src =  '/congratulation'
+    } else{
+      const nextreperto = getReperto();
+      nextreperto.esterno ?  src =  '/map' : '/indizio';
+    }
+    r.push(src);
   }
 
   return (

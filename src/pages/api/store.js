@@ -114,6 +114,7 @@ const useStore = create((set,get) => ({
     const refUser = doc(db, "user", get().user.id);
     await updateDoc(refUser, {percorsiFatti: arrayUnion(idPFatto)});
   },
+
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
   inizializeCurrentRoute: (idPercorsoFatto, idPercorso) => {
     const p = get().allRoute.get(idPercorso);
@@ -124,6 +125,10 @@ const useStore = create((set,get) => ({
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
     }
+  },
+  /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
+  deinizializeCurrentRoute: () => {
+    set({ currentRoute: {}});
   },
   /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE  */
   updateCurrentRoute: async (incrementPoint) => {
@@ -165,6 +170,10 @@ const useStore = create((set,get) => ({
   },
 
   /**RESTITUISCE I DATI DEL REPERTO corrente */
-  getReperto: () => { return get().allFind.get(get().currentIdReperto); }}));
+  getReperto: () => { 
+    const t = get().allFind.get(get().currentIdReperto);
+    return t; 
+  
+  }}));
 
 export default useStore;

@@ -14,6 +14,7 @@ export default function Card(prop) {
 
   const inizializeCurrentRoute = useStore((state) => state.inizializeCurrentRoute);
   const getReperto = useStore((state) => state.getReperto);
+
   const [isFlipped, setIsFlipped] = useState(false);
 
   const click = async () => {
