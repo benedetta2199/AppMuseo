@@ -111,7 +111,7 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
  }
 .bScan svg{height: 45px; width: 45px;}
 
-.toast{position: absolute; top:20px; z-index: 3; width: 90vw; margin: auto 2.5vw;}
+.toast{position: absolute; top:20px; z-index: 3; width: 90vw !important; margin: auto 5vw;}
 
 /*CIRCLE*/
 .cyellow{

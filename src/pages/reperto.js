@@ -36,13 +36,13 @@ export default function Reperto() {
   const linkNextPage = () =>{
     let src;
     if(isLast()){
-      src =  '/congratulation'
+      r.push('/congratulation');
     } else{
       const nextreperto = getReperto();
       console.log(nextreperto);
-      nextreperto.esterno ?  src =  '/map' : '/indizio';
+      nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
     }
-    r.push(src);
+    
   }
 
   return (
