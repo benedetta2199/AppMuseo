@@ -86,6 +86,7 @@ const useStore = create((set,get) => ({
       /**da vedere se fuziona push */
       get().user.reperti.push(idRep);
       const rep = get().allFind.get(idRep);
+      console.log(rep);
       if(!rep.esterno){
         set((state) => ({ cronologiaReperti: [...state.cronologiaReperti, rep]}));
       }

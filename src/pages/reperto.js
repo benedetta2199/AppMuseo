@@ -27,8 +27,7 @@ export default function Reperto() {
   useEffect(()=>{
     if(firstTime){
         console.log('ENTER');
-        updateCurrentRoute(incrementPoint);
-        addReperto();
+        updateCurrentRoute(incrementPoint).then(()=>addReperto());
         updatePointUser(incrementPoint);
       firstTime = false;
     }
@@ -40,6 +39,7 @@ export default function Reperto() {
       src =  '/congratulation'
     } else{
       const nextreperto = getReperto();
+      console.log(nextreperto);
       nextreperto.esterno ?  src =  '/map' : '/indizio';
     }
     r.push(src);

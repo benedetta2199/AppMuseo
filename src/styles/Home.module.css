@@ -44,7 +44,7 @@
  /*REPERTO*/ 
  .reperto{
   height: 70vw;
-  width: auto;
+  width: auto !important;
   margin: 5vh auto;
  }
 
