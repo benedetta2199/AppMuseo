@@ -87,12 +87,17 @@ const useStore = create((set,get) => ({
       get().user.reperti.push(idRep);
       const rep = get().allFind.get(idRep);
       console.log(rep);
-      if(!rep.esterno){
-        set((state) => ({ cronologiaReperti: [...state.cronologiaReperti, rep]}));
+      if(rep !== undefined){
+        if(!rep.esterno){
+          /*AGGIORNAMENTO DATI STORE */
+          set((state) => ({ cronologiaReperti: [...state.cronologiaReperti, rep]}));
+          
+          /*AGGIORNAMENTO DATI DATABASE */
+          const refUser = doc(db, "user", get().user.id);
+          await updateDoc(refUser, {reperti: arrayUnion(idRep)});
+        } 
       }
     }
-    const refUser = doc(db, "user", get().user.id);
-    await updateDoc(refUser, {reperti: arrayUnion(idRep)});
   },
   
                                                                           /*FUNZIONI RELATIVE AL PERCORSO*/
@@ -142,6 +147,8 @@ const useStore = create((set,get) => ({
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
 
+    console.log('AGGIORNATI CAMPI PERCORSO')
+
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
@@ -149,6 +156,7 @@ const useStore = create((set,get) => ({
   isLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
+    console.log(r.ultimoReperto + ' tot: ' + rep.length)
     const result = (r.ultimoReperto) >=rep.length;
     if(result){
       get().endRoute();
