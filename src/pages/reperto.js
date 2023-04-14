@@ -26,10 +26,13 @@ export default function Reperto() {
   
   useEffect(()=>{
     if(firstTime){
-        console.log('ENTER');
+      console.log('this rep');
+      console.log(getReperto());
         updateCurrentRoute(incrementPoint).then(()=>addReperto());
         updatePointUser(incrementPoint);
       firstTime = false;
+      console.log('next rep');
+      console.log(getReperto());
     }
   }, []);
   
