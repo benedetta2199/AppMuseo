@@ -109,6 +109,10 @@
  .vertical::-webkit-scrollbar {
   display: none;
 }
+.vertical img{
+  height: 28vw;
+  object-fit: contain;
+ }
  .active{
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -129,6 +133,8 @@
  }
 .verticalReperto>img{
   position: relative;
+  height: 35vh;
+  object-fit: contain;
   top: 3vh;
   right: -10vw;
 }
