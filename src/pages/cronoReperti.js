@@ -41,13 +41,12 @@ export default function CronoReperti() {
           {reperti.length>5 ?<IoChevronDownOutline className={styles.down}/> : <></>}
         </div>
         <div className={`${styles.verticalReperto}`}>
-          <img src={img} className={`w-100 p-2 shadowR`} alt=''/>
+          {img!='' ? <img src={img} className={`w-100 p-2 shadowR`} alt=''/> : <></>}
           <div>
             <span className="h2 t-abo">{text}</span>
             <p className="t-elite ps-2 m-0">{anno}</p>
             <p className="small px-2 text-justify">{desc}</p>
           </div>
-          
         </div>    
 
         <button className='btn bHome' onClick={()=>r.back()}>

@@ -110,7 +110,7 @@
   display: none;
 }
 .vertical img{
-  height: 28vw;
+  height: 30vw;
   object-fit: contain;
  }
  .active{
