@@ -45,7 +45,6 @@ export default function Reperto() {
       console.log(nextreperto);
       nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
     }
-    
   }
 
   return (
@@ -58,7 +57,7 @@ export default function Reperto() {
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 
-      <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button>
+      {'extra' in reperto ? <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button> : <></>}
       <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
     </main>
   )

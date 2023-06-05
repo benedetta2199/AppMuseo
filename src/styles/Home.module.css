@@ -3,6 +3,7 @@
   position: relative !important;
   overflow-x: hidden;
   min-height: 95vh;
+  height: auto;
   padding-bottom: 3vh;
 }
 .input{

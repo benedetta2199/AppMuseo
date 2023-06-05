@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="it">
       <Head>
         <title>App web: Museo della Regina di Cattolica</title>
-      </Head>
+      </Head>      
       <body oncontextmenu="return false">
         <Main />
         <NextScript />
