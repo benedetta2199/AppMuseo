@@ -111,6 +111,7 @@
 }
 .vertical img{
   height: 30vw;
+  width: 110%;
   object-fit: contain;
  }
  .active{

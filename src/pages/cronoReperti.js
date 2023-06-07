@@ -34,7 +34,7 @@ export default function CronoReperti() {
         <div className={`${styles.vertical} white rounded ps-1`}>
           {reperti.map((item, i) =>{
               return (<a onClick={()=>setElement(i)} key={i}>
-                      <Image width={250} height={250}src={'/reperti/'+item.img+'.webp'} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} w-100 p-2 pe-3 my-2`} priority/>
+                      <Image width={250} height={250}src={'/reperti/'+item.img+'.webp'} alt={item.nome} className={`${index==i ? styles.active : 'white'} ${item.colore} p-2 pe-3 my-2`} priority/>
                     </a>)
             })
           }
