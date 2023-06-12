@@ -10,9 +10,12 @@ import Image from "next/image";
 export default function Reperto() {
   
   const r = useRouter();
+  const getReperto = useStore((state) => state.getReperto);
+  const reperto = getReperto() || {};
 
-  const reperto = {nome: 'Porto', colore: 'blue', anno:'??', img: 'porto', 
+  /*const reperto = {nome: 'Porto', colore: 'blue', anno:'??', img: 'porto', 
   descrizione: 'Con il termine lorem ipsum si indica un testo segnaposto utilizzato da grafici, progettisti, programmatori e tipografi a modo riempitivo per bozzetti e prove grafiche'};
+*/
 
   //const getReperto = useStore((state) => state.getReperto);
   //const reperto = getReperto() || {};
@@ -52,8 +55,7 @@ export default function Reperto() {
       <div className={`c${reperto.colore}`}></div>
       <div className="position-relative mt-4">
          <h1 className={styles.title}>{reperto.nome}</h1>
-         <p className="t-elite">{reperto.anno}</p>
-        <Image width={500} height={500} src={'/reperti/'+reperto.img+'.jpg'} className={`${styles.luogo} shadowR`} priority/>
+        <Image width={500} height={500} src={'/reperti/'+reperto.img+'.webp'} className={`${styles.luogo} shadowR`} priority/>
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 
