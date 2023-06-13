@@ -14,7 +14,7 @@
    color: var(--white) !important;
   }
 
-.logo, .logoW{width: 40vw; height: auto; margin: 2vh 30vw; position: relative; z-index: 2;}
+.logo {width: 25vw; height: auto; margin: 2vh 30vw; position: relative; z-index: 2;}
 .logoW{position: fixed; left: 0vw;}
 .form, .picCircle{
   width: 210vw;
@@ -34,13 +34,14 @@
   left: 0;
   object-fit: cover;
   object-position: 75% 0;
-  background-color: #6bacb2;
+  /*background-color: #6bacb2;*/
+  background-color: #c0af75;
 }
 
-.picCircle{top:50%; background-color: var(--white); color: var(--black); 
-  padding: 5vh 40% !important;}
+.picCircle{top:40vh; background-color: var(--white); color: var(--black); 
+  padding: 5vh 40vh !important;}
 
-.user{top: 50vh; margin-top: 2vh; z-index: 3;}
+.user{top: 42vh; margin-top: 2vh; z-index: 3;}
 
  /*REPERTO*/ 
  .reperto{

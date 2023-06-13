@@ -6,8 +6,7 @@ import Image from "next/image";
 import styles from '@/Home.module.css'
 import useStore from "@store";
 
-import imgBG from "@img/acropoli.webp"
-import logo from "@img/logoW.webp"
+import imgBG from "@img/sfondoApp.webp"
 
 export default function User() {
   const r = useRouter();
@@ -25,7 +24,6 @@ export default function User() {
   return (
     <main className={styles.main}>
       <Image src={imgBG} className={styles.profilePic} alt="" priority placeholder="blur"/>
-      <Image src={logo} className={styles.logoW} alt="" priority placeholder="blur"/>
       <div className={styles.picCircle}></div>
       
       
