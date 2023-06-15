@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
 import { IoQrCode } from "react-icons/io5";
-import { useRouter } from "next/router";
-import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 
-import db from '@database';
 import styles from '@/Home.module.css';
 import useStore from "@store";
 import Image from "next/image";

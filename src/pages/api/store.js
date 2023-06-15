@@ -16,6 +16,12 @@ const useStore = create((set,get) => ({
   currentRoute: {},
   currentIdReperto: '',
 
+                                                                          /*CHECK INIZIALISATION*/
+  check: () =>{
+    return typeof user == 'undefined';
+  },
+
+
                                                                           /*FUNZIONI DI CARICAMENTO GENERALI*/
   /**CARICA TUTTI I REPERTI NELLA MAPPA allFind */
   loadFind: async () => {
