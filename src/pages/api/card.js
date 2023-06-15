@@ -37,7 +37,7 @@ export default function Card(prop) {
 
         <div className={`${styles.cardB}`} onClick={contin? ()=>{} :()=>{setIsFlipped(!isFlipped)}}
           style={{background: 'var(--d'+hue+')'}}>
-            <p className="t-elite mb-1">Terminato il {contin? ' ':<br/>}{altro}{contin? '% del percorso':''}</p>
+            <p className="t-elite mb-1">Terminato il {contin? ' ':<br/>}{(altro+'').substring(0, 4)}{contin? '% del percorso':''}</p>
             {contin
               ? <></>
               : <h2 className={`${styles.title}`}>{titolo}</h2>
