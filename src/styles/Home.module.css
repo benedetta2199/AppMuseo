@@ -14,7 +14,7 @@
    color: var(--white) !important;
   }
 
-.logo {width: 25vw; height: auto; margin: 2vh 30vw; position: relative; z-index: 2;}
+.logo {width: 25vw; height: auto; margin: 5vh 30vw; position: relative; z-index: 2;}
 .logoW{position: fixed; left: 0vw;}
 .form, .picCircle{
   width: 210vw;

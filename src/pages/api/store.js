@@ -80,8 +80,7 @@ const useStore = create((set,get) => ({
     await updateDoc(ref, {punteggio: increment(increse)});
   },
   logOut: () => set({ user: {} }),
-  addReperto: async() => {
-    const idRep = get().currentIdReperto;
+  addReperto: async(idRep) => {
     if(!get().user.reperti.includes(idRep)){
       /**da vedere se fuziona push */
       get().user.reperti.push(idRep);
@@ -141,6 +140,7 @@ const useStore = create((set,get) => ({
     /** */
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
+    get().addReperto(get().currentIdReperto);
     const updateRoute = {...route, ultimoReperto: route.ultimoReperto+1, punteggio: route.punteggio+incrementPoint}
     set({ currentRoute: updateRoute });
     set((state) => ({currentIdReperto: state.currentRoute.reperti[state.currentRoute.ultimoReperto]}));

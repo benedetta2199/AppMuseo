@@ -91,7 +91,7 @@ export default function Home() {
       <button className='btn bHome' onClick={()=>r.back()}>
           <IoHome className="whiteT"/>
           <span hidden className="dredT">Torna alla home</span>
-        </button>  
+      </button>  
     </main>
   )
 }
