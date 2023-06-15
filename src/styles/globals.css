@@ -89,14 +89,13 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
 
 .lock-height{height: 100vh; overflow: hidden;}
 
-.bHome,.bScan{
+.bHome {
   position: fixed;
   height: min-content;
   width: min-content;
   padding: 0px;
   z-index: 2;
  }
- .bScan{ bottom: 4vw; left: 2vw ;}
  .bHome{ bottom: 4vw; right: 2vw ;}
 
  .bHome:focus, .bHome:active,.bScan:focus, .bScan:active, 

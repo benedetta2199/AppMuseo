@@ -89,14 +89,15 @@
  }
 
  .scan{
-  left: 2vw !important;
- }
- .scanText{
-  width: 80vw !important;
-  margin-left: 20vw;
-  text-align: start;
   position: fixed;
   bottom: 1.5vh;
+  padding: 1.5vw;
+ }
+ .scan a{
+  height: min-content;
+  width: min-content;
+  padding: 0px;
+  z-index: 2;
  }
 
  /*CRONOLOGIA DEI REPERTI*/

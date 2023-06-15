@@ -8,6 +8,7 @@ import db from '@database';
 import styles from '@/Home.module.css';
 import useStore from "@store";
 import Image from "next/image";
+import { Col, Row } from "react-bootstrap";
 
 export default function Home() {
 
@@ -28,10 +29,22 @@ export default function Home() {
         <p className={`${styles.indizio} px-3 t-elite pt-2`}>{reperto.indizio}</p>
       </div>
 
-      <Link href={'./scanQr'} className={`${styles.scan} bScan btn`}>
-          <IoQrCode/>
-      </Link>
-      <p className={styles.scanText}>Una volta trovato il reperto scansiona il Qrcode corrispondente</p>
+      <div className={`${styles.scan} d-flex`} >
+         <Link href={'./scanQr'} className={`bScan btn`}>
+            <IoQrCode/>
+          </Link>
+          <p className="text-start ms-2 my-0">Una volta trovato il reperto scansiona il Qrcode corrispondente</p>
+      </div>
+      <Row >
+        <Col sm={2}>
+         
+        </Col>
+        <Col sm={10}>
+          
+        </Col>
+      </Row>
+      
+      
     </main>
   )
 }
