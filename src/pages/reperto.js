@@ -20,6 +20,7 @@ export default function Reperto() {
   const isLast = useStore((state) => state.isLast);
 
   let firstTime = true;
+  const {last, setLast} = useState(false);
 
   const incrementPoint = 10;
   
@@ -31,14 +32,13 @@ export default function Reperto() {
         updateCurrentRoute(incrementPoint).then(()=>addReperto());
         updatePointUser(incrementPoint);
       firstTime = false;
-      console.log('next rep');
-      console.log(getReperto());
+      setLast(isLast());
     }
   }, []);
   
   const linkNextPage = () =>{
     let src;
-    if(isLast()){
+    if(last){
       r.push('/congratulation');
     } else{
       const nextreperto = getReperto();
