@@ -15,6 +15,7 @@ const useStore = create((set,get) => ({
   /*CAMPI DI PERCORSO FATTO (compreso id) + LISTA REPETI PERCORSO COLLEGATO*/
   currentRoute: {},
   currentIdReperto: '',
+  last: false,
 
                                                                           /*CHECK INIZIALISATION*/
   check: () =>{
@@ -128,6 +129,7 @@ const useStore = create((set,get) => ({
 
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
   inizializeCurrentRoute: (idPercorsoFatto, idPercorso) => {
+    set({ last: false });
     const p = get().allRoute.get(idPercorso);
     const pf = get().percorsiIncompleti.filter(e => e.idUserRoute === idPercorsoFatto)[0];
     /*AGGIORNAMENTO DATI STORE */
@@ -141,7 +143,7 @@ const useStore = create((set,get) => ({
   resetCurrentRoute: () => {
     set({ currentRoute: {}});
   },
-  /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE  */
+  /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE (agginugi reperto alla cronologia e controlla se è l'ultimo)  */
   updateCurrentRoute: async (incrementPoint) => {
     /** */
     /*AGGIORNAMENTO DATI STORE */
@@ -152,22 +154,23 @@ const useStore = create((set,get) => ({
     set((state) => ({currentIdReperto: state.currentRoute.reperti[state.currentRoute.ultimoReperto]}));
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
+    get().isLast();
 
     console.log('AGGIORNATI CAMPI PERCORSO')
 
     /*AGGIORNAMENTO DATI DATABASE */
-    const refRoute = doc(db, "percorsoFatto", get().currentRoute.id);
+    const refRoute = doc(db, "percorsoFatto", route.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
   },
   isLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
     console.log(r.ultimoReperto + ' tot: ' + rep.length)
-    const result = (r.ultimoReperto) >=rep.length;
-    if(result){
+    if((r.ultimoReperto) >= rep.length){
+      set({ last: true });
       get().endRoute();
     }
-    return result;
+    
   },
   endRoute: async() => {
     const time = serverTimestamp();
@@ -177,6 +180,7 @@ const useStore = create((set,get) => ({
     set((state) => ({ percorsiTerminati: [...state.percorsiTerminati, endP]}));
     set((state) =>({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== cRoute.id)}));
     set({ currentRoute: {}});
+    set({ currentIdReperto: ''});
 
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", cRoute.id);

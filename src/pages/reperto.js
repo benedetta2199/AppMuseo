@@ -12,39 +12,29 @@ export default function Reperto() {
   const r = useRouter();
 
   const getReperto = useStore((state) => state.getReperto);
-  const reperto = getReperto() || {};
-
+  const temp = getReperto() || {};
+  const [reperto, setReperto] = useState(temp);
   const updatePointUser = useStore((state) => state.updatePointUser);
-  const addReperto = useStore((state) => state.addReperto);
   const updateCurrentRoute = useStore((state) => state.updateCurrentRoute);
-  const isLast = useStore((state) => state.isLast);
+  const last = useStore((state) => state.last);
 
   let firstTime = true;
-  const {last, setLast} = useState(false);
 
   const incrementPoint = 10;
   
   
   useEffect(()=>{
     if(firstTime){
-      console.log('this rep');
-      console.log(getReperto());
-        updateCurrentRoute(incrementPoint).then(()=>addReperto());
-        updatePointUser(incrementPoint);
+      setReperto(getReperto());
+      updateCurrentRoute(incrementPoint);
+      updatePointUser(incrementPoint);
       firstTime = false;
-      setLast(isLast());
     }
   }, []);
   
   const linkNextPage = () =>{
-    let src;
-    if(last){
-      r.push('/congratulation');
-    } else{
-      const nextreperto = getReperto();
-      console.log(nextreperto);
-      nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
-    }
+    const nextreperto = getReperto();
+    nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
   }
 
   return (
@@ -58,7 +48,10 @@ export default function Reperto() {
       </div>
 
       {'extra' in reperto ? <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button> : <></>}
-      <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
+      { last 
+        ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => r.push('/congratulation')}>  Termina il percorso </button>
+        : <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
+      }
     </main>
   )
 }
