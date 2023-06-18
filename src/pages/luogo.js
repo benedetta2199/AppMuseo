@@ -13,7 +13,7 @@ export default function Reperto() {
   const getReperto = useStore((state) => state.getReperto);
   const temp = getReperto() || {};
   const [reperto, setReperto] = useState(temp);
-
+  const nextReperto = useStore((state) => state.nextReperto);
   const updatePointUser = useStore((state) => state.updatePointUser);
   const updateCurrentRoute = useStore((state) => state.updateCurrentRoute);
   const last = useStore((state) => state.last);
@@ -33,6 +33,7 @@ export default function Reperto() {
   }, []);
   
   const linkNextPage = () =>{
+    nextReperto();
     const nextreperto = getReperto();
     nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
   }
@@ -46,11 +47,14 @@ export default function Reperto() {
         <p className="px-3">{reperto.descrizione}</p>
       </div>
 
-      {'extra' in reperto ? <button className={`${reperto.colore} btn text-light t-abo mb-2`}>  Accumula più punti  </button> : <></>}
+      {'extra' in reperto 
+        ? <button className={`${reperto.colore} btn text-light t-abo mb-2`} onClick={() => r.push({pathname: '/extra',query: { data: reperto.extra}})}>Contenuti Extra</button>
+        : <></>}
       { last 
         ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => r.push('/congratulation')}>  Termina il percorso </button>
         : <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
       }
-    </main>
+    </main> 
+    /**/
   )
 }

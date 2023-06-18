@@ -230,3 +230,13 @@
   object-fit: cover;  
   object-position: 20% top;
 }
+
+.iframe{
+  position:fixed; 
+  top:0; left:0; bottom:0; right:0; 
+  width:100vw; height:95vh; 
+  border:none; 
+  margin:0; padding:0; 
+  overflow:hidden; 
+  z-index:1;        
+}

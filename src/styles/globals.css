@@ -98,10 +98,11 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
  }
  .bHome{ bottom: 4vw; right: 2vw ;}
 
- .bHome:focus, .bHome:active,.bScan:focus, .bScan:active, 
+
+ .bHome:focus, .bHome:active,.bScan:focus, .bScan:active,  .bBack
  input:focus,.input:focus{outline: none !important; box-shadow: none !important; background-color: transparent !important;}
 
- .bHome svg,.bScan svg{
+ .bHome svg,.bScan svg {
   background-color: rgba(225, 225, 225, 0.8);
   height: 35px;
   width: 35px;
@@ -109,6 +110,20 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
   border: 0.5px solid var(--white);
  }
 .bScan svg{height: 45px; width: 45px;}
+.bBack svg{padding: 2px; height: 35px; width: 35px;}
+.bBack{ 
+  position: fixed;
+  bottom: 0; right: 0 ; 
+  width: 100vw;
+  z-index: 5; display: flex; 
+  background-color: var(--dgray);
+  border-radius: 5px;
+  border: 0.5px solid var(--gray);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--white) !important;
+}
 
 .toast{position: absolute; top:20px; z-index: 3; width: 90vw !important; margin: auto 5vw;}
 
