@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
     document.title = "App web: Museo della Regina di Cattolica";
 
     if(check() && r.pathname!='/'){
-      //r.push('./');
+      r.push('./');
     }
 
     const handleContextmenu = e => {
