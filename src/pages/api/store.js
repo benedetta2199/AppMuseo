@@ -56,7 +56,6 @@ const useStore = create((set,get) => ({
 
   /**INIZIALIZZA TUTTI I PERCORSI, DIVIDENDOLI IN CONCLUSI E NON, INTRAPRESI DALL'UTENTE*/
   inizializePercorsiFatti: async () => {
-    if(get().percorsiTerminati.length === 0 && get().percorsiIncompleti.length === 0){
       let terminati = [], incompleti = [];
       for (const route of get().user.percorsiFatti) {
         const docRefPF = doc(db, "percorsoFatto", route);
@@ -76,7 +75,6 @@ const useStore = create((set,get) => ({
       }
       set({ percorsiTerminati: terminati });
       set({ percorsiIncompleti: incompleti });
-    }
   },
 
 
@@ -156,8 +154,9 @@ const useStore = create((set,get) => ({
     get().addReperto(get().currentIdReperto);
     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint}
     set({ currentRoute: updateRoute });
+    const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
-    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, get().currentRoute]}));
+    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
 
     console.log('AGGIORNATI CAMPI PERCORSO');
 
