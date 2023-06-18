@@ -177,7 +177,7 @@ const useStore = create((set,get) => ({
     const r = get().currentRoute;
     const rep = r.reperti || [];
     console.log(r.ultimoReperto + ' tot: ' + rep.length)
-    if((r.ultimoReperto+2) >= rep.length){
+    if((r.ultimoReperto+1) >= rep.length){
       set({ last: true });
       get().endRoute();
     }
