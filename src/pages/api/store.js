@@ -153,10 +153,10 @@ const useStore = create((set,get) => ({
     get().addReperto(get().currentIdReperto);
     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint}
     set({ currentRoute: updateRoute });
-    get().isLast();
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
+    get().isLast();
     
 
     console.log('AGGIORNATI CAMPI PERCORSO');
@@ -177,7 +177,7 @@ const useStore = create((set,get) => ({
     const r = get().currentRoute;
     const rep = r.reperti || [];
     console.log(r.ultimoReperto + ' tot: ' + rep.length)
-    if((r.ultimoReperto) >= rep.length){
+    if((r.ultimoReperto+2) >= rep.length){
       set({ last: true });
       get().endRoute();
     }
