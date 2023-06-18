@@ -10,7 +10,7 @@ export default function Extra() {
   return (
     <>
            
-      <button className={`btn bBack`} onClick={()=>r.back()}><IoChevronBackCircleSharp></IoChevronBackCircleSharp>Back</button>
+      <button className={`btn bBack dgray`} onClick={()=>r.back()}><IoChevronBackCircleSharp></IoChevronBackCircleSharp>Back</button>
 
       <iframe id="inlineFrameExample"
         className={styles.iframe}    
