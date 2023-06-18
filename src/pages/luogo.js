@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { arrayUnion, doc, getDoc, increment, serverTimestamp, updateDoc } from "firebase/firestore";
 
 import styles from '@/Home.module.css'
-import db from '@database'
 import useStore from "@store";
 import Image from "next/image";
 
