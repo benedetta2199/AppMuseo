@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 
-import db from '@database'
 import styles from '@/Home.module.css'
 
 export default function Home() {

@@ -29,9 +29,9 @@ export default function Home() {
       const rep = getReperto();
       console.log(rep);
       if(rep.esterno){
-        r.push('/map');
+        r.replace('/map');
       } else{
-        r.push('/indizio');
+        r.replace('/indizio');
       }
     });
   }

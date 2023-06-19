@@ -97,7 +97,7 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
   z-index: 2;
  }
  .bHome{ bottom: 4vw; right: 2vw ;}
-
+  .bScan{max-width: min-content;}
 
  .bHome:focus, .bHome:active,.bScan:focus, .bScan:active,  .bBack
  input:focus,.input:focus{outline: none !important; box-shadow: none !important; background-color: transparent !important;}
@@ -109,6 +109,7 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
   border-radius: 5px;
   border: 0.5px solid var(--white);
  }
+ 
 .bScan svg{height: 45px; width: 45px;}
 .bBack svg{padding: 2px; height: 35px; width: 35px;}
 .bBack{ 

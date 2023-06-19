@@ -44,7 +44,7 @@ const Map2 = (props) => {
         setPosition([p.coords.latitude, p.coords.longitude]);
         const dist = L.latLng([p.coords.latitude, p.coords.longitude]).distanceTo(center);
         if(dist<MINDISTANCE){
-          r.push('/luogo');
+          r.replace('/luogo');
         }
       });
     }, 2000);

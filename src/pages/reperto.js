@@ -36,7 +36,7 @@ export default function Reperto() {
   const linkNextPage = () =>{
     nextReperto();
     const nextreperto = getReperto();
-    nextreperto.esterno ? r.push('/map')  : r.push('/indizio') ;
+    nextreperto.esterno ? r.replace('/map')  : r.replace('/indizio') ;
   }
 
   return (

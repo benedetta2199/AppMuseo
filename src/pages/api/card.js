@@ -21,9 +21,9 @@ export default function Card(prop) {
     await inizializeCurrentRoute(idUR, idR);
     const rep=getReperto();
     if(rep.esterno){
-      r.push('/map');
+      r.replace('/map');
     } else{
-      r.push('/indizio');
+      r.replace('/indizio');
     }
     
   }

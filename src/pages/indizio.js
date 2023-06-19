@@ -5,11 +5,15 @@ import styles from '@/Home.module.css';
 import useStore from "@store";
 import Image from "next/image";
 import { Col, Row } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 export default function Home() {
 
+  
+  const r = useRouter();
+
   /*da rivedere*/
-  const i = useStore((state) => state.currentIdReperto);
+  /*const i = useStore((state) => state.currentIdReperto);*/
   const getReperto = useStore((state) => state.getReperto);
   const reperto = getReperto() || {};
   const piano = reperto.piano || '';
@@ -26,9 +30,9 @@ export default function Home() {
       </div>
 
       <div className={`${styles.scan} d-flex`} >
-         <Link href={'./scanQr'} className={`bScan btn`}>
+         <button className={`bScan btn`} onClick={()=>r.replace('./scanQr')}>
             <IoQrCode/>
-          </Link>
+          </button>
           <p className="text-start ms-2 my-0">Una volta trovato il reperto scansiona il Qrcode corrispondente</p>
       </div>
       <Row >

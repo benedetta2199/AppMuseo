@@ -21,7 +21,7 @@ export default function scanQR() {
         onResult={(result) => {
           if (!!result) {
             if(result?.text===idRep){
-              r.push('./reperto');
+              r.replace('./reperto');
             } else{
               setShow(true);
             }
