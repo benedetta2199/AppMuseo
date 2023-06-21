@@ -8,7 +8,7 @@ import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css'
 export default function Extra() {
 
   const r = useRouter();
-  const data = r.query.data
+  const data = r.query.data || '';
   let element = {}
 
   console.log(data.substring('?puzzle='.length));
