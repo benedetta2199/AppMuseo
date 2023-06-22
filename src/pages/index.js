@@ -65,11 +65,13 @@ export default function Home() {
           setShow(true);
         } else {
           addUser(textnewmail,textnewpassword1);
-          findUser(textnewmail)
+          inizializeUser(textnewmail,  {password: textnewpassword1, percorsiFatti:[], punteggio:0, reperti:[]});
+          r.push('./user');
+          /*findUser(textnewmail)
             .then((utente)=>{ 
               useStore
               r.push('./user');
-            });
+            });*/
         }
       });
     }else{
