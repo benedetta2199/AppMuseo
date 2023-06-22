@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Link from "next/link";
 
 import styles from '@/Home.module.css'
+import { Button } from 'react-bootstrap';
 
 export default function Home() {
 
@@ -18,9 +19,7 @@ export default function Home() {
       <div className='align-self-center'>
         <h1>Complimenti!</h1>
         <p className='mx-3'>Sei un vero esploratore<br/> Hai trovato il tesoro più prezioso: la conoscenza</p>
-        <Link className='btn mx-auto gray whiteT t-abo' href='./user'>
-            Torna alla home
-          </Link>  
+        <button className='btn mx-auto gray whiteT t-abo' onClick={()=> r.replace('/user')}>Torna alla home </button>  
       </div>
     </main>
   )
