@@ -165,7 +165,7 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
     get().addReperto(get().currentIdReperto);
-    const i =  route.ultimoReperto+1;
+    const i =  route.ultimoReperto+2;
     const nRep = route.reperti.length;
     const perc = (i)*100/nRep;
     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint, perc: perc}
