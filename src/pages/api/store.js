@@ -124,7 +124,7 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI STORE*/
     /*aggiungi percorso fatto (incompleto)*/
     const p = get().allRoute.get(id);
-    const elem = {nome: id, img: p.img, punteggio: 0, perc: 0, hue: p.colore, ultimoReperto: 0, idRoute: id, idUserRoute: idPFatto};
+    const elem = {nome: p.nome, img: p.img, punteggio: 0, perc: 0, hue: p.colore, ultimoReperto: 0, idRoute: id, id: idPFatto};
 
     console.log('AGGIUNGI NUOVO PERCORSO before' + get().percorsiIncompleti.length);
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, elem]}));
