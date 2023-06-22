@@ -56,6 +56,7 @@ const useStore = create((set,get) => ({
 
   /**INIZIALIZZA TUTTI I PERCORSI, DIVIDENDOLI IN CONCLUSI E NON, INTRAPRESI DALL'UTENTE*/
   inizializePercorsiFatti: async () => {
+    if(get().percorsiIncompleti.length === 0 && get().percorsiTerminati.length === 0){
       let terminati = [], incompleti = [];
       for (const route of get().user.percorsiFatti) {
         const docRefPF = doc(db, "percorsoFatto", route);
@@ -69,12 +70,13 @@ const useStore = create((set,get) => ({
           const i =  pf.ultimoReperto;
           const nRep = p.reperti.length
           const perc = (i)*100/nRep;
-          const element = {nome: p.nome, img: p.img, punteggio: pf.punteggio, perc: perc, hue: p.colore, ultimoReperto: i, idRoute: pf.nome, idUserRoute: docSnapPF.id};
+          const element = {nome: p.nome, img: p.img, punteggio: pf.punteggio, perc: perc, hue: p.colore, ultimoReperto: i, idRoute: pf.nome, id: docSnapPF.id};
           incompleti=incompleti.concat(element);
         }
       }
       set({ percorsiTerminati: terminati });
       set({ percorsiIncompleti: incompleti });
+    }
   },
 
 
@@ -129,6 +131,8 @@ const useStore = create((set,get) => ({
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
     console.log('AGGIUNGI NUOVO PERCORSO after' + get().percorsiIncompleti.length);
 
+    console.log('ID '+id);
+
     await get().inizializeCurrentRoute(idPFatto, id);
   },
 
@@ -136,10 +140,17 @@ const useStore = create((set,get) => ({
   inizializeCurrentRoute: (idPercorsoFatto, idPercorso) => {
     set({ last: false });
     const p = get().allRoute.get(idPercorso);
-    const pf = get().percorsiIncompleti.filter(e => e.idUserRoute === idPercorsoFatto)[0];
+    console.log(idPercorsoFatto);
+    console.log(get().percorsiIncompleti);
+    const pf = get().percorsiIncompleti.filter(e => e.id === idPercorsoFatto)[0];
+    console.log('pf');
+    console.log(pf);
+    console.log('p');
+    console.log(p);
+    console.log(idPercorso);
     /*AGGIORNAMENTO DATI STORE */
     if(Object.keys(get().currentRoute).length == 0){
-      const initR = {id: pf.idUserRoute, img: pf.img, idRoute: idPercorso, nome: p.nome, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
+      const initR = {id: pf.id, img: pf.img, idRoute: idPercorso, nome: p.nome, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
     }
@@ -162,7 +173,7 @@ const useStore = create((set,get) => ({
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
     console.log('AGGIORNA PERCORSO before ' + get().percorsiIncompleti.length);
     console.log(get().percorsiIncompleti);
-    set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
+    set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
     console.log('AGGIORNA PERCORSO in ' + get().percorsiIncompleti.length);
     console.log(get().percorsiIncompleti);
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
@@ -204,7 +215,7 @@ const useStore = create((set,get) => ({
     console.log('TERMINA PERCORSO before PI' + get().percorsiIncompleti.length);
     console.log('TERMINA PERCORSO before PT' + get().percorsiTerminati.length);
     set((state) => ({ percorsiTerminati: [...state.percorsiTerminati, endP]}));
-    set((state) =>({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== cRoute.id)}));
+    set((state) =>({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== cRoute.id)}));
     console.log('TERMINA PERCORSO after PI' + get().percorsiIncompleti.length);
     console.log('TERMINA PERCORSO after PT' + get().percorsiTerminati.length);
     set({ currentRoute: {}});

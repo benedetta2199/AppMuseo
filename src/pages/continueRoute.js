@@ -27,7 +27,7 @@ export default function Home() {
             return (
               <div className='mt-3' key={i}>
                 <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}
-                  idR={item.idRoute} idUR={item.idUserRoute}/>
+                  idR={item.idRoute} idUR={item.id}/>
               </div>
             )
           })
