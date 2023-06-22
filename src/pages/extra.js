@@ -1,5 +1,6 @@
 import styles from '@/Home.module.css';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import {IoChevronBackCircleSharp} from "react-icons/io5";
 
 import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib'
@@ -9,7 +10,8 @@ export default function Extra() {
 
   const r = useRouter();
   const data = r.query.data || '';
-  let element = {}
+  let element = {};
+  const [win, setWin] = useState("Ricomponi il puzzle e scopri l'immagine");
 
   console.log(data.substring('?puzzle='.length));
   
@@ -26,13 +28,13 @@ export default function Extra() {
       {data.includes('puzzle')
         ?
           <>
-            <h1>Ricomponi il puzzle e scopri l'immagine</h1>
+            <h1>{win}</h1>
             <div className='puzzle-container'>
               <JigsawPuzzle
                 imageSrc={'/puzzle/'+element.src+'.webp'}
                 rows={element.row}
                 columns={element.columns}
-                onSolved={() => alert('Solved!')}
+                onSolved={() => setWin('Congratulazioni!')}
               />
             </div>
           </>

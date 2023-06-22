@@ -52,6 +52,7 @@
 .t-abo{font-family: 'Aboreto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;}
 
 * {box-sizing: border-box;}
+p { -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none; user-select: none;}
 
 body {
   font-family: 'Quicksand', Arial, Helvetica, sans-serif !important;
@@ -190,8 +191,8 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
 
 /*PUZZLE*/
 .puzzle-container{
-  width: 90vw;
-  margin: 0 5vw;
+  width: 90vw !important;
+  margin: 0 5vw !important;
 }
 .jigsaw-puzzle__piece{
   filter: grayscale(50%);
