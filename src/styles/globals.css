@@ -62,6 +62,7 @@ body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
+main{ min-height: 100vh !important;}
 
 h1,h2,h3,h4,h5,h6{font-family: 'Aboreto',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}
 h1{margin-top: 2vh;}
