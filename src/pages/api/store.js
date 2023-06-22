@@ -56,7 +56,6 @@ const useStore = create((set,get) => ({
 
   /**INIZIALIZZA TUTTI I PERCORSI, DIVIDENDOLI IN CONCLUSI E NON, INTRAPRESI DALL'UTENTE*/
   inizializePercorsiFatti: async () => {
-    if(get().percorsiTerminati.length === 0 && get().percorsiIncompleti.length === 0){
       let terminati = [], incompleti = [];
       for (const route of get().user.percorsiFatti) {
         const docRefPF = doc(db, "percorsoFatto", route);
@@ -76,7 +75,6 @@ const useStore = create((set,get) => ({
       }
       set({ percorsiTerminati: terminati });
       set({ percorsiIncompleti: incompleti });
-    }
   },
 
 
@@ -125,8 +123,11 @@ const useStore = create((set,get) => ({
     /*aggiungi percorso fatto (incompleto)*/
     const p = get().allRoute.get(id);
     const elem = {nome: id, img: p.img, punteggio: 0, perc: 0, hue: p.colore, ultimoReperto: 0, idRoute: id, idUserRoute: idPFatto};
+
+    console.log('AGGIUNGI NUOVO PERCORSO before' + get().percorsiIncompleti.length);
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, elem]}));
     /*aggingi l'id di percorsoFatto alla lista di percorsi iniziati dall'utente */
+    console.log('AGGIUNGI NUOVO PERCORSO after' + get().percorsiIncompleti.length);
 
     await get().inizializeCurrentRoute(idPFatto, id);
   },
@@ -159,12 +160,15 @@ const useStore = create((set,get) => ({
     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint, perc: perc}
     set({ currentRoute: updateRoute });
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
+    console.log('AGGIORNA PERCORSO before ' + get().percorsiIncompleti.length);
+    console.log(get().percorsiIncompleti);
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== route.id)}));
+    console.log('AGGIORNA PERCORSO in ' + get().percorsiIncompleti.length);
+    console.log(get().percorsiIncompleti);
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
+    console.log('AGGIORNA PERCORSO after ' + get().percorsiIncompleti.length);
+    console.log(get().percorsiIncompleti);
     get().nextIsLast();
-    
-
-    console.log('AGGIORNATI CAMPI PERCORSO');
 
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", route.id);
@@ -181,7 +185,6 @@ const useStore = create((set,get) => ({
   nextIsLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
-    console.log(r.ultimoReperto + ' tot: ' + rep.length)
     if((r.ultimoReperto+1) >= rep.length){
       set({ last: true });
       get().endRoute();
@@ -198,8 +201,12 @@ const useStore = create((set,get) => ({
 
     /*AGGIORNAMENTO DATI STORE */
     const endP = {nome: cRoute.nome, img: cRoute.img, punteggio: cRoute.punteggio, data: time, hue: cRoute.hue }
+    console.log('TERMINA PERCORSO before PI' + get().percorsiIncompleti.length);
+    console.log('TERMINA PERCORSO before PT' + get().percorsiTerminati.length);
     set((state) => ({ percorsiTerminati: [...state.percorsiTerminati, endP]}));
     set((state) =>({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.idUserRoute !== cRoute.id)}));
+    console.log('TERMINA PERCORSO after PI' + get().percorsiIncompleti.length);
+    console.log('TERMINA PERCORSO after PT' + get().percorsiTerminati.length);
     set({ currentRoute: {}});
     set({ currentIdReperto: ''});
   },
