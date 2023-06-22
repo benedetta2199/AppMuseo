@@ -6,11 +6,11 @@ import { useEffect, useState } from 'react';
 import Link from "next/link";
 
 import styles from '@/Home.module.css'
-import { Button } from 'react-bootstrap';
+
 
 export default function Home() {
 
-  const[user,setUser]=useState('')  
+  const r = useEffect();
   const { width=400, height=800 } = useWindowSize();
 
   return (
