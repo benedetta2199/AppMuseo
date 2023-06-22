@@ -27,7 +27,6 @@ export default function Home() {
   const openPage = (id) =>{
     addNewRoute(id).then(()=>{
       const rep = getReperto();
-      console.log(rep);
       if(rep.esterno){
         r.replace('/map');
       } else{
