@@ -82,11 +82,10 @@ const Map2 = (props) => {
         </Marker>
       </MapContainer>
       </div>
-    <button className={`${stylesH.scan} bScan btn`} 
+    <button className={`${stylesH.scan} bLoc btn`} 
       onClick={()=>{map.fitBounds([position, center]); }}>
       <IoLocate/>
     </button>
-    
   </>
                   
   )

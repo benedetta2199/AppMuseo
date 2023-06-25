@@ -41,7 +41,7 @@ export default function Extra() {
         :
           <iframe id="inlineFrameExample"
             className={styles.iframe}    
-            allow="camera;microphone"
+            allow="geolocation 'src'; microphone 'src'; camera 'src';"
             src={"https://benedetta2199.github.io/ARapp/"+data}>
           </iframe>
       }

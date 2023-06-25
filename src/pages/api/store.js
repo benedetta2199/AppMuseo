@@ -141,6 +141,7 @@ const useStore = create((set,get) => ({
       const initR = {id: pf.id, img: pf.img, idRoute: idPercorso, nome: p.nome, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
+      console.log(initR.reperti[initR.ultimoReperto]);
     }
   },
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
@@ -153,11 +154,13 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
     get().addReperto(get().currentIdReperto);
-    const i =  route.ultimoReperto+2;
+    const i =  route.ultimoReperto+1;
     const nRep = route.reperti.length;
     const perc = (i)*100/nRep;
     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint, perc: perc}
+    console.log(updateRoute);
     set({ currentRoute: updateRoute });
+    console.log(get().currentRoute)
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
@@ -202,6 +205,7 @@ const useStore = create((set,get) => ({
   /**RESTITUISCE I DATI DEL REPERTO corrente */
   getReperto: () => { 
     const t = get().allFind.get(get().currentIdReperto);
+    console.log(t);
     return t; 
   }}));
 

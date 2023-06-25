@@ -91,20 +91,20 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
 
 .lock-height{height: 100vh; overflow: hidden;}
 
-.bHome {
+.bHome, .bLoc {
   position: fixed;
   height: min-content;
   width: min-content;
   padding: 0px;
   z-index: 2;
  }
- .bHome{ bottom: 4vw; right: 2vw ;}
-  .bScan{max-width: min-content;}
+ .bHome, .bLoc{ bottom: 4vw; right: 2vw ;}
+.bScan{max-width: min-content;}
 
- .bHome:focus, .bHome:active,.bScan:focus, .bScan:active,  .bBack
+ .bHome:focus, .bHome:active,.bScan:focus, .bScan:active, .bLoc:focus, .bLoc:active,
  input:focus,.input:focus{outline: none !important; box-shadow: none !important; background-color: transparent !important;}
 
- .bHome svg,.bScan svg {
+ .bHome svg,.bScan svg, .bLoc svg {
   background-color: rgba(225, 225, 225, 0.8);
   height: 35px;
   width: 35px;
