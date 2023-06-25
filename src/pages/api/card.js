@@ -18,7 +18,6 @@ export default function Card(prop) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const click = async () => {
-    console.log('IDUR '+idUR)
     await inizializeCurrentRoute(idUR, idR);
     const rep=getReperto();
     if(rep.esterno){
