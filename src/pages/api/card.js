@@ -20,6 +20,7 @@ export default function Card(prop) {
   const click = async () => {
     await inizializeCurrentRoute(idUR, idR);
     const rep=getReperto();
+    console.log(rep);
     if(rep.esterno){
       r.replace('/map');
     } else{
