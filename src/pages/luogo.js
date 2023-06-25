@@ -49,7 +49,7 @@ export default function Reperto() {
         ? <button className={`${reperto.colore} btn text-light t-abo mb-2`} onClick={() => r.push({pathname: '/extra',query: { data: reperto.extra}})}>Contenuti Extra</button>
         : <></>}
       { last 
-        ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => r.push('/congratulation')}>  Termina il percorso </button>
+        ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => r.replace('/congratulation')}>  Termina il percorso </button>
         : <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => linkNextPage()}>  Scopri il prossimo indizio </button>
       }
     </main> 
