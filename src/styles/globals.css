@@ -191,8 +191,9 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
 
 /*PUZZLE*/
 .puzzle-container{
-  width: 90vw !important;
-  margin: 0 5vw !important;
+  max-width: 95vw !important;
+  max-height: 85vh !important;
+  margin: 0 auto !important;
 }
 .jigsaw-puzzle__piece{
   filter: grayscale(50%);
