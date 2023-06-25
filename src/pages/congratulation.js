@@ -1,16 +1,13 @@
-import { doc, getDoc } from 'firebase/firestore';
 import Confetti from 'react-confetti';
 import { useWindowSize } from '@react-hook/window-size';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import Link from "next/link";
 
 import styles from '@/Home.module.css'
 
 
 export default function Home() {
 
-  const r = useEffect();
+  const r = useRouter();
   const { width=400, height=800 } = useWindowSize();
 
   return (
