@@ -24,9 +24,16 @@ export default function Home() {
       <p>Clicca su un percorso per vedere i dettagli</p>
       <div className="d-flex flex-wrap justify-content-around">
         {routes.map((item, i) =>{
+          console.log(item);
+          let perc;
+          if(item.hasOwnProperty('perc')){
+            perc= item.perc;
+          }else{
+            perc = item.ultimoReperto*100/item.reperti.length;
+          }
             return (
               <div className='mt-3' key={i}>
-                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.perc} hue={item.hue} contin={true}
+                <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={perc} hue={item.hue} contin={true}
                   idR={item.idRoute} idUR={item.id}/>
               </div>
             )
