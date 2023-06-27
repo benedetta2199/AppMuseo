@@ -21,7 +21,6 @@
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
-    "react-jigsaw-puzzle": "^1.0.4",
     "react-leaflet": "^4.2.0",
     "react-qr-reader": "^3.0.0-beta-1",
     "zustand": "^4.3.6"
