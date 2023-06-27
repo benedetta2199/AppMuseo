@@ -5,6 +5,7 @@ import {IoChevronBackCircleSharp} from "react-icons/io5";
 
 import { JigsawPuzzle } from 'react-jigsaw-puzzle/lib'
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css'
+import useStore from "@store";
 
 export default function Extra() {
 
@@ -13,7 +14,13 @@ export default function Extra() {
   let element = {};
   const [win, setWin] = useState("Ricomponi il puzzle e scopri l'immagine");
 
-  console.log(data.substring('?puzzle='.length));
+  
+  const idRep = useStore((state) => state.currentIdReperto);
+  const user = useStore((state) => state.user);
+  const currentRoute = useStore((state) => state.currentRoute);
+  const restore = useStore((state) => state.restore);
+
+  console.log(idRep);
   
   switch(data.substring('?puzzle='.length)){
     case 'fusaiola':
@@ -25,7 +32,7 @@ export default function Extra() {
 
   return (
     <>
-      {data.includes('puzzle')
+      {data.includes('puzzlesss')
         ?
           <>
             <h1>{win}</h1>
@@ -46,7 +53,9 @@ export default function Extra() {
           </iframe>
       }
            
-      <button className={`btn bBack dgray`} onClick={()=>r.back()}><IoChevronBackCircleSharp></IoChevronBackCircleSharp>Back</button>
+      <button className={`btn bBack dgray`} onClick={()=>{restore(user,currentRoute,idRep); r.back();}}>
+        <IoChevronBackCircleSharp></IoChevronBackCircleSharp>Back
+      </button>
     </>
       
   )

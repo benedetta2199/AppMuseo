@@ -17,9 +17,36 @@ const useStore = create((set,get) => ({
   currentIdReperto: '',
   last: false,
 
+  restore:(user, currentRoute, id)=>{
+    console.log(get().user);
+    const test = get().check();
+    console.log(test)
+    if(test){
+      console.log('start');
+      set({ user: user });
+      console.log(get().user);
+      set({ currentRoute: currentRoute });
+      console.log(get().currentRoute);
+      set({ idReperto: id });
+      console.log(get().currentIdReperto);
+      if((currentRoute.ultimoReperto+1) >= currentRoute.reperti.length){
+        set({ last: true });
+        console.log(get().last);
+      }
+      get().loadFind();
+      console.log('1');
+      get().loadRoute();
+      console.log('2');
+      get().inizializeCronoReperti();
+      console.log('3');
+      get().inizializePercorsiFatti();
+      console.log('4');
+    }
+  },
+
                                                                           /*CHECK INIZIALISATION*/
   check: () =>{
-    return typeof user == 'undefined';
+    return typeof user === 'undefined';
   },
 
 
@@ -141,7 +168,6 @@ const useStore = create((set,get) => ({
       const initR = {id: pf.id, img: pf.img, idRoute: idPercorso, nome: p.nome, hue: pf.hue, punteggio: pf.punteggio, ultimoReperto: pf.ultimoReperto, reperti: p.reperti}
       set({ currentRoute: initR});
       set({ currentIdReperto: initR.reperti[initR.ultimoReperto]});
-      console.log(initR.reperti[initR.ultimoReperto]);
     }
   },
   /**INIZIALIZZA NELLO STORE LA ROUTE CORRENTE  */
@@ -149,35 +175,33 @@ const useStore = create((set,get) => ({
     set({ currentRoute: {}});
   },
   /**MODIFICA LA ROUTE CORRENTE AGGIORNANDO IL PUNTEGGIO E L'INDICE (agginugi reperto alla cronologia e controlla se è l'ultimo)  */
-  updateCurrentRoute: async (incrementPoint) => {
-    /** */
-    /*AGGIORNAMENTO DATI STORE */
+  updateCurrentRoute: async (incrementPoint) => { 
+    get().addReperto(get().currentIdReperto);  
     const route = get().currentRoute;
-    get().addReperto(get().currentIdReperto);
-    const i =  route.ultimoReperto+1;
-    const nRep = route.reperti.length;
-    const perc = (i)*100/nRep;
-    const updateRoute = {...route, punteggio: route.punteggio+incrementPoint, perc: perc}
-    console.log(updateRoute);
-    set({ currentRoute: updateRoute });
-    console.log(get().currentRoute)
-    const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
-    set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
-    set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
-    get().nextIsLast();
 
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", route.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
   },
-  nextReperto: () => {
-    const route = get().currentRoute;
-    const ultimoRep = route.ultimoReperto+1
-    const updateRoute = {...route, ultimoReperto: ultimoRep};
-    set({currentIdReperto: route.reperti[ultimoRep]});
-    set({currentRoute: updateRoute });
+  nextReperto: (incrementPoint) => {
+    get().nextIsLast();
+     /*AGGIORNAMENTO DATI STORE */
+     const route = get().currentRoute;
+     const ultimoRep = route.ultimoReperto+1;
+     const nRep = route.reperti.length;
+     set({currentIdReperto: route.reperti[ultimoRep]});
+     const updateRoute = {...route, punteggio: route.punteggio+incrementPoint, ultimoReperto: ultimoRep, perc: ultimoRep*100/nRep}
+     set({ currentRoute: updateRoute });
+     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto+1}
+     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
+     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
+    
   },
-
+  termina: ()=>{
+    const r = get().currentRoute;
+    const rep = r.reperti || [];
+    return (r.ultimoReperto+1) >= rep.length;
+  },
   nextIsLast: () =>{
     const r = get().currentRoute;
     const rep = r.reperti || [];
@@ -204,9 +228,9 @@ const useStore = create((set,get) => ({
 
   /**RESTITUISCE I DATI DEL REPERTO corrente */
   getReperto: () => { 
-    const t = get().allFind.get(get().currentIdReperto);
-    console.log(t);
-    return t; 
-  }}));
+    return get().allFind.get(get().currentIdReperto); 
+  },
+
+}));
 
 export default useStore;

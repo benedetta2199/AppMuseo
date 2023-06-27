@@ -38,7 +38,6 @@ const Map2 = (props) => {
   const [position, setPosition] = useState([43.96362390345784, 12.741044864931098]);
 
   useEffect(() => {
-    let i =0;
     const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
       navigator.geolocation.getCurrentPosition(function(p) {
         setPosition([p.coords.latitude, p.coords.longitude]);

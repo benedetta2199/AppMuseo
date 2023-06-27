@@ -34,7 +34,7 @@ export default function Reperto() {
   }, []);
   
   const linkNextPage = () =>{
-    nextReperto();
+    nextReperto(incrementPoint);
     const nextreperto = getReperto();
     nextreperto.esterno ? r.replace('/map')  : r.replace('/indizio') ;
   }
