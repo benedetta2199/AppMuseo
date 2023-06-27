@@ -4,7 +4,6 @@ import ReactCardFlip from "react-card-flip";
 import useStore from "@store";
 import styles from '@/Component.module.css'
 import { useRouter } from "next/router";
-import { async } from "@firebase/util";
 
 export default function Card(prop) {
   
@@ -38,7 +37,7 @@ export default function Card(prop) {
 
         <div className={`${styles.cardB}`} onClick={contin? ()=>{} :()=>{setIsFlipped(!isFlipped)}}
           style={{background: 'var(--d'+hue+')'}}>
-            <p className="t-elite mb-1">Terminato il {contin? ' ':<br/>}{(altro+'').substring(0, 4)}{contin? '% del percorso':''}</p>
+            <p className="t-elite mb-1">Terminato il {contin? (altro+'').substring(0, 4)+'% del percorso' : ' \n '+ altro}</p>
             {contin
               ? <></>
               : <h2 className={`${styles.title}`}>{titolo}</h2>

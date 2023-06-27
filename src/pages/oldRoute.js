@@ -15,6 +15,7 @@ export default function Home() {
       <p>Clicca su un percorso per vedere i dettagli</p>
       <div className="d-flex flex-wrap justify-content-around">
         {routes.map((item, i) =>{
+          console.log(item.data);
             return (
               <div className='mt-3' key={i}>
                 <Card titolo={item.nome} img={item.img} punteggio={item.punteggio} altro={item.data} hue={item.hue} contin={false}/>

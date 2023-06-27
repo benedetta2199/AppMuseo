@@ -19,11 +19,13 @@ export default function Reperto() {
   const updatePointUser = useStore((state) => state.updatePointUser);
   const updateCurrentRoute = useStore((state) => state.updateCurrentRoute);
   const updateCurrentRouteExtra = useStore((state) => state.updateCurrentRouteExtra);
+  const endRoute = useStore((state) => state.endRoute);
   const last = useStore((state) => state.last);
 
   let firstTime = true;
 
   const incrementPoint = 10;
+  const extraPoint = 3;
   
   useEffect(()=>{
     if(firstTime){
@@ -51,10 +53,10 @@ export default function Reperto() {
       </div>
 
       {'extra' in reperto 
-        ? <button className={`${reperto.colore} btn text-light t-abo mb-2`} onClick={() => {updateCurrentRouteExtra(incrementPoint); r.push({pathname: '/extra',query: { data: reperto.extra}})}}>Contenuti Extra</button>
+        ? <button className={`${reperto.colore} btn text-light t-abo mb-2`} onClick={() => {updateCurrentRouteExtra(incrementPoint, extraPoint); r.push({pathname: '/extra',query: { data: reperto.extra}})}}>Contenuti Extra</button>
         : <></>}
       { last 
-        ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => r.replace('/congratulation')}>  Termina il percorso </button>
+        ? <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => {endRoute();r.replace('/congratulation')}}>  Termina il percorso </button>
         : <button className={`${reperto.colore}Border btn white t-abo`} onClick={() => {linkNextPage();}}>  Scopri il prossimo indizio </button>
       }
     </main>

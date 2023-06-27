@@ -181,12 +181,12 @@ const useStore = create((set,get) => ({
     const refRoute = doc(db, "percorsoFatto", route.id);
     await updateDoc(refRoute, {punteggio: increment(incrementPoint),ultimoReperto: increment(1)});
   },
-  updateCurrentRouteExtra: async (incrementPoint) => {
+  updateCurrentRouteExtra: async (incrementPoint, extraPoint) => {
     /** */
     /*AGGIORNAMENTO DATI STORE */
     const route = get().currentRoute;
-    const point = route.punteggio-incrementPoint;
-    const updateRoute = {...route, punteggio: point}
+    const point = extraPoint-incrementPoint;
+    const updateRoute = {...route, punteggio: route.punteggio+point}
     set({ currentRoute: updateRoute });
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto-1}
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
@@ -194,7 +194,7 @@ const useStore = create((set,get) => ({
 
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", route.id);
-    await updateDoc(refRoute, {punteggio: increment(-incrementPoint),ultimoReperto: increment(-1)});
+    await updateDoc(refRoute, {punteggio: increment(point),ultimoReperto: increment(-1)});
   },
   nextReperto: () => {
     get().nextIsLast();
@@ -203,8 +203,6 @@ const useStore = create((set,get) => ({
     const updateRoute = {...route, ultimoReperto: ultimoRep};
     set({currentIdReperto: route.reperti[ultimoRep]});
     set({currentRoute: updateRoute });
-
-    
   },
   termina: ()=>{
     const r = get().currentRoute;
@@ -215,13 +213,13 @@ const useStore = create((set,get) => ({
     const r = get().currentRoute;
     const rep = r.reperti || [];
     if((r.ultimoReperto+1) >= rep.length){
-      set({ last: true });
       get().endRoute();
     }
   },
   endRoute: async() => {
     const time = serverTimestamp();
     const cRoute = get().currentRoute;
+    set({ last: true });
 
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", cRoute.id);

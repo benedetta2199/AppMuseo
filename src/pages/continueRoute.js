@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import Card from "./api/card";
 import { useRouter } from "next/router";
 import { IoHome } from "react-icons/io5";
-import {getDoc, doc } from "firebase/firestore";
-
-import db from '@database'
 import useStore from "@store";
 import styles from '@/Home.module.css'
 
