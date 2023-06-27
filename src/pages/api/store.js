@@ -19,7 +19,6 @@ const useStore = create((set,get) => ({
 
   restore:(user, currentRoute, id)=>{
     if(get().check()){
-      console.log('start');
       set({ user: user });
       set({ currentRoute: currentRoute });
       set({ idReperto: id });

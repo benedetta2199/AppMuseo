@@ -27,7 +27,6 @@ export default function Reperto() {
   useEffect(()=>{
     if(firstTime){
       setReperto(getReperto());
-      console.log(reperto)
       updateCurrentRoute(incrementPoint);
       updatePointUser(incrementPoint);
       firstTime = false;

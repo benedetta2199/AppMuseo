@@ -21,7 +21,6 @@ export default function Home() {
       <p>Clicca su un percorso per vedere i dettagli</p>
       <div className="d-flex flex-wrap justify-content-around">
         {routes.map((item, i) =>{
-          console.log(item);
           let perc;
           if(item.hasOwnProperty('perc')){
             perc= item.perc;
