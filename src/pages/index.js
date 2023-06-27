@@ -59,7 +59,6 @@ export default function Home() {
   const checkRegistrati = () =>{
     if(textnewpassword1==textnewpassword2){
       findUser(textnewmail).then((utente)=>{
-        console.log(utente);
         if (utente.exists()) {
           setTextToast('Un utente è già registrato con questa mail');
           setShow(true);
