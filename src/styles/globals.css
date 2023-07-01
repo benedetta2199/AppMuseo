@@ -91,6 +91,8 @@ button {width: 80%; color: inherit !important; font-size: 18px;}
 
 .lock-height{height: 100vh; overflow: hidden;}
 
+.new-line {white-space: pre-line;}
+
 .bHome, .bLoc {
   position: fixed;
   height: min-content;
