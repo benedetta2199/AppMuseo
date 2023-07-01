@@ -26,7 +26,9 @@ export default function Home() {
          <h1 className="mb-5 pb-3"> Trova il reperto </h1>
          <h2 className={`${styles.title} h6 text-end px-5`}>Piano {reperto.piano}</h2>
         <Image src={`/piano/${piano}-${reperto.colore}-${sala.replaceAll(' ','')}.webp`} alt={piano + ' ' + sala} width={250} height={250} className={styles.piano} priority/>
-        <p className={`${styles.indizio} px-3 t-elite pt-2`}>{reperto.indizio}</p>
+        <p className={`${styles.indizio} small px-3 t-elite pt-2`}>
+          {reperto.indizio.split('*').map(line => <>{line}<br/></>)}
+        </p>
       </div>
 
       <div className={`${styles.scan} d-flex`} >
