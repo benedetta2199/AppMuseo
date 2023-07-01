@@ -61,15 +61,15 @@
 
  /*INDIZIO*/
  .obliquo{
-  -moz-transform: skew(0deg, 10deg);
-  -webkit-transform: skew(0deg, 10deg);
-  -o-transform: skew(0deg, 10deg);
-  -ms-transform: skew(0deg, 10deg);
-  transform: skew(0deg, 10deg);
+  -moz-transform: skew(0deg, 8deg);
+  -webkit-transform: skew(0deg, 8deg);
+  -o-transform: skew(0deg, 8deg);
+  -ms-transform: skew(0deg, 8deg);
+  transform: skew(0deg, 8deg);
   height: 53vh;
   background-color: var(--white);
   position: absolute;
-  top: 32vh;
+  top: 33vh;
   width: 100vw;
   border-radius: 8px;
  }
@@ -87,6 +87,8 @@
  .indizio{
   position: relative;
   top: -6vh;
+  max-height: 30vh;
+  overflow-y: scroll;
  }
 
  .scan{
