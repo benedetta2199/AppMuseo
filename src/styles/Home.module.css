@@ -66,7 +66,7 @@
   -o-transform: skew(0deg, 10deg);
   -ms-transform: skew(0deg, 10deg);
   transform: skew(0deg, 10deg);
-  height: 47vh;
+  height: 53vh;
   background-color: var(--white);
   position: absolute;
   top: 32vh;
