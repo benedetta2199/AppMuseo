@@ -87,8 +87,11 @@
  .indizio{
   position: relative;
   top: -6vh;
-  max-height: 30vh;
+  height: 30vh;
   overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
  }
 
  .scan{
