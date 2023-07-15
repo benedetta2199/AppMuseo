@@ -187,6 +187,7 @@ const useStore = create((set,get) => ({
     const point = extraPoint-incrementPoint;
     const updateRoute = {...route, punteggio: route.punteggio+point}
     set({ currentRoute: updateRoute });
+    set((state) => ({ user: {...state.user, punteggio: state.user.punteggio+point} }));    
     const updateRouteIndex = {...route, ultimoReperto: route.ultimoReperto-1}
     set((state) => ({ percorsiIncompleti: state.percorsiIncompleti.filter(e => e.id !== route.id)}));
     set((state) => ({ percorsiIncompleti: [...state.percorsiIncompleti, updateRouteIndex]}));
@@ -194,6 +195,8 @@ const useStore = create((set,get) => ({
     /*AGGIORNAMENTO DATI DATABASE */
     const refRoute = doc(db, "percorsoFatto", route.id);
     await updateDoc(refRoute, {punteggio: increment(point),ultimoReperto: increment(-1)});
+    const ref = doc(db, "user", get().user.id);
+    await updateDoc(ref, {punteggio: increment(point)});
   },
   nextReperto: () => {
     get().nextIsLast();
