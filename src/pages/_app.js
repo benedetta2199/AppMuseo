@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     document.title = "App web: Museo della Regina di Cattolica";
 
-    if(check() && r.pathname!='/'){
+    if(check() && r.pathname!='/' && r.pathname!='/img'){
       r.push('./');
     }
 
